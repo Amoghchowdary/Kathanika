@@ -1,0 +1,14 @@
+KATHANIKA MEDIA V30.0.0
+
+Production + GitHub Pages hardening release.
+
+Key fixes:
+- verifier no longer rejects a valid .git repository or required .github workflow
+- GitHub Pages workflow included in the package
+- project-site base path /kathanika/ supported throughout navigation, router, favicon and video covers
+- dedicated GitHub Pages build and artifact verification
+- .gitattributes normalizes line endings and eliminates Windows LF/CRLF churn
+- Vite 8 native tsconfig path resolution removes the obsolete plugin warning
+- Google Apps Script self-setup backend retained and versioned as V30
+- 9 channels / 90 Top 10 covers and video links retained
+- Business and Career Inquiry backends retained

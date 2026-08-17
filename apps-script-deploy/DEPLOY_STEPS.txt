@@ -1,0 +1,25 @@
+KATHANIKA MEDIA V30 — APPS SCRIPT DEPLOYMENT
+
+1. Create a new standalone Google Apps Script project.
+2. Delete the default myFunction().
+3. Open Kathanika_V30_Production_Backend.gs from this folder.
+4. Copy everything into Code.gs and Save.
+5. Select setupDatabase and click Run.
+6. Complete Google authorization.
+7. Select verifyProductionSetup and click Run.
+   Expected: ok = true and issues = [].
+8. Deploy > New deployment > Web app.
+9. Execute as: Me.
+10. Choose the access level required for the public website.
+11. Deploy and copy the URL ending in /exec.
+12. In the frontend V30 folder run:
+    powershell -ExecutionPolicy Bypass -File .\scripts\configure-production.ps1
+13. Paste the /exec URL when requested.
+14. Run:
+    npm install
+    npm run verify
+    npm run dev
+
+After local form testing:
+    npm run preflight
+    npm run preview

@@ -1,0 +1,630 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Karla", ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+
+:root {
+  --radius: 0.25rem;
+
+  /* Kathanika client palette v2 — espresso brown, walnut and warm parchment.
+   * Black is retained only as a restrained deep-neutral accent rather than the
+   * dominant page surface, keeping the site warm and image-led.
+   */
+  --background: oklch(0.2057 0.0233 62.95); /* #1F150C */
+  --foreground: oklch(0.8933 0.0260 94.76); /* #E1DCC9 */
+
+  --card: oklch(0.3148 0.0474 69.64); /* #412D15 */
+  --card-foreground: oklch(0.8933 0.0260 94.76);
+  --popover: oklch(0.2057 0.0233 62.95);
+  --popover-foreground: oklch(0.8933 0.0260 94.76);
+
+  --primary: oklch(0.8933 0.0260 94.76); /* #E1DCC9 */
+  --primary-foreground: oklch(0.2057 0.0233 62.95);
+  --secondary: oklch(0.3148 0.0474 69.64); /* #412D15 */
+  --secondary-foreground: oklch(0.8933 0.0260 94.76);
+
+  --muted: oklch(0.3148 0.0474 69.64);
+  --muted-foreground: oklch(0.8933 0.0260 94.76 / 0.72);
+  --accent: oklch(0 0 0); /* #000000 — restrained accent only */
+  --accent-foreground: oklch(0.8933 0.0260 94.76);
+
+  --destructive: oklch(0.577 0.16 27.325);
+  --destructive-foreground: oklch(0.8933 0.0260 94.76);
+
+  --border: oklch(0.8933 0.0260 94.76 / 0.20);
+  --input: oklch(0.3148 0.0474 69.64);
+  --ring: oklch(0.8933 0.0260 94.76);
+
+  /* Legacy semantic aliases retained for existing custom utilities. */
+  --ivory: oklch(0.8933 0.0260 94.76); /* parchment */
+  --ivory-dim: oklch(0.3148 0.0474 69.64); /* walnut */
+  --surface: oklch(0.2057 0.0233 62.95); /* espresso */
+  --surface-2: oklch(0.3148 0.0474 69.64); /* walnut */
+  --surface-3: oklch(0 0 0); /* black, used sparingly */
+
+  --chart-1: oklch(0.8933 0.0260 94.76);
+  --chart-2: oklch(0.3148 0.0474 69.64);
+  --chart-3: oklch(0.2057 0.0233 62.95);
+  --chart-4: oklch(0 0 0);
+  --chart-5: oklch(0.8933 0.0260 94.76 / 0.66);
+
+  --sidebar: oklch(0.2057 0.0233 62.95);
+  --sidebar-foreground: oklch(0.8933 0.0260 94.76);
+  --sidebar-primary: oklch(0.8933 0.0260 94.76);
+  --sidebar-primary-foreground: oklch(0.2057 0.0233 62.95);
+  --sidebar-accent: oklch(0.3148 0.0474 69.64);
+  --sidebar-accent-foreground: oklch(0.8933 0.0260 94.76);
+  --sidebar-border: oklch(0.8933 0.0260 94.76 / 0.20);
+  --sidebar-ring: oklch(0.8933 0.0260 94.76);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--ivory);
+    color: var(--background);
+  }
+
+  html {
+    scrollbar-color: var(--surface-3) var(--background);
+    scrollbar-width: thin;
+  }
+}
+
+@utility rail {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility numeral {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 2px color-mix(in oklab, var(--ivory) 45%, transparent);
+  line-height: 0.75;
+}
+
+@utility fade-edge-r {
+  mask-image: linear-gradient(to right, black 88%, transparent 100%);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  &[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Homepage V9 — client logo + manual, numbered Top 10 rails. */
+.home-logo-stage {
+  display: grid;
+  min-height: clamp(260px, 38vw, 470px);
+  place-items: center;
+  padding: 7rem 1.25rem 2.75rem;
+  background:
+    radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--surface-2) 34%, transparent), transparent 36rem),
+    var(--background);
+}
+
+.home-logo-mark {
+  width: min(78vw, 620px) !important;
+  height: auto !important;
+  max-width: 100%;
+  filter: drop-shadow(0 16px 40px color-mix(in oklab, black 22%, transparent));
+}
+
+.top-ten-page {
+  overflow: hidden;
+  scroll-margin-top: 5rem;
+  background:
+    radial-gradient(circle at 14% 0%, color-mix(in oklab, var(--surface-2) 38%, transparent), transparent 34rem),
+    var(--background);
+}
+
+.top-ten-channel-row {
+  border-top: 1px solid color-mix(in oklab, var(--ivory) 12%, transparent);
+  padding-top: 1.25rem;
+}
+
+.top-ten-scroller {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--ivory) 30%, transparent) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.top-ten-scroller::-webkit-scrollbar {
+  height: 5px;
+}
+
+.top-ten-scroller::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.top-ten-scroller::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--ivory) 28%, transparent);
+}
+
+.top-ten-manual-track {
+  display: flex;
+  width: max-content;
+  align-items: flex-end;
+  gap: clamp(1rem, 1.7vw, 1.75rem);
+  padding: 0.25rem max(1.25rem, calc((100vw - 1600px) / 2 + 2rem)) 1.1rem;
+}
+
+
+.top-ten-item {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  scroll-snap-align: start;
+}
+
+.top-ten-rank {
+  position: relative;
+  z-index: 0;
+  flex: none;
+  width: clamp(90px, 8.4vw, 145px);
+  margin-right: clamp(-1.35rem, -1.5vw, -0.7rem);
+  padding-bottom: 0.02em;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(7.4rem, 12vw, 12.5rem);
+  font-weight: 800;
+  line-height: 0.72;
+  letter-spacing: -0.075em;
+  text-align: right;
+  color: color-mix(in oklab, var(--background) 72%, var(--surface-2));
+  -webkit-text-stroke: 2px color-mix(in oklab, var(--ivory) 82%, transparent);
+  paint-order: stroke fill;
+  text-shadow: 0 10px 30px color-mix(in oklab, black 36%, transparent);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    -webkit-text-stroke-color 450ms ease;
+}
+
+.top-ten-rank--double {
+  width: clamp(128px, 11.5vw, 198px);
+  letter-spacing: -0.13em;
+}
+
+.top-ten-cover {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: clamp(250px, 28vw, 430px);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--ivory) 15%, transparent);
+  background: var(--surface-2);
+  box-shadow: 0 14px 42px color-mix(in oklab, black 24%, transparent);
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 450ms ease,
+    box-shadow 450ms ease;
+}
+
+.top-ten-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, color-mix(in oklab, black 40%, transparent), transparent 42%);
+  opacity: 0.42;
+  transition: opacity 450ms ease;
+}
+
+.top-ten-play {
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.7rem;
+  z-index: 3;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid color-mix(in oklab, var(--ivory) 45%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--background) 68%, transparent);
+  color: var(--ivory);
+  font-size: 0.62rem;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.top-ten-item:hover .top-ten-cover,
+.top-ten-item:focus-visible .top-ten-cover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: color-mix(in oklab, var(--ivory) 32%, transparent);
+  box-shadow: 0 22px 58px color-mix(in oklab, black 34%, transparent);
+}
+
+.top-ten-item:hover .top-ten-rank,
+.top-ten-item:focus-visible .top-ten-rank {
+  transform: translateX(-4px);
+  -webkit-text-stroke-color: var(--ivory);
+}
+
+.top-ten-item:hover .top-ten-cover::after,
+.top-ten-item:focus-visible .top-ten-cover::after {
+  opacity: 0.16;
+}
+
+.top-ten-item:hover .top-ten-play,
+.top-ten-item:focus-visible .top-ten-play {
+  opacity: 1;
+  transform: none;
+}
+
+.top-ten-item:focus-visible {
+  outline: none;
+}
+
+.top-ten-item:focus-visible .top-ten-cover {
+  box-shadow: 0 0 0 2px var(--ivory), 0 22px 58px color-mix(in oklab, black 34%, transparent);
+}
+
+@media (max-width: 639px) {
+  .home-logo-stage {
+    min-height: 220px;
+    padding-top: 6.25rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .home-logo-mark {
+    width: min(88vw, 440px) !important;
+  }
+
+  .top-ten-channel-row {
+    padding-top: 1rem;
+  }
+
+  .top-ten-manual-track {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .top-ten-rank {
+    width: 76px;
+    margin-right: -0.75rem;
+    font-size: 6.4rem;
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .top-ten-rank--double {
+    width: 105px;
+  }
+
+  .top-ten-cover {
+    width: min(74vw, 315px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .top-ten-scroller {
+    scroll-behavior: auto;
+  }
+}
+
+/* V10 — thicker, rounded content cards with icon-led hierarchy. */
+.service-card,
+.incubation-card,
+.lifecycle-card {
+  border: 2px solid color-mix(in oklab, var(--ivory) 34%, transparent);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, color-mix(in oklab, var(--surface-2) 42%, transparent), transparent 58%),
+    var(--background);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--background) 42%, transparent);
+  transition:
+    border-color 280ms ease,
+    transform 320ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.service-card:hover,
+.service-card:focus-visible,
+.incubation-card:hover,
+.lifecycle-card:hover {
+  border-color: color-mix(in oklab, var(--ivory) 62%, transparent);
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--background) 35%, transparent),
+    0 18px 46px color-mix(in oklab, black 18%, transparent);
+}
+
+.service-card:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 4px;
+}
+
+.service-card-icon,
+.incubation-card-icon,
+.lifecycle-card-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  place-items: center;
+  border: 2px solid color-mix(in oklab, var(--ivory) 38%, transparent);
+  border-radius: 14px;
+  color: var(--ivory);
+  background: color-mix(in oklab, var(--surface-2) 68%, transparent);
+}
+
+.lifecycle-card {
+  position: relative;
+  min-height: 190px;
+  padding: 1.5rem;
+}
+
+.lifecycle-card-icon {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+/* V10 — Netflix-style edge controls embedded in the manual Top 10 rails. */
+.top-ten-rail-shell {
+  position: relative;
+}
+
+.top-ten-edge-control {
+  position: absolute;
+  top: 50%;
+  z-index: 12;
+  display: grid;
+  width: clamp(46px, 4.4vw, 68px);
+  height: clamp(82px, 9vw, 128px);
+  place-items: center;
+  border: 2px solid color-mix(in oklab, var(--ivory) 34%, transparent);
+  color: var(--ivory);
+  background: color-mix(in oklab, var(--background) 84%, transparent);
+  backdrop-filter: blur(12px);
+  transform: translateY(-50%);
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease;
+}
+
+.top-ten-edge-control svg {
+  width: clamp(1.4rem, 2vw, 2rem);
+  height: clamp(1.4rem, 2vw, 2rem);
+  stroke-width: 1.7;
+}
+
+.top-ten-edge-control--left {
+  left: 0;
+  border-left: 0;
+  border-radius: 0 20px 20px 0;
+}
+
+.top-ten-edge-control--right {
+  right: 0;
+  border-right: 0;
+  border-radius: 20px 0 0 20px;
+}
+
+.top-ten-edge-control:hover,
+.top-ten-edge-control:focus-visible {
+  border-color: color-mix(in oklab, var(--ivory) 72%, transparent);
+  background: color-mix(in oklab, var(--surface-2) 92%, transparent);
+  outline: none;
+}
+
+.top-ten-edge-control--left:hover,
+.top-ten-edge-control--left:focus-visible {
+  transform: translateY(-50%) translateX(3px);
+}
+
+.top-ten-edge-control--right:hover,
+.top-ten-edge-control--right:focus-visible {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.top-ten-cover {
+  border-width: 2px;
+  border-radius: 14px;
+}
+
+/* Desktop/system: approximately three ranked covers remain visible at once. */
+@media (min-width: 1024px) {
+  .top-ten-cover {
+    width: clamp(270px, 24vw, 390px);
+  }
+
+  .top-ten-manual-track {
+    gap: clamp(1rem, 1.35vw, 1.4rem);
+    padding-right: max(4.5rem, calc((100vw - 1600px) / 2 + 4.5rem));
+    padding-left: max(4.5rem, calc((100vw - 1600px) / 2 + 4.5rem));
+  }
+}
+
+/* Tablet: two-cover rhythm, touch/trackpad friendly. */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .top-ten-cover {
+    width: clamp(280px, 41vw, 360px);
+  }
+
+  .top-ten-rank {
+    width: 72px;
+    margin-right: -0.65rem;
+    font-size: clamp(5.7rem, 12vw, 7.3rem);
+    -webkit-text-stroke-width: 1.5px;
+  }
+
+  .top-ten-rank--double {
+    width: 102px;
+  }
+
+  .top-ten-manual-track {
+    gap: 1.1rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+
+  .top-ten-edge-control {
+    width: 52px;
+    height: 92px;
+  }
+}
+
+/* Phone: one primary cover at a time, with swipe + edge arrows. */
+@media (max-width: 639px) {
+  .top-ten-cover {
+    width: min(70vw, 300px);
+    border-radius: 12px;
+  }
+
+  .top-ten-rank {
+    width: 58px;
+    margin-right: -0.55rem;
+    font-size: 5.1rem;
+    -webkit-text-stroke-width: 1.35px;
+  }
+
+  .top-ten-rank--double {
+    width: 82px;
+  }
+
+  .top-ten-manual-track {
+    gap: 0.8rem;
+    padding-right: 3.25rem;
+    padding-left: 3.25rem;
+  }
+
+  .top-ten-edge-control {
+    width: 42px;
+    height: 68px;
+    border-width: 1.5px;
+  }
+
+  .top-ten-edge-control--left {
+    border-radius: 0 14px 14px 0;
+  }
+
+  .top-ten-edge-control--right {
+    border-radius: 14px 0 0 14px;
+  }
+
+  .service-card,
+  .incubation-card,
+  .lifecycle-card {
+    border-radius: 18px;
+  }
+
+  .lifecycle-card {
+    min-height: 170px;
+  }
+}
