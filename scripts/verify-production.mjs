@@ -31,7 +31,7 @@ assert(Boolean(packageJson.scripts?.["build:pages"]), "GitHub Pages build script
 assert(Boolean(packageJson.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 
 const envPages = read(".env.github-pages");
-assert(envPages.includes("VITE_SITE_BASE=/kathanika/"), "GitHub Pages base is /kathanika/");
+assert(envPages.includes("VITE_SITE_BASE=/Kathanika/"), "GitHub Pages base is /Kathanika/");
 assert(/VITE_KATHANIKA_API_URL=https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(envPages), "GitHub Pages Apps Script URL is configured");
 
 const vite = read("vite.config.ts");
@@ -73,7 +73,7 @@ assert(workflow.includes("pages: write"), "Pages workflow has pages: write permi
 assert(workflow.includes("id-token: write"), "Pages workflow has id-token: write permission");
 assert(workflow.includes("actions/upload-pages-artifact@v4"), "Pages artifact upload action is configured");
 assert(workflow.includes("actions/deploy-pages@v4"), "Pages deployment action is configured");
-assert(workflow.includes("npm run build:pages"), "Pages workflow uses the /kathanika/ build mode");
+assert(workflow.includes("npm run build:pages"), "Pages workflow uses the repository-aware Pages build mode");
 
 const seedSource = read("google-apps-script/SeedData.gs");
 const seed = vm.runInNewContext(`(() => { ${seedSource}; return KATHANIKA_SEED; })()`, {}, { timeout: 1000 });
