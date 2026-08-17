@@ -75,18 +75,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kathanika Media — Content Ecosystem Company" },
+      { title: "Kathanika Media — Building the next generation of media" },
       {
         name: "description",
         content:
-          "Kathanika Media builds original IPs and content ecosystems for brands, creators and leaders.",
+          "Kathanika Media builds new-age content IPs, communities and distribution ecosystems across Telugu and English.",
       },
       { name: "author", content: "Kathanika Media" },
-      { property: "og:title", content: "Kathanika Media — Content Ecosystem Company" },
+      { property: "og:title", content: "Kathanika Media — Building the next generation of media" },
       {
         property: "og:description",
         content:
-          "Kathanika Media builds original IPs and content ecosystems for brands, creators and leaders.",
+          "Kathanika Media builds new-age content IPs, communities and distribution ecosystems across Telugu and English.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Karla:wght@300;400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;500;600;700&display=swap",
       },
     ],
   }),

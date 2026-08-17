@@ -1,0 +1,8 @@
+Kathanika Media V47 - Git Production
+
+Adds GitHub Pages deployment configuration to the verified V46 responsive frontend.
+- Repository Pages base: /Kathanika/
+- Existing Apps Script production endpoint configured for GitHub Pages
+- GitHub Actions workflow builds, verifies, uploads, and deploys .output/public
+- Responsive V46 source retained
+- No .git metadata bundled; initialize locally before first V47 commit

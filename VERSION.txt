@@ -1,1 +1,2 @@
-30.0.0
+Kathanika Media V47 - Git Production
+Version: 47.0.0

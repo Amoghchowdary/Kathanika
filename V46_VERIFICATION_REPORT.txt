@@ -1,0 +1,27 @@
+KATHANIKA MEDIA V46 — VERIFIED RESPONSIVE DESIGN
+
+DEFECT FOUND IN V45
+- Desktop hero displayed all four auto-slides across one viewport because flex items were still allowed to shrink.
+- A global break-word rule allowed large display headlines to split inside words, producing fragments such as "Buildin / g".
+- Oversized viewport-driven hero typography made the failure more visible and could collide with the fixed header.
+
+V46 CORRECTIONS
+- Hero slides are hard-locked to one viewport each: flex: 0 0 100%; width/min-width/max-width: 100%.
+- Display headings use overflow-wrap: normal; word-break: normal; hyphens: none.
+- Desktop hero: max 102px title, max 1120px editorial measure.
+- Laptop hero: max 88px title.
+- Tablet hero: max 76px title.
+- Mobile hero: max 58px title.
+- Existing 1240 / 900 / 640 / 420 / 360 responsive breakpoints retained.
+- Mobile full-screen menu, forms, Work, Services, episode rails, About, and footer fallbacks retained.
+
+VERIFICATION PERFORMED BEFORE PACKAGING
+1. Production source verification: 95 / 95 checks passed.
+2. Dedicated responsive geometry verification: 20 / 20 checks passed.
+3. TypeScript/TSX syntax parser: 84 source files parsed, 0 syntax diagnostics.
+4. Static layout render at 1920x1080: exactly one hero slide present in the viewport; no other hero story leaked into the first screen.
+5. Static mobile layout render at 390x844: exactly one hero slide present; headline stays within three readable lines and the menu remains separate.
+6. ZIP archive integrity test performed after packaging.
+
+FINAL LOCAL MACHINE GATE
+Run npm install, npm run verify, npm run preflight, then npm run dev. Dependency-resolved TypeScript/Vite verification requires installed npm packages and is intentionally retained as the final local gate.

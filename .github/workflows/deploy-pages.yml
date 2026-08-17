@@ -1,4 +1,4 @@
-name: Deploy Kathanika V30 to GitHub Pages
+name: Deploy Kathanika V47 to GitHub Pages
 
 on:
   push:
@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      VITE_SITE_BASE: "/${{ github.event.repository.name }}/"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -34,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Verify V30 source
+      - name: Verify V47 source and responsiveness
         run: npm run verify
 
       - name: Build GitHub Pages artifact

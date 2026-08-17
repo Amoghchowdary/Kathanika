@@ -1,0 +1,38 @@
+KATHANIKA MEDIA V45 — RESPONSIVE PRODUCTION DESIGN
+
+RESPONSIVE TARGETS
+- Large desktop / 4K-safe fluid layout
+- Standard desktop and laptop
+- 1024px / tablet landscape
+- 900px tablet transition
+- 640px mobile layout
+- 420px small mobile
+- 360px / 320px safety layout
+- short landscape mobile layout
+
+RESPONSIVE HARDENING
+- Header switches to full-screen hamburger before six-link navigation can collide.
+- Mobile menu closes on Escape and automatically resets when resized back to desktop.
+- Global horizontal overflow is clipped and all main layout children can shrink safely.
+- Hero, page headers and oversized typography use viewport-safe clamps.
+- Evolution cards move 4 → 2 → 1 columns.
+- Home cards move 4 → 2 → 1 columns.
+- Work artwork moves 3 → 2 → 1 columns with no forced horizontal card overflow.
+- Services move to stacked cards with readable presentation-scale typography.
+- About model and stat blocks stack cleanly.
+- Business/Career cards and forms stack cleanly.
+- Inquiry modal becomes true 100dvh full-screen on mobile.
+- Mobile input text is 16px to prevent iOS zoom.
+- Footer moves 3 → 2 → 1 columns with safe email/address wrapping.
+- Touch devices expose episode play actions without requiring hover.
+
+DESIGN SYSTEM RETAINED
+#8A5F41 background
+#F3E4C9 main typography
+#A77F60 structure
+#CCD67F accent
+#F3E5CA card background
+#4A2F20 card typography
+
+DEPLOYMENT
+Git/GitHub deployment is intentionally excluded until visual approval.
