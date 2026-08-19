@@ -173,7 +173,7 @@ export const defaultContent: SiteContent = {
       poster: posterPoints,
       still: showPoints,
       youtubeUrl: YT,
-      socialUrl: "https://instagram.com/kathanikamedia",
+      socialUrl: "https://www.instagram.com/kathanikamedia/",
       stats: [
         { label: "Episodes", value: "40+" },
         { label: "Monthly reach", value: "1.2 Cr" },
@@ -192,7 +192,7 @@ export const defaultContent: SiteContent = {
       poster: posterTelugu,
       still: showTelugu,
       youtubeUrl: YT,
-      socialUrl: "https://instagram.com/kathanikamedia",
+      socialUrl: "https://www.instagram.com/kathanikamedia/",
       stats: [
         { label: "Episodes", value: "25+" },
         { label: "Languages", value: "Telugu · English" },
@@ -211,7 +211,7 @@ export const defaultContent: SiteContent = {
       poster: posterKaushik,
       still: showKaushik,
       youtubeUrl: YT,
-      socialUrl: "https://linkedin.com/company/kathanikamedia",
+      socialUrl: "https://www.linkedin.com/company/kathanikamedia/",
       stats: [
         { label: "Episodes", value: "18+" },
         { label: "Guests", value: "Founders · CEOs" },
@@ -229,7 +229,7 @@ export const defaultContent: SiteContent = {
       poster: posterSwati,
       still: showSwati,
       youtubeUrl: YT,
-      socialUrl: "https://instagram.com/kathanikamedia",
+      socialUrl: "https://www.instagram.com/kathanikamedia/",
       stats: [
         { label: "Episodes", value: "12+" },
         { label: "Runtime", value: "45–60 min" },
@@ -247,7 +247,7 @@ export const defaultContent: SiteContent = {
       poster: posterCurious,
       still: showCurious,
       youtubeUrl: YT,
-      socialUrl: "https://instagram.com/kathanikamedia",
+      socialUrl: "https://www.instagram.com/kathanikamedia/",
       stats: [
         { label: "Episodes", value: "30+" },
         { label: "Clips", value: "500+" },
@@ -343,7 +343,7 @@ export const defaultContent: SiteContent = {
       description: "Monthly content systems for practising doctors.",
       cover: editBrand,
       youtubeUrl: "",
-      instagramUrl: "https://instagram.com/kathanikamedia",
+      instagramUrl: "https://www.instagram.com/kathanikamedia/",
       projectUrl: "",
       featured: false,
       size: "regular",
@@ -358,7 +358,7 @@ export const defaultContent: SiteContent = {
       description: "From first idea to a repeatable publishing engine.",
       cover: editCreator,
       youtubeUrl: "",
-      instagramUrl: "https://instagram.com/kathanikamedia",
+      instagramUrl: "https://www.instagram.com/kathanikamedia/",
       projectUrl: "/creators",
       featured: false,
       size: "regular",
@@ -479,8 +479,8 @@ export const defaultContent: SiteContent = {
   enquiries: [],
   social: {
     youtube: YT,
-    instagram: "https://instagram.com/kathanikamedia",
-    linkedin: "https://linkedin.com/company/kathanikamedia",
+    instagram: "https://www.instagram.com/kathanikamedia/",
+    linkedin: "https://www.linkedin.com/company/kathanikamedia/",
   },
   settings: {
     whatsappNumber: "919063854291",

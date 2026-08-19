@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-Write-Host "Kathanika V47 - Git/Pages Preflight" -ForegroundColor Cyan
+Write-Host "Kathanika V50 - Git/Pages Preflight" -ForegroundColor Cyan
 npm run preflight:pages
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 Write-Host "`nGit/Pages preflight passed." -ForegroundColor Green

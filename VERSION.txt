@@ -1,2 +1,2 @@
-Kathanika Media V47 - Git Production
-Version: 47.0.0
+Kathanika Media V50 — Performance + Responsive + SEO
+Version: 50.0.0

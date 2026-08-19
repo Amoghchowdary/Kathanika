@@ -5,12 +5,13 @@ import { useCallback, useState } from "react";
 import { InquiryModal } from "@/components/site/InquiryModal";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { sortActive, useContent } from "@/content/store";
+import { seoHead } from "@/lib/seo";
 
 const title = "Business Inquiry — Kathanika Media";
 const description = "Build an audience, not another campaign.";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({ meta: [{ title }, { name: "description", content: description }] }),
+  head: () => seoHead("/contact", "Business Inquiry — Kathanika Media", "Start a business conversation with Kathanika Media for content IPs, podcasts, YouTube, production, distribution and brand media systems."),
   component: BusinessInquiryPage,
 });
 

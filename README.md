@@ -1,15 +1,17 @@
-# Kathanika Media V46 — Verified Responsive Design
+# Kathanika Media V50
 
-V46 fixes the desktop hero failure found in V45 and keeps the V44/V45 visual system intact.
+Client-media, footer, SEO and Google-indexing-ready build for the Kathanika Media website.
 
-Key corrections:
-- each auto-hero story is hard-locked to exactly one viewport width (`flex: 0 0 100%`)
-- display headlines cannot break words into letter fragments
-- desktop hero typography is capped at a controlled editorial scale
-- dedicated laptop, tablet, mobile, small-mobile, 320px and short-landscape rules remain in place
-- six-page navigation, episode rails, Work, Services, inquiry modals and footer retain responsive fallbacks
+## What changed
 
-Run locally:
+- Client-provided production photography is used in the homepage hero.
+- Work includes a production reel with optimized stills and video previews.
+- Footer includes visible YouTube, Instagram and LinkedIn icons/backlinks plus email, phone and map actions.
+- SEO includes page-specific metadata, canonical URLs, Open Graph/Twitter previews, Organization JSON-LD, sitemap.xml and robots.txt.
+- `sitemap.yml` is included only as a human-readable manifest; Google uses `sitemap.xml`.
+- Search Console HTML-tag verification is supported through `VITE_GOOGLE_SITE_VERIFICATION`.
+
+## Run locally
 
 ```powershell
 npm install
@@ -18,4 +20,17 @@ npm run preflight
 npm run dev
 ```
 
-Do not deploy to GitHub until visual approval.
+## GitHub Pages production check
+
+```powershell
+npm run preflight:pages
+npm run git:preflight
+```
+
+Production base path: `/Kathanika/`
+
+Current canonical production URL: `https://amoghchowdary.github.io/Kathanika/`
+
+If a custom domain is connected later, change `VITE_PUBLIC_SITE_URL` before rebuilding.
+
+See `GOOGLE_INDEXING_STEPS.txt` for the Search Console handoff.

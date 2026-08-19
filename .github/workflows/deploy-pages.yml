@@ -1,4 +1,4 @@
-name: Deploy Kathanika V47 to GitHub Pages
+name: Deploy Kathanika V50 to GitHub Pages
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Verify V47 source and responsiveness
+      - name: Verify V50 performance, SEO and responsiveness
         run: npm run verify
 
       - name: Build GitHub Pages artifact

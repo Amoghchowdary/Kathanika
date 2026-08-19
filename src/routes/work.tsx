@@ -2,14 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Play } from "lucide-react";
 
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
+import { ProductionMediaShowcase } from "@/components/site/ProductionMediaShowcase";
 import { sortActive, useContent } from "@/content/store";
 import { withBasePath } from "@/lib/base-path";
+import { seoHead } from "@/lib/seo";
 
 const title = "Work — Kathanika Media";
 const description = "Kathanika's active content properties and the episodes shaping their audiences.";
 
 export const Route = createFileRoute("/work")({
-  head: () => ({ meta: [{ title }, { name: "description", content: description }] }),
+  head: () => seoHead("/work", "Work — Kathanika Media Shows & Productions", "Explore Kathanika Media shows, original IPs, episode artwork and behind-the-scenes production across studio and on-location shoots."),
   component: WorkPage,
 });
 
@@ -21,12 +23,14 @@ function WorkPage() {
     <SiteLayout>
       <PageHead eyebrow="Work" title="The channels we're building." intro="Each property is built for a distinct audience, purpose and point of view." />
 
+      <ProductionMediaShowcase />
+
       <section className="v41-work-list">
         {channels.map((channel, channelIndex) => {
           const videos = sortActive(channel.videos).slice(0, 3);
           return (
-            <article className="v41-work-channel" key={channel.id}>
-              <div className="v41-work-channel-head">
+            <article className="v41-work-channel v48-work-channel" key={channel.id}>
+              <div className="v41-work-channel-head v48-work-channel-head">
                 <span>{String(channelIndex + 1).padStart(2, "0")}</span>
                 <h2>{channel.name}</h2>
                 <a href={videos[0]?.videoUrl} target="_blank" rel="noreferrer">Watch latest <ArrowUpRight /></a>

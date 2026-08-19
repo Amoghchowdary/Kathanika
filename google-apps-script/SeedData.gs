@@ -42,12 +42,12 @@ const KATHANIKA_SEED = Object.freeze({
     },
     {
       "key": "instagram",
-      "value": "https://instagram.com/kathanikamedia",
+      "value": "https://www.instagram.com/kathanikamedia/",
       "type": "string"
     },
     {
       "key": "linkedin",
-      "value": "https://linkedin.com/company/kathanikamedia",
+      "value": "https://www.linkedin.com/company/kathanikamedia/",
       "type": "string"
     }
   ],

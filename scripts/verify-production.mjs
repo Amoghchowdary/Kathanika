@@ -13,145 +13,83 @@ const assert = (condition, message) => {
 };
 
 const required = [
-  "package.json", "vite.config.ts", "src/styles.css",
+  "package.json", "vite.config.ts", "src/styles.css", "src/lib/seo.ts",
   "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
   "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx",
   "src/components/site/HeroOrbit.tsx", "src/components/site/EpisodeLibrary.tsx",
   "src/components/site/InquiryModal.tsx", "src/components/site/SiteHeader.tsx",
-  "src/components/site/SiteFooter.tsx", "src/assets/kathanika-logo-client.png",
-  "src/assets/kathanika-logo-dark.png", "public/watercolor-orbit.svg",
+  "src/components/site/SiteFooter.tsx", "src/components/site/SiteLayout.tsx",
+  "src/components/site/ProductionMediaShowcase.tsx", "src/components/site/ClientProductionImage.tsx",
+  "src/components/site/DeferredVideo.tsx",
+  "src/assets/kathanika-logo-client.png", "src/assets/kathanika-logo-dark.png",
   ".env.github-pages", ".github/workflows/deploy-pages.yml",
-  "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1",
+  "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1", "scripts/verify-responsive.mjs",
+  "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
+  "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest",
 ];
-for (const file of required) assert(exists(file), `Required V46 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V50 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v47-git-production", "Package name is V47 Git production");
-assert(pkg.version === "47.0.0", "Package version is 47.0.0");
+assert(pkg.name === "kathanika-media-v50-performance-responsive-seo", "Package name is V50 performance + responsive + SEO build");
+assert(pkg.version === "50.0.0", "Package version is 50.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
-assert(Boolean(pkg.scripts?.preflight), "Local production preflight is configured");
-assert(Boolean(pkg.scripts?.["build:pages"]), "GitHub Pages build script is configured");
-assert(Boolean(pkg.scripts?.["verify:pages"]), "GitHub Pages artifact verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
+assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
+assert(Boolean(pkg.scripts?.["verify:seo"]), "SEO verification is configured");
 
-const envPages = read(".env.github-pages");
-assert(envPages.includes("VITE_SITE_BASE=/Kathanika/"), "GitHub Pages base matches repository case: /Kathanika/");
-assert(/VITE_KATHANIKA_API_URL=https:\/\/script\.google\.com\/macros\/s\/.+\/exec/.test(envPages), "GitHub Pages Apps Script URL is configured");
-const workflow = read(".github/workflows/deploy-pages.yml");
-assert(workflow.includes("pages: write") && workflow.includes("id-token: write"), "Pages deployment permissions are configured");
-assert(workflow.includes("actions/upload-pages-artifact@v4"), "Pages artifact upload action is configured");
-assert(workflow.includes("actions/deploy-pages@v4"), "Pages deploy action is configured");
-assert(workflow.includes("npm run build:pages") && workflow.includes("npm run verify:pages"), "Workflow builds and verifies the Pages artifact");
-
-const css = read("src/styles.css").toLowerCase();
+const css = read("src/styles.css");
+const cssLower = css.toLowerCase();
 for (const hex of ["#8a5f41", "#a77f60", "#f3e4c9", "#ccd67f", "#f3e5ca", "#4a2f20"]) {
-  assert(css.includes(hex), `Confirmed V44 design colour ${hex.toUpperCase()}`);
+  assert(cssLower.includes(hex), `Confirmed design colour ${hex.toUpperCase()}`);
 }
-assert(css.includes("--card-bg: #f3e5ca"), "Card surface uses client-provided #F3E5CA");
-assert(!css.includes("--card-bg: #d7a277"), "Old V43 orange card surface is removed");
-assert(css.includes(".v44-evolution-flow") && css.includes(".v44-flow-connector"), "Evolution uses a stepped visual flow with connectors");
-assert(css.includes(".v44-evolution-step:nth-child(4)") && css.includes("margin-top: 204px"), "Desktop evolution creates progressive variation instead of one flat row");
-assert(css.includes(".v41-service-list p") && css.includes("font-size: clamp(14px"), "Service descriptions have presentation-scale typography");
-assert(css.includes(".v41-outline-cta") && css.includes("min-height: 62px"), "Primary inquiry CTA is large and prominent");
-assert(css.includes("translate(4px, -4px)"), "Primary inquiry CTA has animated hover movement");
-assert(css.includes(".v44-footer-lead") && css.includes(".v44-footer-grid"), "Footer uses the V44 premium lead + compact information structure");
-assert(css.includes("100dvh"), "Mobile navigation/modal keep dynamic viewport behavior");
+assert(css.includes('font-family: "Inter"'), "Inter remains body/interface typography");
+assert(css.includes('font-family: "Montserrat"'), "Montserrat remains display/show typography");
+assert(css.includes(".v50-production-wall"), "Continuous mixed production media wall is present");
+assert(css.includes(".v50-about-visual") && css.includes(".v50-about-pillars"), "About page visual and icon system is styled");
+assert(css.includes("content-visibility: auto"), "Below-fold rendering is optimized");
+assert(css.includes("@media (max-width: 1100px)"), "Small-laptop/tablet bridge responsiveness is present");
 
-assert(css.includes("V45 RESPONSIVE HARDENING".toLowerCase()), "V45 responsive hardening layer is present");
-for (const breakpoint of ["max-width: 1240px", "max-width: 900px", "max-width: 640px", "max-width: 420px", "max-width: 360px"]) {
-  assert(css.includes(breakpoint), `Responsive breakpoint is defined: ${breakpoint}`);
-}
-assert(css.includes("max-height: 620px") && css.includes("orientation: landscape"), "Short landscape devices have a dedicated layout");
-assert(css.includes("overflow-x: clip"), "Global horizontal overflow is prevented");
-assert(css.includes("font-size: 16px; /* prevents ios auto zoom */"), "Mobile form inputs prevent iOS focus zoom");
-assert(css.includes("width: 100vw") && css.includes("height: 100dvh"), "Mobile inquiry modal can use the full dynamic viewport");
-assert(css.includes("touch devices do not depend on hover"), "Touch controls do not depend on hover interactions");
-assert(css.includes("grid-template-columns: 1fr") && css.includes("very small phones / 320px safety"), "320px phones receive single-column safety rules");
-assert(css.includes("V46 VERIFIED RESPONSIVE HERO".toLowerCase()), "V46 desktop hero containment layer is present");
-assert(css.includes("flex: 0 0 100%"), "Hero slides cannot shrink into multiple desktop columns");
-assert(css.includes("max-width: 1120px"), "Desktop hero title has a controlled editorial line length");
-assert(css.includes("overflow-wrap: normal") && css.includes("hyphens: none"), "Display headlines never split words into fragments");
-assert(css.includes("font-size: clamp(58px, 5.35vw, 102px)"), "Desktop hero typography is capped for readability");
-
-const header = read("src/components/site/SiteHeader.tsx");
-assert(header.includes('kathanika-logo-client.png'), "Header uses cropped Kathanika logo");
-for (const label of ["Home", "About", "Work", "Services", "Career Inquiry", "Business Inquiry"]) {
-  assert(header.includes(`"${label}"`), `Navbar includes ${label}`);
-}
-assert(header.includes('document.body.style.overflow = "hidden"'), "Mobile menu locks body scroll");
-assert(header.includes('event.key === "Escape"'), "Mobile menu closes with Escape");
-assert(header.includes("window.innerWidth > 1240"), "Mobile menu closes automatically when resizing to desktop");
+const rootRoute = read("src/routes/__root.tsx");
+assert(rootRoute.includes("application/ld+json") && rootRoute.includes("@graph"), "Structured data graph is included");
+assert(rootRoute.includes("Organization") && rootRoute.includes("WebSite"), "Organization and WebSite schema are included");
+assert(rootRoute.includes("kathanika-font-css"), "Fonts are loaded asynchronously instead of blocking first paint");
+assert(rootRoute.includes("IMG_4711-960.webp"), "Primary hero image is preloaded");
 
 const hero = read("src/components/site/HeroOrbit.tsx");
-assert(hero.includes("setInterval") && hero.includes("SLIDE_MS"), "Hero auto-advances");
-assert(!hero.includes("Auto sequence"), "Hero exposes no technical auto-sequence label");
-assert(hero.includes("We build IPs. Not just content."), "Hero copy reflects Kathanika IP positioning");
-assert(!hero.includes("onPointerDown") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual controls");
-
-const home = read("src/routes/index.tsx");
-assert(home.includes("v44-evolution-flow"), "Homepage media shift uses V44 evolution flow");
-assert(home.includes("<EpisodeLibrary"), "Homepage retains episode discovery section");
+assert(hero.includes("ClientProductionImage"), "Hero uses responsive client image component");
+assert(hero.includes("eager={story.number === \"01\" && index === 0}"), "Only the primary hero image is eager/high priority");
+assert(hero.includes("setInterval") && hero.includes("SLIDE_MS = 6200"), "Hero remains automatic");
+assert(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual controls");
 
 const about = read("src/routes/about.tsx");
-assert(about.includes("v44-evolution-flow"), "About page uses V44 evolution flow");
-assert(!about.includes("visual map instead of an essay"), "About page contains no implementation/meta commentary");
-
-const episodes = read("src/components/site/EpisodeLibrary.tsx");
-assert(episodes.includes("Original shows, conversations and ideas from the Kathanika network."), "Episode section uses audience-facing editorial copy");
-assert(!episodes.includes("Continuous rails") && !episodes.includes("curated episode covers"), "Episode section exposes no technical rail/dump wording");
-
-const work = read("src/routes/work.tsx");
-assert(work.includes("distinct audience, purpose and point of view"), "Work page uses editorial positioning rather than implementation wording");
-assert(work.includes("video.coverUrl") && work.includes("video.videoUrl"), "Work page retains supplied episode art and links");
+assert(about.includes("ClientProductionImage") && about.includes("v50-about-pillars"), "About page includes client photography and icon-led content");
+for (const icon of ["Film", "UsersRound", "Share2", "Megaphone"]) assert(about.includes(icon), `About page includes ${icon} visual icon`);
 
 const services = read("src/routes/services.tsx");
-assert(services.includes("content.services") && services.includes("sortActive"), "Services page renders production service catalogue");
-assert(services.includes("Every IP has an audience, purpose and identity."), "Audience / purpose / identity principle remains in Services");
-assert(!services.includes("used by the backend"), "Services page contains no backend implementation wording");
-assert(services.includes("Start Business Inquiry"), "Services page uses stronger Business Inquiry CTA");
+assert(services.includes("SERVICE_DELIVERABLES"), "Services retain explicit deliverable mappings");
+assert(services.includes("Positioning for founders, doctors, CEOs and investors"), "Personal Branding audience detail remains explicit");
 
-const defaults = read("src/content/defaults.ts");
-assert(defaults.includes("founders, doctors, CEOs and investors"), "Personal Branding explicitly covers founders, doctors, CEOs and investors");
-assert(defaults.includes("distinct brand narrative, content language and media presence"), "Brand Building copy is specific and client-facing");
-
-for (const route of ["creators", "contact"]) {
-  const src = read(`src/routes/${route}.tsx`);
-  assert(src.includes("InquiryModal"), `${route} inquiry stays closed until requested`);
-}
-const contact = read("src/routes/contact.tsx");
-assert(contact.includes("Start Business Inquiry"), "Business Inquiry page uses strong CTA label");
+const mediaShowcase = read("src/components/site/ProductionMediaShowcase.tsx");
+assert(mediaShowcase.includes("DeferredVideo") && mediaShowcase.includes("ClientProductionImage"), "Production media uses deferred video and responsive images");
+assert(mediaShowcase.includes("v50-production-wall"), "Images and videos are merged into one media wall");
+assert(!mediaShowcase.includes("autoPlay"), "Production page does not eagerly autoplay all videos");
 
 const footer = read("src/components/site/SiteFooter.tsx");
-assert(footer.includes("kathanika-logo-dark.png"), "Footer uses a dark Kathanika logo suitable for the light card");
-assert(footer.includes("v44-footer-cta"), "Footer includes a prominent Business Inquiry CTA");
-assert(footer.includes("FOOTER_LINKS") && footer.includes("as const"), "Footer links remain strongly typed");
-
-const visibleSources = [
-  "src/components/site/HeroOrbit.tsx",
-  "src/components/site/EpisodeLibrary.tsx",
-  "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
-  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx",
-  "src/components/site/SiteFooter.tsx",
-].map(read).join("\n").toLowerCase();
-for (const phrase of ["continuous rails", "curated episode covers", "used by the backend", "visual map instead of an essay", "auto sequence"]) {
-  assert(!visibleSources.includes(phrase), `No user-facing technical/meta phrase: ${phrase}`);
-}
+for (const icon of ["Youtube", "Instagram", "Linkedin", "Mail", "Phone", "MapPin"]) assert(footer.includes(icon), `Footer includes ${icon} icon`);
+assert(footer.includes("rel=\"me noopener noreferrer\""), "Social backlinks carry identity relationship metadata");
 
 const topTenDir = path.join(root, "public", "top-ten");
 let coverCount = 0;
 if (fs.existsSync(topTenDir)) {
   for (const channel of fs.readdirSync(topTenDir, { withFileTypes: true })) {
     if (!channel.isDirectory()) continue;
-    coverCount += fs.readdirSync(path.join(topTenDir, channel.name))
-      .filter((name) => /\.jpe?g$/i.test(name)).length;
+    coverCount += fs.readdirSync(path.join(topTenDir, channel.name)).filter((name) => /\.jpe?g$/i.test(name)).length;
   }
 }
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
-assert(exists(".github/workflows/deploy-pages.yml"), "GitHub Pages deployment workflow is included");
-// .git is expected in a cloned deployment repository; only builder-specific artifacts are forbidden.
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V47 — Git Production + Verified Responsive Design\n");
+console.log("\nKathanika Media V50 — Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

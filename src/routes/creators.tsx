@@ -5,12 +5,13 @@ import { useCallback, useState } from "react";
 import { InquiryModal } from "@/components/site/InquiryModal";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { useContent } from "@/content/store";
+import { seoHead } from "@/lib/seo";
 
 const title = "Career Inquiry — Kathanika Media";
 const description = "Come build what people will watch next.";
 
 export const Route = createFileRoute("/creators")({
-  head: () => ({ meta: [{ title }, { name: "description", content: description }] }),
+  head: () => seoHead("/creators", "Career Inquiry — Kathanika Media", "Explore creator, editorial, production and media opportunities with Kathanika Media in Hyderabad."),
   component: CareerInquiryPage,
 });
 

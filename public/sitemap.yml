@@ -1,0 +1,12 @@
+# Human-readable sitemap manifest. Search engines use sitemap.xml.
+site: https://amoghchowdary.github.io/Kathanika/
+last_modified: 2026-08-19
+routes:
+  - https://amoghchowdary.github.io/Kathanika/
+  - https://amoghchowdary.github.io/Kathanika/about
+  - https://amoghchowdary.github.io/Kathanika/work
+  - https://amoghchowdary.github.io/Kathanika/services
+  - https://amoghchowdary.github.io/Kathanika/creators
+  - https://amoghchowdary.github.io/Kathanika/contact
+  - https://amoghchowdary.github.io/Kathanika/privacy
+  - https://amoghchowdary.github.io/Kathanika/terms

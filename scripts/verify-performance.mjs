@@ -1,0 +1,26 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const read=(r)=>fs.readFileSync(path.join(root,r),"utf8");
+const exists=(r)=>fs.existsSync(path.join(root,r));
+const checks=[]; const failures=[]; const check=(ok,msg)=>{checks.push([!!ok,msg]); if(!ok) failures.push(msg)};
+const hero=read('src/components/site/HeroOrbit.tsx');
+const rootRoute=read('src/routes/__root.tsx');
+const css=read('src/styles.css');
+const media=read('src/components/site/ProductionMediaShowcase.tsx');
+const deferred=read('src/components/site/DeferredVideo.tsx');
+check(exists('public/media/production/responsive/IMG_4711-480.webp'),'Responsive 480px hero asset exists');
+check(exists('public/media/production/responsive/IMG_4711-960.webp'),'Responsive 960px hero asset exists');
+check(exists('public/media/production/responsive/IMG_4711-1280.webp'),'Responsive 1280px hero asset exists');
+check(hero.includes('ClientProductionImage') && hero.includes('eager={story.number === "01" && index === 0}'),'First hero image receives eager/high-priority loading');
+check(rootRoute.includes('rel: "preload"') && rootRoute.includes('IMG_4711-960.webp'),'LCP hero image is preloaded from HTML head');
+check(rootRoute.includes('kathanika-font-css') && rootRoute.includes("rel='stylesheet'"),'Google font stylesheet is applied asynchronously after preload');
+check(css.includes('content-visibility: auto'),'Below-fold content uses content-visibility optimization');
+check(media.includes('DeferredVideo'),'Production video gallery uses deferred video loading');
+check(deferred.includes('IntersectionObserver') && deferred.includes('preload="none"'),'Videos load only near the viewport and do not preload media bytes');
+check(!media.includes('autoPlay'),'Production showcase no longer starts every video during initial render');
+console.log('\nKathanika Media V50 — Performance Verification\n');
+for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
+if(failures.length){console.error(`\nPerformance verification failed: ${failures.length} issue(s).`);process.exit(1)}
+console.log(`\nPerformance verification passed: ${checks.length} checks.`);

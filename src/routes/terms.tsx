@@ -1,19 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
+import { seoHead } from "@/lib/seo";
 
 const title = "Terms — Kathanika Media";
 const description = "All content on this site belongs to Kathanika Media unless stated otherwise.";
 
 export const Route = createFileRoute("/terms")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/terms", "Terms — Kathanika Media", "Read the website terms for Kathanika Media."),
   component: Page,
 });
 

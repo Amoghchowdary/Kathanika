@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { EpisodeLibrary } from "@/components/site/EpisodeLibrary";
 import { HeroOrbit } from "@/components/site/HeroOrbit";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { seoHead } from "@/lib/seo";
 
 const title = "Kathanika Media — Building the next generation of media";
 const description =
@@ -23,14 +24,7 @@ const EVOLUTION = [
 ] as const;
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/", "Kathanika Media — Building the next generation of media", "Kathanika Media builds original content IPs, production systems and audience-led media properties across Telugu and English."),
   component: Index,
 });
 

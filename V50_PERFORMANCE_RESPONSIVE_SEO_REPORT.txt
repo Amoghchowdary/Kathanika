@@ -1,0 +1,39 @@
+Kathanika Media V50 — Performance + Responsive + SEO
+
+Client-requested corrections
+- Production stills and video previews now live in one continuous mixed-media wall; no still/video divider row.
+- Client photography is added to About with four icon-led media pillars: Content, Community, Distribution, Marketing.
+- Services headings, descriptions and deliverable points are larger and easier to scan.
+- Page-head layout is rebuilt so title/intro never clip at desktop, small-laptop, tablet or phone widths.
+- Hero switches to stacked layout earlier at 1100px to prevent squeezed tablet/small-laptop rendering.
+- Footer switches to a single-column information layout before contact details can collide.
+
+Performance
+- 18 supplied client stills now have 480px, 960px and 1280px WebP variants (54 responsive images).
+- First hero image is high priority; remaining client images are lazy loaded.
+- Primary hero image is preloaded in document head.
+- Google font CSS is loaded asynchronously rather than as a render-blocking stylesheet.
+- Production video files use IntersectionObserver and preload=none; they load/play only when near the viewport.
+- Below-fold sections use content-visibility:auto.
+
+SEO
+- Unique page titles/descriptions + canonical URLs retained.
+- Robots + Googlebot rich-preview directives.
+- Open Graph/Twitter image and image-alt metadata.
+- Organization + WebSite JSON-LD graph with contact point, address and social identity links.
+- XML sitemap now includes image discovery entries.
+- robots.txt points to sitemap.xml.
+- site.webmanifest + theme/application/location metadata.
+- GitHub Pages post-build verifier audits prerendered H1/title/description/canonical/robots/OG/schema/manifest/preload signals.
+
+Verification in packaging runtime
+- Source verification: PASS
+- Responsive geometry verification: PASS
+- Client feedback coverage: PASS
+- Client media verification: PASS
+- SEO verification: PASS
+- Performance verification: PASS
+- TS/TSX syntax parse: 88 files, 0 syntax errors
+
+Environment limitation
+- npm dependency download timed out in the packaging runtime, so dependency-resolved tsc/Vite build must be run on the deployment machine with npm install + npm run preflight:pages.

@@ -1,0 +1,25 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const checks=[]; const failures=[];
+const check=(ok,msg)=>{checks.push([!!ok,msg]); if(!ok) failures.push(msg)};
+const stillDir=path.join(root,"public/media/production/stills");
+const responsiveDir=path.join(root,"public/media/production/responsive");
+const videoDir=path.join(root,"public/media/production/video");
+const stills=fs.existsSync(stillDir)?fs.readdirSync(stillDir).filter(x=>x.endsWith('.webp')):[];
+const responsive=fs.existsSync(responsiveDir)?fs.readdirSync(responsiveDir).filter(x=>x.endsWith('.webp')):[];
+const videos=fs.existsSync(videoDir)?fs.readdirSync(videoDir).filter(x=>x.endsWith('.mp4')):[];
+const posters=fs.existsSync(videoDir)?fs.readdirSync(videoDir).filter(x=>x.endsWith('-poster.jpg')):[];
+check(stills.length >= 18, `At least 18 optimized client stills are packaged (${stills.length})`);
+check(responsive.length >= stills.length*3, `Each client still has responsive variants (${responsive.length})`);
+check(videos.length >= 6, `At least 6 optimized client video previews are packaged (${videos.length})`);
+check(posters.length >= videos.length, `Each client video has a poster image (${posters.length}/${videos.length})`);
+const comp=fs.readFileSync(path.join(root,"src/components/site/ProductionMediaShowcase.tsx"),'utf8');
+check(comp.includes('v50-production-wall'), 'Images and videos share one continuous production media wall');
+check(comp.includes('DeferredVideo'), 'Video previews use viewport-deferred playback');
+check(comp.includes('ClientProductionImage'), 'Production stills use responsive image sources');
+console.log('\nKathanika Media V50 — Client Media Verification\n');
+for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
+if(failures.length){console.error(`\nClient media verification failed: ${failures.length} issue(s).`);process.exit(1)}
+console.log(`\nClient media verification passed: ${checks.length} checks.`);

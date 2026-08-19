@@ -9,8 +9,8 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
 export function PageHead({ eyebrow, title, intro }: { eyebrow: string; title: string; intro?: string }) {
   return (
-    <section className="v41-page-head">
-      <div className="v41-page-watercolor" aria-hidden="true" />
+    <section className="v41-page-head v48-page-head">
+      <div className="v48-page-head-lines" aria-hidden="true"><i /><i /><i /></div>
       <div className="v41-page-head-label"><span>01</span><span>{eyebrow}</span></div>
       <h1>{title}</h1>
       {intro ? <p>{intro}</p> : null}
