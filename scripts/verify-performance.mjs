@@ -20,7 +20,7 @@ check(css.includes('content-visibility: auto'),'Below-fold content uses content-
 check(media.includes('DeferredVideo'),'Production video gallery uses deferred video loading');
 check(deferred.includes('IntersectionObserver') && deferred.includes('preload="none"'),'Videos load only near the viewport and do not preload media bytes');
 check(!media.includes('autoPlay'),'Production showcase no longer starts every video during initial render');
-console.log('\nKathanika Media V50 — Performance Verification\n');
+console.log('\nKathanika Media V51 — Performance Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nPerformance verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nPerformance verification passed: ${checks.length} checks.`);

@@ -2,11 +2,17 @@
   "name": "Kathanika Media",
   "short_name": "Kathanika",
   "description": "Original content IPs, production and audience-led media properties from Hyderabad.",
-  "start_url": "./",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#8A5F41",
   "theme_color": "#8A5F41",
   "icons": [
-    { "src": "favicon.png", "sizes": "64x64", "type": "image/png" }
-  ]
+    {
+      "src": "favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "id": "/",
+  "scope": "/"
 }

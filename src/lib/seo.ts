@@ -1,4 +1,4 @@
-const DEFAULT_SITE_URL = "https://amoghchowdary.github.io/Kathanika/";
+const DEFAULT_SITE_URL = "https://www.kathanika.in/";
 
 export function publicSiteUrl(): string {
   const raw = import.meta.env["VITE_PUBLIC_SITE_URL"] || DEFAULT_SITE_URL;

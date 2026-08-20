@@ -25,17 +25,22 @@ const required = [
   ".env.github-pages", ".github/workflows/deploy-pages.yml",
   "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1", "scripts/verify-responsive.mjs",
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
-  "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest",
+  "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V50 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V51 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v50-performance-responsive-seo", "Package name is V50 performance + responsive + SEO build");
-assert(pkg.version === "50.0.0", "Package version is 50.0.0");
+assert(pkg.name === "kathanika-media-v51-custom-domain-production", "Package name is V51 custom-domain production build");
+assert(pkg.version === "51.0.0", "Package version is 51.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
 assert(Boolean(pkg.scripts?.["verify:seo"]), "SEO verification is configured");
+assert(Boolean(pkg.scripts?.["verify:domain"]), "Custom-domain verification is configured");
+const envPages = read(".env.github-pages");
+assert(envPages.includes("VITE_SITE_BASE=/"), "Custom-domain Pages build uses root base path");
+assert(envPages.includes("VITE_PUBLIC_SITE_URL=https://www.kathanika.in/"), "Canonical production URL is www.kathanika.in");
+assert(read("public/CNAME").trim() === "www.kathanika.in", "CNAME targets www.kathanika.in");
 
 const css = read("src/styles.css");
 const cssLower = css.toLowerCase();
@@ -89,7 +94,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V50 — Production Verification\n");
+console.log("\nKathanika Media V51 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

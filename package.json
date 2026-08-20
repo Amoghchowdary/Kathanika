@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v50-performance-responsive-seo",
-  "version": "50.0.0",
+  "name": "kathanika-media-v51-custom-domain-production",
+  "version": "51.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:source && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance",
+    "verify": "npm run typecheck && npm run verify:source && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:domain",
     "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production",
     "verify:responsive": "node scripts/verify-responsive.mjs",
     "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
@@ -23,7 +23,8 @@
     "generate:seo:production": "node scripts/generate-seo.mjs production",
     "verify:seo": "node scripts/verify-seo.mjs",
     "verify:media": "node scripts/verify-client-media.mjs",
-    "verify:performance": "node scripts/verify-performance.mjs"
+    "verify:performance": "node scripts/verify-performance.mjs",
+    "verify:domain": "node scripts/verify-custom-domain.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

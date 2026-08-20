@@ -20,7 +20,7 @@ function parseEnv(file) {
 }
 
 const env = parseEnv(envPath);
-const rawSite = process.env.VITE_PUBLIC_SITE_URL || env.VITE_PUBLIC_SITE_URL || "https://amoghchowdary.github.io/Kathanika/";
+const rawSite = process.env.VITE_PUBLIC_SITE_URL || env.VITE_PUBLIC_SITE_URL || "https://www.kathanika.in/";
 const site = rawSite.endsWith("/") ? rawSite : `${rawSite}/`;
 const today = new Date().toISOString().slice(0, 10);
 

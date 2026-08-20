@@ -1,2 +1,3 @@
-Kathanika Media V50 — Performance + Responsive + SEO
-Version: 50.0.0
+Kathanika Media V51 — Custom Domain Production
+Version: 51.0.0
+Domain: https://www.kathanika.in/

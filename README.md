@@ -1,36 +1,34 @@
-# Kathanika Media V50
+# Kathanika Media V51 — Custom Domain Production
 
-Client-media, footer, SEO and Google-indexing-ready build for the Kathanika Media website.
+Production build for **https://www.kathanika.in/**.
 
-## What changed
+## Custom-domain configuration
 
-- Client-provided production photography is used in the homepage hero.
-- Work includes a production reel with optimized stills and video previews.
-- Footer includes visible YouTube, Instagram and LinkedIn icons/backlinks plus email, phone and map actions.
-- SEO includes page-specific metadata, canonical URLs, Open Graph/Twitter previews, Organization JSON-LD, sitemap.xml and robots.txt.
-- `sitemap.yml` is included only as a human-readable manifest; Google uses `sitemap.xml`.
-- Search Console HTML-tag verification is supported through `VITE_GOOGLE_SITE_VERIFICATION`.
+- Canonical site: `https://www.kathanika.in/`
+- Vite/base path: `/`
+- GitHub Pages custom domain: `www.kathanika.in`
+- `public/CNAME`: `www.kathanika.in`
+- Sitemap: `https://www.kathanika.in/sitemap.xml`
+- Robots: `https://www.kathanika.in/robots.txt`
+- Existing Google Apps Script API remains connected.
+
+The old GitHub project path `/Kathanika/` is intentionally removed from production URL generation.
 
 ## Run locally
 
 ```powershell
 npm install
 npm run verify
-npm run preflight
+npm run preflight:pages
 npm run dev
 ```
 
-## GitHub Pages production check
+## Git deployment gate
 
 ```powershell
-npm run preflight:pages
 npm run git:preflight
 ```
 
-Production base path: `/Kathanika/`
+After GitHub issues the TLS certificate for `www.kathanika.in`, enable **Enforce HTTPS** in Repository → Settings → Pages.
 
-Current canonical production URL: `https://amoghchowdary.github.io/Kathanika/`
-
-If a custom domain is connected later, change `VITE_PUBLIC_SITE_URL` before rebuilding.
-
-See `GOOGLE_INDEXING_STEPS.txt` for the Search Console handoff.
+See `GOOGLE_INDEXING_STEPS.txt` for Search Console handoff.

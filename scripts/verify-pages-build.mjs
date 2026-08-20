@@ -21,7 +21,7 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V50 - GitHub Pages Build + SEO Verification\n");
+console.log("\nKathanika Media V51 - Custom Domain Build + SEO Verification\n");
 const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");
@@ -32,6 +32,8 @@ ok(exists("sitemap.xml"), "sitemap.xml exists in Pages artifact");
 ok(exists("robots.txt"), "robots.txt exists in Pages artifact");
 ok(exists("site.webmanifest"), "site.webmanifest exists in Pages artifact");
 ok(exists("og/kathanika-og.jpg"), "Open Graph image exists in Pages artifact");
+ok(exists("CNAME"), "CNAME exists in Pages artifact");
+if (exists("CNAME")) ok(read("CNAME").trim() === "www.kathanika.in", "CNAME targets www.kathanika.in");
 
 for (const route of routes.slice(0, 6)) {
   const file = routeFile(route);
@@ -46,12 +48,16 @@ for (const route of routes.slice(0, 6)) {
   ok(html.includes('name="robots"') || html.includes("name='robots'"), `${label} contains robots metadata`);
   ok(html.includes('property="og:image"') || html.includes("property='og:image'"), `${label} contains Open Graph image metadata`);
   ok(/<h1[\s>]/i.test(html), `${label} prerender includes an H1`);
-  ok(!/(?:src|href)=["']\/assets\//.test(html), `${label} has no root-only /assets references`);
+  // On a custom domain with VITE_SITE_BASE=/, root-relative /assets/* URLs are correct.
+  // Reject only the legacy GitHub project-site base path.
+  ok(!/(?:src|href)=["']\/Kathanika\/assets\//i.test(html), `${label} has no legacy /Kathanika/assets references`);
 }
 
 if (exists("index.html")) {
   const html = read("index.html");
-  ok(html.includes(siteBase), `index.html contains project base path ${siteBase}`);
+  ok(siteBase === "/", "GitHub Pages build uses root base path for custom domain");
+  ok(!html.includes("/Kathanika/"), "index.html contains no legacy /Kathanika/ project-base references");
+  ok(html.includes("https://www.kathanika.in/"), "index.html SEO metadata references the custom domain");
   ok(html.includes('application/ld+json'), "index.html contains structured data");
   ok(html.includes('WebSite') && html.includes('Organization'), "index.html contains Organization + WebSite schema");
   ok(html.includes('site.webmanifest'), "index.html links the site manifest");
@@ -61,6 +67,11 @@ if (exists("index.html")) {
 if (exists("sitemap.xml")) {
   const sitemap = read("sitemap.xml");
   ok(sitemap.includes('xmlns:image=') && sitemap.includes('<image:image>'), "sitemap.xml includes image discovery entries");
+  ok(sitemap.includes("https://www.kathanika.in/") && !sitemap.includes("amoghchowdary.github.io"), "sitemap.xml uses only the custom production domain");
+}
+if (exists("robots.txt")) {
+  const robots = read("robots.txt");
+  ok(robots.includes("Sitemap: https://www.kathanika.in/sitemap.xml"), "robots.txt advertises the custom-domain sitemap");
 }
 
 if (errors.length) {

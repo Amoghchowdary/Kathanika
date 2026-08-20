@@ -1,29 +1,28 @@
-KATHANIKA MEDIA — GOOGLE INDEXING STEPS
+KATHANIKA MEDIA V51 — GOOGLE INDEXING / CUSTOM DOMAIN
 
-Technical SEO included in V50:
-- Page-specific titles and descriptions
-- Canonical URLs
-- Open Graph / Twitter preview metadata
-- Organization JSON-LD structured data
-- Social identity links (YouTube, Instagram, LinkedIn)
-- sitemap.xml (Google-supported sitemap)
-- sitemap.yml (human-readable manifest only)
-- robots.txt with sitemap reference
-- 1200x630 Open Graph image
-- Image alt text and visible production context
+Production domain:
+https://www.kathanika.in/
 
-IMPORTANT:
-Google Search does not use YAML as the sitemap format. sitemap.xml is the file to submit.
+Submit this sitemap in Google Search Console:
+https://www.kathanika.in/sitemap.xml
 
-After the V50 site is live:
-1. Open Google Search Console.
-2. Add/verify the live Kathanika website property.
-3. Open Sitemaps and submit the live sitemap.xml URL.
-4. Use URL Inspection for the homepage and major pages.
-5. Run Test Live URL, then Request Indexing.
-6. Monitor Page Indexing and Video Pages reports.
+Recommended handoff:
+1. Confirm https://www.kathanika.in/ loads after GitHub finishes TLS certificate issuance.
+2. In GitHub Pages, enable Enforce HTTPS as soon as the checkbox becomes available.
+3. Add/verify `https://www.kathanika.in/` (or the domain property `kathanika.in`) in Google Search Console.
+4. Submit `https://www.kathanika.in/sitemap.xml`.
+5. Use URL Inspection for Home, About, Work, Services, Career Inquiry and Business Inquiry.
+6. Request indexing for priority pages after the live test succeeds.
+7. Monitor Page Indexing, Core Web Vitals and HTTPS reports.
 
-Current GitHub Pages sitemap:
-https://amoghchowdary.github.io/Kathanika/sitemap.xml
+Technical SEO in V51:
+- Root-domain canonical URLs
+- Root base path (`/`)
+- Organization + WebSite JSON-LD using www.kathanika.in
+- Open Graph/Twitter URLs using www.kathanika.in
+- XML sitemap with image discovery entries
+- robots.txt advertising the custom-domain sitemap
+- CNAME for www.kathanika.in
+- No generated canonical dependency on amoghchowdary.github.io/Kathanika/
 
-If a custom domain is connected later, update VITE_PUBLIC_SITE_URL in the production environment before rebuilding so canonical URLs and sitemap URLs use the custom domain.
+`sitemap.yml` remains a human-readable manifest. Google uses `sitemap.xml`.

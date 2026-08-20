@@ -1,0 +1,16 @@
+Kathanika Media V51 — Custom Domain Production
+
+Custom domain integrated: https://www.kathanika.in/
+
+Changes from V50:
+- VITE_SITE_BASE changed from /Kathanika/ to /
+- Canonical production URL changed to https://www.kathanika.in/
+- Added public/CNAME for www.kathanika.in
+- sitemap.xml, sitemap.yml and robots.txt generated for www.kathanika.in
+- SEO default URL changed to www.kathanika.in
+- Build/SEO verifiers reject legacy amoghchowdary.github.io canonical URLs
+- GitHub Actions workflow relabeled for V51 custom-domain production
+- V50 descriptive-title verifier hotfix is included
+- Existing Apps Script API remains connected
+
+GitHub Pages DNS status is already successful according to the supplied screenshot. HTTPS certificate issuance is still pending; enable Enforce HTTPS once GitHub makes it available.

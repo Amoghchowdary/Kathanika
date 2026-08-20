@@ -11,10 +11,13 @@ check(exists('public/sitemap.yml'), 'sitemap.yml manifest exists');
 check(exists('public/robots.txt'), 'robots.txt exists');
 check(exists('public/site.webmanifest'), 'Web app/site manifest exists');
 check(exists('public/og/kathanika-og.jpg'), '1200x630 Open Graph image exists');
+check(exists('public/CNAME') && read('public/CNAME').trim()==='www.kathanika.in', 'CNAME targets www.kathanika.in');
+check(seo.includes('https://www.kathanika.in/'), 'SEO helper defaults to the custom production domain');
 const sitemap=read('public/sitemap.xml');
-for(const route of ['Kathanika/','Kathanika/about','Kathanika/work','Kathanika/services','Kathanika/creators','Kathanika/contact']) check(sitemap.includes(route), `Sitemap contains ${route}`);
+for(const route of ['https://www.kathanika.in/','https://www.kathanika.in/about','https://www.kathanika.in/work','https://www.kathanika.in/services','https://www.kathanika.in/creators','https://www.kathanika.in/contact']) check(sitemap.includes(route), `Sitemap contains ${route}`);
+check(!sitemap.includes('amoghchowdary.github.io'), 'Sitemap contains no legacy GitHub Pages canonical URLs');
 check(sitemap.includes('xmlns:image=') && sitemap.includes('<image:image>'), 'XML sitemap includes image discovery markup');
-check(read('public/robots.txt').includes('Sitemap: https://amoghchowdary.github.io/Kathanika/sitemap.xml'), 'robots.txt advertises the sitemap');
+check(read('public/robots.txt').includes('Sitemap: https://www.kathanika.in/sitemap.xml'), 'robots.txt advertises the custom-domain sitemap');
 check(seo.includes('rel: "canonical"') && seo.includes('og:image') && seo.includes('twitter:image'), 'Per-page SEO helper provides canonical and social preview metadata');
 check(seo.includes('googlebot') && seo.includes('og:image:alt') && seo.includes('og:locale'), 'Per-page SEO helper exposes crawler, image-alt and locale metadata');
 check(rootRoute.includes('application/ld+json') && rootRoute.includes('Organization') && rootRoute.includes('WebSite'), 'Organization + WebSite JSON-LD graph is present');
@@ -24,7 +27,7 @@ check(rootRoute.includes('rel: "manifest"'), 'Manifest is linked from the docume
 check(rootRoute.includes('rel: "preload"') && rootRoute.includes('as: "image"'), 'LCP image is preloaded for performance/SEO');
 check(footer.includes('rel="me noopener noreferrer"'), 'Social backlinks expose identity relationship metadata');
 for(const file of ['index.tsx','about.tsx','work.tsx','services.tsx','creators.tsx','contact.tsx']) check(read(`src/routes/${file}`).includes('seoHead('), `${file} uses page-specific SEO metadata`);
-console.log('\nKathanika Media V50 — SEO Verification\n');
+console.log('\nKathanika Media V51 — Custom Domain SEO Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nSEO verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nSEO verification passed: ${checks.length} checks.`);

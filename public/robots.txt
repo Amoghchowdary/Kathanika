@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://amoghchowdary.github.io/Kathanika/sitemap.xml
+Sitemap: https://www.kathanika.in/sitemap.xml
