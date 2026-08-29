@@ -43,7 +43,7 @@ function Index() {
           <p className="v41-section-note">We build and operate media IPs, learn directly from audiences and bring that understanding into brand work.</p>
         </div>
 
-        <div className="v44-evolution-flow v44-home-evolution" aria-label="Evolution of media">
+        <div className="v44-evolution-flow v44-home-evolution" role="group" aria-label="Evolution of media">
           {EVOLUTION.map(([era, name, copy], index) => (
             <div className="v44-evolution-step" key={name}>
               <article className={index === EVOLUTION.length - 1 ? "is-current" : ""}>
@@ -64,7 +64,7 @@ function Index() {
           <article><span>04</span><strong>Grow audience</strong><p>Repeat attention, not one-off reach.</p></article>
         </div>
 
-        <div className="v41-metric-bars" aria-label="Kathanika scale">
+        <div className="v41-metric-bars" role="group" aria-label="Kathanika scale">
           {METRICS.map(([value, label], index) => (
             <article key={label}>
               <span>{String(index + 1).padStart(2, "0")}</span>

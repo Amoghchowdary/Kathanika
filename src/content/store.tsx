@@ -73,7 +73,20 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    void refresh();
+    let timer: number | undefined;
+    const scheduleRefresh = () => {
+      timer = window.setTimeout(() => {
+        void refresh();
+      }, 1800);
+    };
+
+    if (document.readyState === "complete") scheduleRefresh();
+    else window.addEventListener("load", scheduleRefresh, { once: true });
+
+    return () => {
+      window.removeEventListener("load", scheduleRefresh);
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
   }, [refresh]);
 
   const addEnquiry = useCallback<ContentContextValue["addEnquiry"]>(async (enquiry) => {

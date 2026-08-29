@@ -1,0 +1,1 @@
+V51.1 hotfix: custom-domain verifier now accepts root-relative /assets/* URLs and rejects only legacy /Kathanika/assets/* references.

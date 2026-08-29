@@ -21,7 +21,7 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V51 - Custom Domain Build + SEO Verification\n");
+console.log("\nKathanika Media V52 - Custom Domain Build + SEO Verification\n");
 const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");

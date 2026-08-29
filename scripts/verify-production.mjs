@@ -27,11 +27,11 @@ const required = [
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V51 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V52 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v51-custom-domain-production", "Package name is V51 custom-domain production build");
-assert(pkg.version === "51.0.0", "Package version is 51.0.0");
+assert(pkg.name === "kathanika-media-v52-lighthouse-performance", "Package name is V52 Lighthouse performance build");
+assert(pkg.version === "52.0.0", "Package version is 52.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -58,7 +58,7 @@ const rootRoute = read("src/routes/__root.tsx");
 assert(rootRoute.includes("application/ld+json") && rootRoute.includes("@graph"), "Structured data graph is included");
 assert(rootRoute.includes("Organization") && rootRoute.includes("WebSite"), "Organization and WebSite schema are included");
 assert(rootRoute.includes("kathanika-font-css"), "Fonts are loaded asynchronously instead of blocking first paint");
-assert(rootRoute.includes("IMG_4711-960.webp"), "Primary hero image is preloaded");
+assert(rootRoute.includes("IMG_4711-1024.avif") && rootRoute.includes("imageSrcSet"), "Primary hero image is preloaded");
 
 const hero = read("src/components/site/HeroOrbit.tsx");
 assert(hero.includes("ClientProductionImage"), "Hero uses responsive client image component");
@@ -94,7 +94,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V51 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V52 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

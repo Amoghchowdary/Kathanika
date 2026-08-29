@@ -47,6 +47,7 @@ function ChannelRail({ channel }: { channel: TopTenChannel }) {
         <div
           ref={scrollerRef}
           className="top-ten-scroller"
+          role="group"
           aria-label={`${channel.name} top ten videos`}
         >
           <div className="top-ten-manual-track">
@@ -69,6 +70,8 @@ function ChannelRail({ channel }: { channel: TopTenChannel }) {
                   <img
                     src={withBasePath(video.coverUrl)}
                     alt={`${channel.name} — Top ${video.rank}`}
+                    width={1280}
+                    height={720}
                     loading={channel.order === 1 && video.rank <= 3 ? "eager" : "lazy"}
                     decoding="async"
                     draggable={false}

@@ -24,10 +24,10 @@ check(rootRoute.includes('application/ld+json') && rootRoute.includes('Organizat
 check(rootRoute.includes('ContactPoint') && rootRoute.includes('PostalAddress'), 'Structured data includes business contact and location details');
 check(rootRoute.includes('theme-color') && rootRoute.includes('application-name'), 'Site identity metadata is present');
 check(rootRoute.includes('rel: "manifest"'), 'Manifest is linked from the document head');
-check(rootRoute.includes('rel: "preload"') && rootRoute.includes('as: "image"'), 'LCP image is preloaded for performance/SEO');
+check(rootRoute.includes('rel="preload"') && rootRoute.includes('as="image"') && rootRoute.includes('IMG_4711-1024.avif'), 'LCP image is preloaded for performance/SEO');
 check(footer.includes('rel="me noopener noreferrer"'), 'Social backlinks expose identity relationship metadata');
 for(const file of ['index.tsx','about.tsx','work.tsx','services.tsx','creators.tsx','contact.tsx']) check(read(`src/routes/${file}`).includes('seoHead('), `${file} uses page-specific SEO metadata`);
-console.log('\nKathanika Media V51 — Custom Domain SEO Verification\n');
+console.log('\nKathanika Media V52 — Custom Domain SEO Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nSEO verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nSEO verification passed: ${checks.length} checks.`);

@@ -74,7 +74,7 @@ function EpisodeCard({
       tabIndex={tabIndex}
       aria-label={`${channel.name} — Top ${video.rank}`}
     >
-      <img src={withBasePath(video.coverUrl)} alt="" loading="lazy" />
+      <img src={withBasePath(video.coverUrl)} alt="" width={1280} height={720} loading="lazy" decoding="async" />
       <span className="v41-episode-rank">{String(video.rank).padStart(2, "0")}</span>
       <span className="v41-episode-play"><Play fill="currentColor" /></span>
     </a>

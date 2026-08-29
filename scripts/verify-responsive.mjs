@@ -19,7 +19,7 @@ check(css.includes("height: 100dvh"), "Mobile overlays use dynamic viewport heig
 check(css.includes("overflow-x: clip"), "Global horizontal overflow protection remains enabled");
 check(hero.includes("translate3d(-${active * 100}%"), "Hero advances exactly one viewport per story");
 check(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual interactions that can disturb layout");
-console.log("\nKathanika Media V51 — Responsive Geometry Verification\n");
+console.log("\nKathanika Media V52 — Responsive Geometry Verification\n");
 for(const [ok,msg] of checks) console.log(`${ok?"PASS":"FAIL"}  ${msg}`);
 if(failures.length){console.error(`\nResponsive verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nResponsive verification passed: ${checks.length} checks.`);

@@ -53,10 +53,18 @@ const STORIES = [
 
 export function HeroOrbit() {
   const [active, setActive] = useState(0);
+  const [desktopSecondaryMedia, setDesktopSecondaryMedia] = useState(false);
   const reducedMotion = useMemo(
     () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
     [],
   );
+
+  useEffect(() => {
+    const query = window.matchMedia?.("(min-width: 641px)");
+    if (!query?.matches) return;
+    const timer = window.setTimeout(() => setDesktopSecondaryMedia(true), 900);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -72,7 +80,7 @@ export function HeroOrbit() {
         className="v41-hero-track"
         style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}
       >
-        {STORIES.map((story) => (
+        {STORIES.map((story, storyIndex) => (
           <article className="v41-hero-slide v48-hero-slide" key={story.number}>
             <div className="v41-hero-slide-grid" aria-hidden="true" />
             <div className="v48-hero-layout">
@@ -85,18 +93,25 @@ export function HeroOrbit() {
                 <p>{story.body}</p>
               </div>
 
-              <div className="v48-hero-media" aria-label="Featured Kathanika shows">
-                {story.media.map((item, index) => (
-                  <figure className={`v48-hero-media-card card-${index + 1}`} key={item.alt}>
-                    <ClientProductionImage
-                      file={item.src.split("/").pop() ?? "IMG_4711.webp"}
-                      alt={item.alt}
-                      eager={story.number === "01" && index === 0}
-                      sizes="(max-width: 640px) 92vw, (max-width: 1100px) 66vw, 38vw"
-                    />
-                    <figcaption>{item.alt}</figcaption>
-                  </figure>
-                ))}
+              <div className="v48-hero-media" role="group" aria-label="Featured Kathanika shows">
+                {storyIndex === active
+                  ? story.media.map((item, index) => {
+                      if (index > 0 && !desktopSecondaryMedia) return null;
+                      return (
+                        <figure className={`v48-hero-media-card card-${index + 1}`} key={item.alt}>
+                          <ClientProductionImage
+                            file={item.src.split("/").pop() ?? "IMG_4711.webp"}
+                            alt={item.alt}
+                            eager={story.number === "01" && index === 0}
+                            sizes={index === 0
+                              ? "(max-width: 640px) 88vw, (max-width: 1100px) 640px, 38vw"
+                              : "(max-width: 1100px) 420px, 28vw"}
+                          />
+                          <figcaption>{item.alt}</figcaption>
+                        </figure>
+                      );
+                    })
+                  : null}
                 <div className="v48-hero-media-ring ring-one" aria-hidden="true" />
                 <div className="v48-hero-media-ring ring-two" aria-hidden="true" />
               </div>
@@ -105,7 +120,7 @@ export function HeroOrbit() {
         ))}
       </div>
 
-      <div className="v41-hero-progress" aria-label={`Slide ${active + 1} of ${STORIES.length}`}>
+      <div className="v41-hero-progress" role="group" aria-label={`Slide ${active + 1} of ${STORIES.length}`}>
         {STORIES.map((story, index) => (
           <span key={story.number} className={index === active ? "is-active" : ""}>
             <i key={`${active}-${index}`} />

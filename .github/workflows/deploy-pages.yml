@@ -1,4 +1,4 @@
-name: Deploy Kathanika V51 Custom Domain to GitHub Pages
+name: Deploy Kathanika V52 Custom Domain to GitHub Pages
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Verify V51 custom-domain production
+      - name: Verify V52 custom-domain production
         run: npm run verify
 
       - name: Build GitHub Pages artifact

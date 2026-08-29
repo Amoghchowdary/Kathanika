@@ -1,4 +1,3 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
@@ -71,7 +70,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<Record<string, never>>()({
   head: () => {
     const googleVerification = import.meta.env["VITE_GOOGLE_SITE_VERIFICATION"]?.trim();
     return {
@@ -116,16 +115,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: withBasePath("/favicon.png"), type: "image/png" },
       { rel: "manifest", href: withBasePath("/site.webmanifest") },
-      { rel: "dns-prefetch", href: "https://fonts.googleapis.com" },
-      { rel: "dns-prefetch", href: "https://fonts.gstatic.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "preload",
-        as: "image",
-        href: withBasePath("/media/production/responsive/IMG_4711-960.webp"),
-        type: "image/webp",
-        fetchPriority: "high",
-      },
     ],
     };
   },
@@ -187,14 +176,18 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <link
-          id="kathanika-font-css"
           rel="preload"
-          as="style"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap"
+          as="image"
+          href={withBasePath("/media/production/responsive/IMG_4711-1024.avif")}
+          imageSrcSet={`${withBasePath("/media/production/responsive/IMG_4711-480.avif")} 480w, ${withBasePath("/media/production/responsive/IMG_4711-960.avif")} 960w, ${withBasePath("/media/production/responsive/IMG_4711-1024.avif")} 1024w, ${withBasePath("/media/production/responsive/IMG_4711-1280.avif")} 1280w`}
+          imageSizes="(max-width: 640px) 88vw, (max-width: 1100px) 640px, 38vw"
+          type="image/avif"
+          fetchPriority="high"
         />
         <script
+          id="kathanika-font-loader"
           dangerouslySetInnerHTML={{
-            __html: "(function(){var l=document.getElementById('kathanika-font-css');if(!l)return;var a=function(){l.rel='stylesheet';};if(l.sheet){a();}else{l.addEventListener('load',a,{once:true});}})();",
+            __html: "(function(){var add=function(){if(document.getElementById('kathanika-font-css'))return;var l=document.createElement('link');l.id='kathanika-font-css';l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap';document.head.appendChild(l);};var later=function(){setTimeout(add,250);};if(document.readyState==='complete'){later();}else{window.addEventListener('load',later,{once:true});}})();",
           }}
         />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap" /></noscript>
@@ -209,14 +202,10 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <ContentProvider>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </ContentProvider>
-    </QueryClientProvider>
+    <ContentProvider>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <Outlet />
+    </ContentProvider>
   );
 }

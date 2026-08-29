@@ -14,13 +14,13 @@ check(exists('public/media/production/responsive/IMG_4711-480.webp'),'Responsive
 check(exists('public/media/production/responsive/IMG_4711-960.webp'),'Responsive 960px hero asset exists');
 check(exists('public/media/production/responsive/IMG_4711-1280.webp'),'Responsive 1280px hero asset exists');
 check(hero.includes('ClientProductionImage') && hero.includes('eager={story.number === "01" && index === 0}'),'First hero image receives eager/high-priority loading');
-check(rootRoute.includes('rel: "preload"') && rootRoute.includes('IMG_4711-960.webp'),'LCP hero image is preloaded from HTML head');
-check(rootRoute.includes('kathanika-font-css') && rootRoute.includes("rel='stylesheet'"),'Google font stylesheet is applied asynchronously after preload');
+check(rootRoute.includes('rel="preload"') && rootRoute.includes('IMG_4711-1024.avif') && rootRoute.includes('imageSrcSet'),'LCP hero image is preloaded from HTML head');
+check(rootRoute.includes('kathanika-font-loader') && rootRoute.includes("window.addEventListener('load'"),'Google font stylesheet is applied asynchronously after preload');
 check(css.includes('content-visibility: auto'),'Below-fold content uses content-visibility optimization');
 check(media.includes('DeferredVideo'),'Production video gallery uses deferred video loading');
 check(deferred.includes('IntersectionObserver') && deferred.includes('preload="none"'),'Videos load only near the viewport and do not preload media bytes');
 check(!media.includes('autoPlay'),'Production showcase no longer starts every video during initial render');
-console.log('\nKathanika Media V51 — Performance Verification\n');
+console.log('\nKathanika Media V52 — Performance Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nPerformance verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nPerformance verification passed: ${checks.length} checks.`);

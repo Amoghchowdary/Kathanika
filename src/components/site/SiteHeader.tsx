@@ -49,7 +49,7 @@ export function SiteHeader() {
     <>
       <header className={`v41-header ${scrolled ? "is-scrolled" : ""}`}>
         <a className="v41-brand" href={withBasePath("/")} aria-label="Kathanika Media home">
-          <img src={logo} alt="Kathanika Media" />
+          <img src={logo} alt="Kathanika Media" width={1919} height={717} />
         </a>
         <nav className="v41-desktop-nav" aria-label="Primary navigation">
           {LINKS.map(([label, href]) => <a key={href} href={withBasePath(href)}>{label}</a>)}
@@ -61,7 +61,7 @@ export function SiteHeader() {
 
       <div className={`v41-mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="v41-mobile-menu-top">
-          <img src={logo} alt="Kathanika Media" />
+          <img src={logo} alt="Kathanika Media" width={1919} height={717} />
           <button type="button" onClick={() => setOpen(false)} aria-label="Close navigation"><X /></button>
         </div>
         <nav aria-label="Mobile navigation">

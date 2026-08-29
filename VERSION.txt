@@ -1,3 +1,2 @@
-Kathanika Media V51 — Custom Domain Production
-Version: 51.0.0
-Domain: https://www.kathanika.in/
+Kathanika Media V52 — Lighthouse Performance & Accessibility Hardening
+Version: 52.0.0

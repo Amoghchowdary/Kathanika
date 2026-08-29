@@ -38,7 +38,7 @@ function WorkPage() {
               <div className="v41-work-covers">
                 {videos.map((video) => (
                   <a key={video.rank} href={video.videoUrl} target="_blank" rel="noreferrer" aria-label={`${channel.name} top ${video.rank}`}>
-                    <img src={withBasePath(video.coverUrl)} alt={`${channel.name} episode ${video.rank}`} loading="lazy" />
+                    <img src={withBasePath(video.coverUrl)} alt={`${channel.name} episode ${video.rank}`} width={1280} height={720} loading="lazy" decoding="async" />
                     <span>{String(video.rank).padStart(2, "0")}<Play fill="currentColor" /></span>
                   </a>
                 ))}

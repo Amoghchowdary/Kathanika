@@ -68,7 +68,7 @@ export function ProductionMediaShowcase() {
         </div>
       </div>
 
-      <div className="v50-production-wall" aria-label="Kathanika production photography and video">
+      <div className="v50-production-wall" role="group" aria-label="Kathanika production photography and video">
         {WALL.map((item, index) => (
           <figure key={`${item.type}-${item.file}`} className={item.wide ? "is-wide" : ""}>
             {item.type === "image" ? (

@@ -31,7 +31,7 @@ export function SiteFooter() {
     <footer className="v41-footer v44-footer v48-footer v49-footer">
       <section className="v44-footer-lead v48-footer-lead v49-footer-lead">
         <div className="v44-footer-logo-wrap">
-          <img src={logoDark} alt="Kathanika Media" />
+          <img src={logoDark} alt="Kathanika Media" width={1919} height={717} />
           <span>Hyderabad · India</span>
         </div>
         <div className="v44-footer-lead-copy">
@@ -64,7 +64,7 @@ export function SiteFooter() {
           <a className="v49-footer-contact-link" href={`tel:${content.settings.phone.replace(/\s/g, "")}`}>
             <Phone aria-hidden="true" /> <span>{content.settings.phone}</span>
           </a>
-          <div className="v49-footer-social" aria-label="Kathanika Media social profiles">
+          <div className="v49-footer-social" role="group" aria-label="Kathanika Media social profiles">
             <a href={socials.youtube} target="_blank" rel="me noopener noreferrer" aria-label="Kathanika Media on YouTube"><Youtube aria-hidden="true" /><span>YouTube</span></a>
             <a href={socials.instagram} target="_blank" rel="me noopener noreferrer" aria-label="Kathanika Media on Instagram"><Instagram aria-hidden="true" /><span>Instagram</span></a>
             <a href={socials.linkedin} target="_blank" rel="me noopener noreferrer" aria-label="Kathanika Media on LinkedIn"><Linkedin aria-hidden="true" /><span>LinkedIn</span></a>

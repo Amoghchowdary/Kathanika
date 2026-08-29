@@ -66,7 +66,7 @@ function AboutPage() {
             />
           </figure>
         </div>
-        <div className="v50-about-pillars" aria-label="Kathanika media pillars">
+        <div className="v50-about-pillars" role="group" aria-label="Kathanika media pillars">
           {PILLARS.map(({ icon: Icon, title, copy }, index) => (
             <article key={title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
@@ -84,7 +84,7 @@ function AboutPage() {
           <div><p>Evolution map</p><h2>Four media eras.</h2></div>
           <p className="v41-section-note">From centralised distribution to audience-owned media properties.</p>
         </div>
-        <div className="v44-evolution-flow" aria-label="Evolution of media">
+        <div className="v44-evolution-flow" role="group" aria-label="Evolution of media">
           {EVOLUTION.map(([era, medium, copy], index) => (
             <div className="v44-evolution-step" key={medium}>
               <article className={index === EVOLUTION.length - 1 ? "is-current" : ""}>
