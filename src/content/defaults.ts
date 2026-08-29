@@ -21,7 +21,6 @@ import person1 from "@/assets/person-1.jpg";
 import person2 from "@/assets/person-2.jpg";
 import person3 from "@/assets/person-3.jpg";
 
-import { topTenDefaults } from "./top-ten-defaults";
 import type { SiteContent } from "./types";
 
 export const images = {
@@ -52,7 +51,7 @@ export const images = {
 const YT = "https://www.youtube.com/@kathanikamedia";
 
 export const defaultContent: SiteContent = {
-  topTenChannels: topTenDefaults,
+  topTenChannels: [],
   heroSlides: [
     {
       id: "hero-1",

@@ -104,7 +104,7 @@ export function HeroOrbit() {
                             alt={item.alt}
                             eager={story.number === "01" && index === 0}
                             sizes={index === 0
-                              ? "(max-width: 640px) 88vw, (max-width: 1100px) 640px, 38vw"
+                              ? "(max-width: 640px) 86vw, (max-width: 1100px) 620px, 38vw"
                               : "(max-width: 1100px) 420px, 28vw"}
                           />
                           <figcaption>{item.alt}</figcaption>

@@ -2,12 +2,14 @@ import { Play } from "lucide-react";
 import type { CSSProperties } from "react";
 
 import { sortActive, useContent } from "@/content/store";
+import { topTenDefaults } from "@/content/top-ten-defaults";
 import type { TopTenChannel } from "@/content/types";
 import { withBasePath } from "@/lib/base-path";
 
 export function EpisodeLibrary({ limitChannels }: { limitChannels?: number }) {
   const { content } = useContent();
-  const channels = sortActive(content.topTenChannels).slice(0, limitChannels ?? 9);
+  const sourceChannels = content.topTenChannels.length ? content.topTenChannels : topTenDefaults;
+  const channels = sortActive(sourceChannels).slice(0, limitChannels ?? 9);
 
   return (
     <section className="v41-library" id="episodes">

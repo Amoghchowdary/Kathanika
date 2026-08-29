@@ -1,0 +1,23 @@
+Kathanika Media V53 — Mobile Lighthouse performance pass
+
+Input audit:
+- Mobile Lighthouse: 74
+- Desktop Lighthouse: 99
+- SEO: 100
+- Accessibility: 96
+- Mobile FCP: 3.6 s
+- Mobile LCP: 4.5 s
+- Main audit opportunities: external font chain, render-blocking CSS, oversized logo/image delivery, unused JS/CSS, contrast.
+
+V53 application changes:
+- Removed all Google Fonts network requests; uses zero-request system font stacks.
+- Inlined above-the-fold header/hero critical CSS and loads the full stylesheet non-blocking.
+- Replaced the 1919px / ~120 KB header logo with responsive AVIF/WebP variants (240/480).
+- Added 800px AVIF variants for production imagery and included them in responsive srcsets.
+- Code-split the below-fold episode library and footer.
+- Moved the 90-episode fallback dataset out of the initial root content bundle.
+- Added higher-contrast small-text tokens without changing the primary brown canvas or card palette.
+- Preserved V52 custom-domain, SEO, sitemap, backend, media, and responsive behavior.
+
+Platform limitation:
+GitHub Pages controls Cache-Control headers. Lighthouse cache-lifetime findings for GitHub-hosted hashed assets cannot be fully overridden from repository code.

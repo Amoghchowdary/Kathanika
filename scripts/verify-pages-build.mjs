@@ -21,7 +21,7 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V52 - Custom Domain Build + SEO Verification\n");
+console.log("\nKathanika Media V53 - Custom Domain Build + SEO Verification\n");
 const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");
@@ -61,7 +61,9 @@ if (exists("index.html")) {
   ok(html.includes('application/ld+json'), "index.html contains structured data");
   ok(html.includes('WebSite') && html.includes('Organization'), "index.html contains Organization + WebSite schema");
   ok(html.includes('site.webmanifest'), "index.html links the site manifest");
-  ok(html.includes('IMG_4711-960.webp'), "index.html preloads the primary hero image");
+  ok(html.includes('IMG_4711-800.avif') && html.includes('imageSrcSet'), "index.html preloads responsive AVIF hero image");
+  ok(!html.includes('fonts.googleapis.com'), "index.html has no external font dependency");
+  ok(html.includes('kathanika-critical-css') && html.includes('media=\"print\"'), "index.html contains inline critical CSS with non-blocking full stylesheet");
 }
 
 if (exists("sitemap.xml")) {

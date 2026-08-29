@@ -1,7 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import logo from "@/assets/kathanika-logo-client.png";
 import { withBasePath } from "@/lib/base-path";
 
 const LINKS = [
@@ -49,7 +48,11 @@ export function SiteHeader() {
     <>
       <header className={`v41-header ${scrolled ? "is-scrolled" : ""}`}>
         <a className="v41-brand" href={withBasePath("/")} aria-label="Kathanika Media home">
-          <img src={logo} alt="Kathanika Media" width={1919} height={717} />
+          <picture>
+            <source type="image/avif" srcSet={`${withBasePath("/kathanika-logo-header-240.avif")} 1x, ${withBasePath("/kathanika-logo-header-480.avif")} 2x`} />
+            <source type="image/webp" srcSet={`${withBasePath("/kathanika-logo-header-240.webp")} 1x, ${withBasePath("/kathanika-logo-header-480.webp")} 2x`} />
+            <img src={withBasePath("/kathanika-logo-header-240.webp")} alt="Kathanika Media" width={240} height={90} fetchPriority="high" decoding="async" />
+          </picture>
         </a>
         <nav className="v41-desktop-nav" aria-label="Primary navigation">
           {LINKS.map(([label, href]) => <a key={href} href={withBasePath(href)}>{label}</a>)}
@@ -61,7 +64,11 @@ export function SiteHeader() {
 
       <div className={`v41-mobile-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div className="v41-mobile-menu-top">
-          <img src={logo} alt="Kathanika Media" width={1919} height={717} />
+          <picture>
+            <source type="image/avif" srcSet={`${withBasePath("/kathanika-logo-header-240.avif")} 1x, ${withBasePath("/kathanika-logo-header-480.avif")} 2x`} />
+            <source type="image/webp" srcSet={`${withBasePath("/kathanika-logo-header-240.webp")} 1x, ${withBasePath("/kathanika-logo-header-480.webp")} 2x`} />
+            <img src={withBasePath("/kathanika-logo-header-240.webp")} alt="Kathanika Media" width={240} height={90} decoding="async" />
+          </picture>
           <button type="button" onClick={() => setOpen(false)} aria-label="Close navigation"><X /></button>
         </div>
         <nav aria-label="Mobile navigation">

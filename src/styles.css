@@ -3082,3 +3082,71 @@ select {
   .v50-about-media-collage figure.is-main { min-height: 250px; }
   .v49-footer-social { grid-template-columns: 1fr 1fr 1fr; }
 }
+
+/* ========================================================================== */
+/* V53 — mobile Lighthouse critical-path + contrast hardening                 */
+/* ========================================================================== */
+:root { --foreground-readable: #f8ebd7; }
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+.v41-hero-copy h1,
+.v41-page-head h1,
+.v41-section-head h2,
+.v41-rail-title h3,
+.v41-work-channel-head h2,
+.v41-service-list h3,
+.v41-services-principle-grid strong,
+.v44-evolution-step h3,
+.v41-model-loop strong,
+.v44-footer-lead-copy p,
+.v41-inquiry-closed-card h2,
+.v49-production-head h2,
+.v49-production-feature-copy strong {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Keep small copy above WCAG AA contrast without changing the brand canvas. */
+.v41-desktop-nav a,
+.v41-mobile-menu-foot,
+.v41-hero-copy > p,
+.v41-section-note,
+.v49-production-head > p,
+.v41-footer-bottom,
+.v41-hero-eyebrow,
+.v41-page-head > p,
+.v41-section-head > div > p {
+  color: var(--foreground-readable);
+  opacity: 1;
+}
+.v41-hero-eyebrow span:first-child,
+.v41-section-head > span,
+.v41-page-head-label > span:first-child,
+.v41-what-grid span,
+.v41-metric-bars article > span,
+.v41-rail-title span,
+.v41-work-channel-head > span,
+.v41-about-map-track article > span:first-child {
+  color: var(--foreground-readable);
+}
+.v41-card-kicker { color: var(--card-text); opacity: .78; }
+
+/* Optimized responsive logo files replace the 1919px source PNG. */
+.v41-brand picture,
+.v44-footer-logo-wrap picture { display: block; width: 100%; }
+.v41-brand img { width: 100%; height: auto; }
+.v44-footer-logo-wrap img { width: min(240px, 100%); height: auto; }
+
+/* Lazy sections reserve space without pulling their JS into the initial route. */
+.v53-library-placeholder { min-height: 760px; background: var(--background); }
+.v53-footer-placeholder { min-height: 420px; background: var(--background); }
+
+@media (max-width: 640px) {
+  .v53-library-placeholder { min-height: 620px; }
+  .v53-footer-placeholder { min-height: 520px; }
+}

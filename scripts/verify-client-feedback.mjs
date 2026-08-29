@@ -25,7 +25,7 @@ check(css.includes(".v41-header.is-scrolled") && css.includes("max-height: 54px"
 check(footer.includes("Youtube") && footer.includes("Instagram") && footer.includes("Linkedin"), "Footer retains visible social media icons");
 check(css.includes("@media (max-width: 1100px)"), "Latest feedback: additional small-laptop/tablet responsive bridge is present");
 
-console.log("\nKathanika Media V52 — Client Feedback Coverage\n");
+console.log("\nKathanika Media V53 — Client Feedback Coverage\n");
 for(const [ok,msg] of checks) console.log(`${ok?"PASS":"FAIL"}  ${msg}`);
 if(failures.length){console.error(`\nClient feedback verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nClient feedback verification passed: ${checks.length} checks.`);

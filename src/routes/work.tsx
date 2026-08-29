@@ -4,6 +4,7 @@ import { ArrowUpRight, Play } from "lucide-react";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { ProductionMediaShowcase } from "@/components/site/ProductionMediaShowcase";
 import { sortActive, useContent } from "@/content/store";
+import { topTenDefaults } from "@/content/top-ten-defaults";
 import { withBasePath } from "@/lib/base-path";
 import { seoHead } from "@/lib/seo";
 
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/work")({
 
 function WorkPage() {
   const { content } = useContent();
-  const channels = sortActive(content.topTenChannels);
+  const channels = sortActive(content.topTenChannels.length ? content.topTenChannels : topTenDefaults);
 
   return (
     <SiteLayout>

@@ -27,11 +27,11 @@ const required = [
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V52 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V53 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v52-lighthouse-performance", "Package name is V52 Lighthouse performance build");
-assert(pkg.version === "52.0.0", "Package version is 52.0.0");
+assert(pkg.name === "kathanika-media-v53-mobile-performance", "Package name is V53 mobile-performance build");
+assert(pkg.version === "53.0.0", "Package version is 53.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -47,8 +47,8 @@ const cssLower = css.toLowerCase();
 for (const hex of ["#8a5f41", "#a77f60", "#f3e4c9", "#ccd67f", "#f3e5ca", "#4a2f20"]) {
   assert(cssLower.includes(hex), `Confirmed design colour ${hex.toUpperCase()}`);
 }
-assert(css.includes('font-family: "Inter"'), "Inter remains body/interface typography");
-assert(css.includes('font-family: "Montserrat"'), "Montserrat remains display/show typography");
+assert(css.includes('ui-sans-serif') && css.includes('system-ui'), "Critical typography uses zero-request system font stacks");
+assert(!read("src/routes/__root.tsx").includes("fonts.googleapis.com"), "No external Google Fonts request remains in the critical path");
 assert(css.includes(".v50-production-wall"), "Continuous mixed production media wall is present");
 assert(css.includes(".v50-about-visual") && css.includes(".v50-about-pillars"), "About page visual and icon system is styled");
 assert(css.includes("content-visibility: auto"), "Below-fold rendering is optimized");
@@ -57,7 +57,7 @@ assert(css.includes("@media (max-width: 1100px)"), "Small-laptop/tablet bridge r
 const rootRoute = read("src/routes/__root.tsx");
 assert(rootRoute.includes("application/ld+json") && rootRoute.includes("@graph"), "Structured data graph is included");
 assert(rootRoute.includes("Organization") && rootRoute.includes("WebSite"), "Organization and WebSite schema are included");
-assert(rootRoute.includes("kathanika-font-css"), "Fonts are loaded asynchronously instead of blocking first paint");
+assert(rootRoute.includes("kathanika-critical-css") && rootRoute.includes("media=\"print\""), "Critical CSS is inlined and full stylesheet is loaded non-blocking");
 assert(rootRoute.includes("IMG_4711-1024.avif") && rootRoute.includes("imageSrcSet"), "Primary hero image is preloaded");
 
 const hero = read("src/components/site/HeroOrbit.tsx");
@@ -94,7 +94,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V52 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V53 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

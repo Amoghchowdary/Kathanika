@@ -1,6 +1,5 @@
 import { ArrowUpRight, Instagram, Linkedin, Mail, MapPin, Phone, Youtube } from "lucide-react";
 
-import logoDark from "@/assets/kathanika-logo-dark.png";
 import { useContent } from "@/content/store";
 import { withBasePath } from "@/lib/base-path";
 
@@ -31,7 +30,11 @@ export function SiteFooter() {
     <footer className="v41-footer v44-footer v48-footer v49-footer">
       <section className="v44-footer-lead v48-footer-lead v49-footer-lead">
         <div className="v44-footer-logo-wrap">
-          <img src={logoDark} alt="Kathanika Media" width={1919} height={717} />
+          <picture>
+            <source type="image/avif" srcSet={`${withBasePath("/kathanika-logo-dark-240.avif")} 1x, ${withBasePath("/kathanika-logo-dark-480.avif")} 2x`} />
+            <source type="image/webp" srcSet={`${withBasePath("/kathanika-logo-dark-240.webp")} 1x, ${withBasePath("/kathanika-logo-dark-480.webp")} 2x`} />
+            <img src={withBasePath("/kathanika-logo-dark-240.webp")} alt="Kathanika Media" width={240} height={90} loading="lazy" decoding="async" />
+          </picture>
           <span>Hyderabad · India</span>
         </div>
         <div className="v44-footer-lead-copy">
