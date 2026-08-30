@@ -1,0 +1,11 @@
+Kathanika Media V55 — Google Tag Manager Integration
+
+Container ID: GTM-PZF49MGL
+
+Implemented:
+- Standard Google Tag Manager loader in the document <head>.
+- Standard GTM noscript iframe immediately inside the document <body>.
+- Added source verification to prevent missing or duplicate GTM installation.
+- Preserved V54 custom-domain, SEO, performance, media, sitemap, and responsive behavior.
+
+Note: GTM is a third-party script. It may add a small amount of JavaScript/network work to Lighthouse runs depending on which tags are published inside the GTM container. Keep the GTM container lean and avoid unnecessary third-party tags to preserve mobile performance.

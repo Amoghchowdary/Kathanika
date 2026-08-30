@@ -20,7 +20,7 @@ const sitemap = read("public/sitemap.xml");
 const robots = read("public/robots.txt");
 const yaml = read("public/sitemap.yml");
 
-console.log("\nKathanika Media V54 — Custom Domain Verification\n");
+console.log("\nKathanika Media V55 — Custom Domain Verification\n");
 check(exists("public/CNAME"), "public/CNAME exists");
 check(read("public/CNAME").trim() === "www.kathanika.in", "CNAME is www.kathanika.in");
 check(/VITE_SITE_BASE=\/\s*$/m.test(envPages), "GitHub Pages base path is root /");
