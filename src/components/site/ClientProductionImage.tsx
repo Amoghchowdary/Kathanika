@@ -45,6 +45,7 @@ export function ClientProductionImage({
   const src960 = withBasePath(`/media/production/responsive/${stem}-960.webp`);
   const src1280 = withBasePath(`/media/production/responsive/${stem}-1280.webp`);
   const avif480 = withBasePath(`/media/production/responsive/${stem}-480.avif`);
+  const avif640 = withBasePath(`/media/production/responsive/${stem}-640.avif`);
   const avif800 = withBasePath(`/media/production/responsive/${stem}-800.avif`);
   const avif960 = withBasePath(`/media/production/responsive/${stem}-960.avif`);
   const avif1024 = withBasePath(`/media/production/responsive/${stem}-1024.avif`);
@@ -55,7 +56,7 @@ export function ClientProductionImage({
     <picture>
       <source
         type="image/avif"
-        srcSet={`${avif480} 480w, ${avif800} 800w, ${avif960} 960w, ${avif1024} 1024w, ${avif1280} 1280w`}
+        srcSet={`${avif480} 480w, ${avif640} 640w, ${avif800} 800w, ${avif960} 960w, ${avif1024} 1024w, ${avif1280} 1280w`}
         sizes={sizes}
       />
       <img
@@ -68,7 +69,7 @@ export function ClientProductionImage({
         height={height}
         loading={eager ? "eager" : "lazy"}
         fetchPriority={eager ? "high" : "auto"}
-        decoding="async"
+        decoding={eager ? "sync" : "async"}
       />
     </picture>
   );

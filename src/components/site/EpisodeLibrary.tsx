@@ -6,6 +6,12 @@ import { topTenDefaults } from "@/content/top-ten-defaults";
 import type { TopTenChannel } from "@/content/types";
 import { withBasePath } from "@/lib/base-path";
 
+
+function optimizedCoverUrl(url: string) {
+  const match = url.match(/^\/top-ten\/([^/]+)\/(\d+)\.jpe?g$/i);
+  return match ? `/top-ten-optimized/${match[1]}/${match[2]}.avif` : null;
+}
+
 export function EpisodeLibrary({ limitChannels }: { limitChannels?: number }) {
   const { content } = useContent();
   const sourceChannels = content.topTenChannels.length ? content.topTenChannels : topTenDefaults;
@@ -76,7 +82,14 @@ function EpisodeCard({
       tabIndex={tabIndex}
       aria-label={`${channel.name} — Top ${video.rank}`}
     >
-      <img src={withBasePath(video.coverUrl)} alt="" width={1280} height={720} loading="lazy" decoding="async" />
+      {optimizedCoverUrl(video.coverUrl) ? (
+        <picture>
+          <source type="image/avif" srcSet={withBasePath(optimizedCoverUrl(video.coverUrl) ?? video.coverUrl)} />
+          <img src={withBasePath(video.coverUrl)} alt="" width={1280} height={720} loading="lazy" decoding="async" />
+        </picture>
+      ) : (
+        <img src={withBasePath(video.coverUrl)} alt="" width={1280} height={720} loading="lazy" decoding="async" />
+      )}
       <span className="v41-episode-rank">{String(video.rank).padStart(2, "0")}</span>
       <span className="v41-episode-play"><Play fill="currentColor" /></span>
     </a>

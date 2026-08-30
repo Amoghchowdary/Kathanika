@@ -77,7 +77,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     const scheduleRefresh = () => {
       timer = window.setTimeout(() => {
         void refresh();
-      }, 1800);
+      }, 12000);
     };
 
     if (document.readyState === "complete") scheduleRefresh();

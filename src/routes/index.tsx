@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
 import { HeroOrbit } from "@/components/site/HeroOrbit";
+import { DeferredEpisodeLibrary } from "@/components/site/DeferredEpisodeLibrary";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { seoHead } from "@/lib/seo";
-
-const EpisodeLibrary = lazy(() => import("@/components/site/EpisodeLibrary").then((module) => ({ default: module.EpisodeLibrary })));
 
 const title = "Kathanika Media — Building the next generation of media";
 const description =
@@ -77,7 +75,7 @@ function Index() {
         </div>
       </section>
 
-      <Suspense fallback={<section className="v53-library-placeholder" aria-hidden="true" />}><EpisodeLibrary limitChannels={9} /></Suspense>
+      <DeferredEpisodeLibrary limitChannels={9} />
     </SiteLayout>
   );
 }

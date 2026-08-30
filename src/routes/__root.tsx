@@ -195,7 +195,7 @@ function RootShell({ children }: { children: ReactNode }) {
           rel="preload"
           as="image"
           href={withBasePath("/media/production/responsive/IMG_4711-1024.avif")}
-          imageSrcSet={`${withBasePath("/media/production/responsive/IMG_4711-480.avif")} 480w, ${withBasePath("/media/production/responsive/IMG_4711-800.avif")} 800w, ${withBasePath("/media/production/responsive/IMG_4711-960.avif")} 960w, ${withBasePath("/media/production/responsive/IMG_4711-1024.avif")} 1024w, ${withBasePath("/media/production/responsive/IMG_4711-1280.avif")} 1280w`}
+          imageSrcSet={`${withBasePath("/media/production/responsive/IMG_4711-480.avif")} 480w, ${withBasePath("/media/production/responsive/IMG_4711-640.avif")} 640w, ${withBasePath("/media/production/responsive/IMG_4711-800.avif")} 800w, ${withBasePath("/media/production/responsive/IMG_4711-960.avif")} 960w, ${withBasePath("/media/production/responsive/IMG_4711-1024.avif")} 1024w, ${withBasePath("/media/production/responsive/IMG_4711-1280.avif")} 1280w`}
           imageSizes="(max-width: 640px) 86vw, (max-width: 1100px) 620px, 38vw"
           type="image/avif"
           fetchPriority="high"

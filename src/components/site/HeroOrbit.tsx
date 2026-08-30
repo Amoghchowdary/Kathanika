@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties } from "react";
 
 import { ClientProductionImage } from "./ClientProductionImage";
 
 const SLIDE_MS = 6200;
+const FIRST_SLIDE_MS = 9000;
 
 const STORIES = [
   {
@@ -53,6 +54,7 @@ const STORIES = [
 
 export function HeroOrbit() {
   const [active, setActive] = useState(0);
+  const [initialHold, setInitialHold] = useState(true);
   const [desktopSecondaryMedia, setDesktopSecondaryMedia] = useState(false);
   const reducedMotion = useMemo(
     () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
@@ -68,10 +70,20 @@ export function HeroOrbit() {
 
   useEffect(() => {
     if (reducedMotion) return;
-    const timer = window.setInterval(() => {
-      setActive((current) => (current + 1) % STORIES.length);
-    }, SLIDE_MS);
-    return () => window.clearInterval(timer);
+
+    let interval: number | undefined;
+    const firstTransition = window.setTimeout(() => {
+      setInitialHold(false);
+      setActive(1);
+      interval = window.setInterval(() => {
+        setActive((current) => (current + 1) % STORIES.length);
+      }, SLIDE_MS);
+    }, FIRST_SLIDE_MS);
+
+    return () => {
+      window.clearTimeout(firstTransition);
+      if (interval !== undefined) window.clearInterval(interval);
+    };
   }, [reducedMotion]);
 
   return (
@@ -120,7 +132,7 @@ export function HeroOrbit() {
         ))}
       </div>
 
-      <div className="v41-hero-progress" role="group" aria-label={`Slide ${active + 1} of ${STORIES.length}`}>
+      <div className="v41-hero-progress" style={{ "--hero-progress-duration": `${initialHold ? FIRST_SLIDE_MS : SLIDE_MS}ms` } as CSSProperties} role="group" aria-label={`Slide ${active + 1} of ${STORIES.length}`}>
         {STORIES.map((story, index) => (
           <span key={story.number} className={index === active ? "is-active" : ""}>
             <i key={`${active}-${index}`} />

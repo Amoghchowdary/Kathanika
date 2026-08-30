@@ -3150,3 +3150,29 @@ select {
   .v53-library-placeholder { min-height: 620px; }
   .v53-footer-placeholder { min-height: 520px; }
 }
+
+
+/* ========================================================================== */
+/* V54 — mobile LCP/TBT + episode payload deferral                            */
+/* ========================================================================== */
+.v41-hero-progress > span.is-active i {
+  animation-duration: var(--hero-progress-duration, 6.2s) !important;
+}
+.v54-episode-defer-anchor {
+  min-height: 1px;
+}
+.v54-library-placeholder {
+  min-height: 48vh;
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
+}
+.v41-episode-card picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.v41-episode-card picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

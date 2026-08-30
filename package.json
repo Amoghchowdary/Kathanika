@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v53-mobile-performance",
-  "version": "53.0.0",
+  "name": "kathanika-media-v54-lcp-defer",
+  "version": "54.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",

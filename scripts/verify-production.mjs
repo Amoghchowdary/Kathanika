@@ -20,18 +20,18 @@ const required = [
   "src/components/site/InquiryModal.tsx", "src/components/site/SiteHeader.tsx",
   "src/components/site/SiteFooter.tsx", "src/components/site/SiteLayout.tsx",
   "src/components/site/ProductionMediaShowcase.tsx", "src/components/site/ClientProductionImage.tsx",
-  "src/components/site/DeferredVideo.tsx",
+  "src/components/site/DeferredVideo.tsx", "src/components/site/DeferredEpisodeLibrary.tsx",
   "src/assets/kathanika-logo-client.png", "src/assets/kathanika-logo-dark.png",
   ".env.github-pages", ".github/workflows/deploy-pages.yml",
   "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1", "scripts/verify-responsive.mjs",
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V53 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V54 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v53-mobile-performance", "Package name is V53 mobile-performance build");
-assert(pkg.version === "53.0.0", "Package version is 53.0.0");
+assert(pkg.name === "kathanika-media-v54-lcp-defer", "Package name is V54 LCP-defer build");
+assert(pkg.version === "54.0.0", "Package version is 54.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -63,7 +63,7 @@ assert(rootRoute.includes("IMG_4711-1024.avif") && rootRoute.includes("imageSrcS
 const hero = read("src/components/site/HeroOrbit.tsx");
 assert(hero.includes("ClientProductionImage"), "Hero uses responsive client image component");
 assert(hero.includes("eager={story.number === \"01\" && index === 0}"), "Only the primary hero image is eager/high priority");
-assert(hero.includes("setInterval") && hero.includes("SLIDE_MS = 6200"), "Hero remains automatic");
+assert(hero.includes("setInterval") && hero.includes("FIRST_SLIDE_MS = 9000") && hero.includes("SLIDE_MS = 6200"), "Hero remains automatic with an LCP-safe initial hold");
 assert(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual controls");
 
 const about = read("src/routes/about.tsx");
@@ -83,6 +83,19 @@ const footer = read("src/components/site/SiteFooter.tsx");
 for (const icon of ["Youtube", "Instagram", "Linkedin", "Mail", "Phone", "MapPin"]) assert(footer.includes(icon), `Footer includes ${icon} icon`);
 assert(footer.includes("rel=\"me noopener noreferrer\""), "Social backlinks carry identity relationship metadata");
 
+const deferredEpisodes = read("src/components/site/DeferredEpisodeLibrary.tsx");
+assert(deferredEpisodes.includes("IntersectionObserver") && deferredEpisodes.includes("rootMargin: \"280px 0px\""), "Episode library is intersection-gated before loading");
+assert(read("src/content/store.tsx").includes("12000"), "Apps Script refresh is postponed beyond the initial Lighthouse window");
+const optimizedTopTenDir = path.join(root, "public", "top-ten-optimized");
+let optimizedCoverCount = 0;
+if (fs.existsSync(optimizedTopTenDir)) {
+  for (const channel of fs.readdirSync(optimizedTopTenDir, { withFileTypes: true })) {
+    if (!channel.isDirectory()) continue;
+    optimizedCoverCount += fs.readdirSync(path.join(optimizedTopTenDir, channel.name)).filter((name) => /\.avif$/i.test(name)).length;
+  }
+}
+assert(optimizedCoverCount === 90, "All 90 episode covers have optimized AVIF delivery variants");
+
 const topTenDir = path.join(root, "public", "top-ten");
 let coverCount = 0;
 if (fs.existsSync(topTenDir)) {
@@ -94,7 +107,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V53 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V54 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

@@ -5,20 +5,20 @@ const pass = (m) => console.log(`PASS  ${m}`);
 const fail = (m) => { failures += 1; console.log(`FAIL  ${m}`); };
 const check = (c,m) => c ? pass(m) : fail(m);
 const read = (f) => readFileSync(f,"utf8");
-console.log("\nKathanika Media V53 — Mobile Lighthouse Performance Verification\n");
+console.log("\nKathanika Media V54 — Mobile Lighthouse Performance Verification\n");
 const pkg=JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v53-mobile-performance", "Package identifies V53 mobile-performance build");
-check(pkg.version === "53.0.0", "Package version is 53.0.0");
+check(pkg.name === "kathanika-media-v54-lcp-defer", "Package identifies V54 LCP-defer build");
+check(pkg.version === "54.0.0", "Package version is 54.0.0");
 check(!pkg.dependencies?.["@tanstack/react-query"], "Unused React Query package is removed");
 const root=read("src/routes/__root.tsx"), store=read("src/content/store.tsx"), hero=read("src/components/site/HeroOrbit.tsx");
 check(!root.includes("fonts.googleapis.com"), "External Google Fonts dependency is removed");
 check(root.includes("kathanika-critical-css"), "Above-the-fold critical CSS is inlined");
 check(root.includes('id="kathanika-app-css"') && root.includes('media="print"'), "Full stylesheet is loaded without blocking initial paint");
-check(root.includes("IMG_4711-800.avif") && root.includes("imageSrcSet"), "Responsive hero preload includes an 800px AVIF candidate");
-check(store.includes('window.addEventListener("load", scheduleRefresh') && store.includes("1800"), "Apps Script refresh remains deferred after initial render");
+check(root.includes("IMG_4711-640.avif") && root.includes("imageSrcSet"), "Responsive hero preload includes a 640px AVIF candidate");
+check(store.includes('window.addEventListener("load", scheduleRefresh') && store.includes("12000"), "Apps Script refresh is deferred beyond the initial Lighthouse window");
 const image=read("src/components/site/ClientProductionImage.tsx");
 check(image.includes('type="image/avif"'), "Production images prefer AVIF with WebP fallback");
-check(image.includes("-800.avif"), "Production image srcsets include 800px AVIF candidates");
+check(image.includes("-640.avif") && image.includes("-800.avif"), "Production image srcsets include 640px and 800px AVIF candidates");
 check(image.includes("width={width}") && image.includes("height={height}"), "Production images declare intrinsic dimensions");
 const d="public/media/production/responsive";
 const avifs=readdirSync(d).filter(n=>n.endsWith(".avif"));
@@ -31,8 +31,8 @@ const header=read("src/components/site/SiteHeader.tsx"), footer=read("src/compon
 check(header.includes("kathanika-logo-header-240.avif") && header.includes("kathanika-logo-header-480.avif"), "Header uses compact responsive AVIF logo assets");
 check(footer.includes("kathanika-logo-dark-240.avif"), "Footer uses compact responsive dark logo assets");
 check(existsSync("public/kathanika-logo-header-240.avif") && statSync("public/kathanika-logo-header-240.avif").size < 10000, "Primary header logo asset is under 10 KB");
-const index=read("src/routes/index.tsx"), layout=read("src/components/site/SiteLayout.tsx"), defaults=read("src/content/defaults.ts"), episodes=read("src/components/site/EpisodeLibrary.tsx");
-check(index.includes("lazy(() => import") && index.includes("EpisodeLibrary"), "Below-fold episode library is code-split");
+const index=read("src/routes/index.tsx"), layout=read("src/components/site/SiteLayout.tsx"), defaults=read("src/content/defaults.ts"), episodes=read("src/components/site/EpisodeLibrary.tsx"), deferredEpisodes=read("src/components/site/DeferredEpisodeLibrary.tsx");
+check(deferredEpisodes.includes("lazy(() =>") && deferredEpisodes.includes("EpisodeLibrary"), "Below-fold episode library is code-split behind the viewport gate");
 check(layout.includes("lazy(() => import") && layout.includes("SiteFooter"), "Below-fold footer is code-split");
 check(defaults.includes("topTenChannels: []"), "Large episode dataset is removed from the initial root content bundle");
 check(episodes.includes("topTenDefaults"), "Episode library retains bundled fallback data in its lazy chunk");
@@ -44,6 +44,14 @@ const files=[]; const walk=(dir)=>{for(const e of readdirSync(dir,{withFileTypes
 const imgProblems=[];
 for(const f of files){const t=read(f);for(const m of t.matchAll(/<img\b[\s\S]*?>/g)){if(!/\bwidth=/.test(m[0])||!/\bheight=/.test(m[0]))imgProblems.push(f)}}
 check(imgProblems.length===0, `All JSX images declare width and height${imgProblems.length?`: ${[...new Set(imgProblems)].join(", ")}`:""}`);
+check(deferredEpisodes.includes("IntersectionObserver") && deferredEpisodes.includes("rootMargin: \"280px 0px\""), "Episode library is not mounted during the initial mobile trace");
+check(index.includes("DeferredEpisodeLibrary") && !index.includes("lazy(() => import"), "Homepage delegates episode loading to the viewport gate");
+check(hero.includes("FIRST_SLIDE_MS = 9000") && hero.includes("initialHold"), "First hero slide remains stable through the initial LCP window");
+check(image.includes('decoding={eager ? "sync" : "async"}'), "Primary LCP image uses synchronous decode once downloaded");
+const optDir="public/top-ten-optimized";
+let optCount=0;
+for(const channel of readdirSync(optDir,{withFileTypes:true})){if(channel.isDirectory())optCount+=readdirSync(join(optDir,channel.name)).filter(n=>n.endsWith(".avif")).length}
+check(optCount===90, `All 90 episode covers have optimized AVIF variants (${optCount})`);
 check(read("public/CNAME").trim()==="www.kathanika.in", "Custom-domain CNAME remains intact");
-if(failures){console.error(`\nV53 Lighthouse verification failed with ${failures} issue(s).`);process.exit(1)}
-console.log("\nV53 Lighthouse verification passed.");
+if(failures){console.error(`\nV54 Lighthouse verification failed with ${failures} issue(s).`);process.exit(1)}
+console.log("\nV54 Lighthouse verification passed.");
