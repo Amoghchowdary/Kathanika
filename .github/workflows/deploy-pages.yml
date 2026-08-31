@@ -1,4 +1,4 @@
-name: Deploy Kathanika V55 Custom Domain to GitHub Pages
+name: Deploy Kathanika V57 Custom Domain to GitHub Pages
 
 on:
   push:
@@ -32,14 +32,8 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Verify V55 custom-domain production
-        run: npm run verify
-
-      - name: Build GitHub Pages artifact
-        run: npm run build:pages
-
-      - name: Verify GitHub Pages artifact
-        run: npm run verify:pages
+      - name: Run V57 production preflight
+        run: npm run preflight:pages
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4

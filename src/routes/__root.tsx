@@ -182,6 +182,8 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         {/* Google Tag Manager */}
         <script
           id="google-tag-manager"
@@ -190,6 +192,18 @@ function RootShell({ children }: { children: ReactNode }) {
           }}
         />
         {/* End Google Tag Manager */}
+        {/* Google Analytics 4 (Google tag) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-Y94QFK4PZZ"
+        />
+        <script
+          id="google-analytics-4"
+          dangerouslySetInnerHTML={{
+            __html: "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Y94QFK4PZZ');",
+          }}
+        />
+        {/* End Google Analytics 4 */}
         <style id="kathanika-critical-css" dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} />
         <link id="kathanika-app-css" rel="stylesheet" href={appCss} media="print" />
         <script

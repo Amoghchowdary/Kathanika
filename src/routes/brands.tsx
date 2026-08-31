@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
+import { seoHead } from "@/lib/seo";
 import {
   BrandStrip,
   ClosingCta,
@@ -11,14 +12,7 @@ const title = "For Brands and Leaders — Kathanika Media";
 const description = "Content strategy, production, podcasts, social and personal branding.";
 
 export const Route = createFileRoute("/brands")({
-  head: () => ({
-    meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
-    ],
-  }),
+  head: () => seoHead("/brands", title, description),
   component: Page,
 });
 

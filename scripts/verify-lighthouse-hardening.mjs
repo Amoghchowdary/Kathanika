@@ -5,10 +5,10 @@ const pass = (m) => console.log(`PASS  ${m}`);
 const fail = (m) => { failures += 1; console.log(`FAIL  ${m}`); };
 const check = (c,m) => c ? pass(m) : fail(m);
 const read = (f) => readFileSync(f,"utf8");
-console.log("\nKathanika Media V55 — Mobile Lighthouse Performance Verification\n");
+console.log("\nKathanika Media V57 — Mobile Lighthouse Performance Verification\n");
 const pkg=JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v55-gtm", "Package identifies V55 LCP-defer build");
-check(pkg.version === "55.0.0", "Package version is 55.0.0");
+check(pkg.name === "kathanika-media-v57-production-stable", "Package identifies V57 production-stable build");
+check(pkg.version === "57.0.0", "Package version is 57.0.0");
 check(!pkg.dependencies?.["@tanstack/react-query"], "Unused React Query package is removed");
 const root=read("src/routes/__root.tsx"), store=read("src/content/store.tsx"), hero=read("src/components/site/HeroOrbit.tsx");
 check(!root.includes("fonts.googleapis.com"), "External Google Fonts dependency is removed");
@@ -53,5 +53,5 @@ let optCount=0;
 for(const channel of readdirSync(optDir,{withFileTypes:true})){if(channel.isDirectory())optCount+=readdirSync(join(optDir,channel.name)).filter(n=>n.endsWith(".avif")).length}
 check(optCount===90, `All 90 episode covers have optimized AVIF variants (${optCount})`);
 check(read("public/CNAME").trim()==="www.kathanika.in", "Custom-domain CNAME remains intact");
-if(failures){console.error(`\nV55 Lighthouse verification failed with ${failures} issue(s).`);process.exit(1)}
-console.log("\nV55 Lighthouse verification passed.");
+if(failures){console.error(`\nV57 Lighthouse verification failed with ${failures} issue(s).`);process.exit(1)}
+console.log("\nV57 Lighthouse verification passed.");

@@ -15,7 +15,7 @@ const assert = (condition, message) => {
 const required = [
   "package.json", "vite.config.ts", "src/styles.css", "src/lib/seo.ts",
   "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
-  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx",
+  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
   "src/components/site/HeroOrbit.tsx", "src/components/site/EpisodeLibrary.tsx",
   "src/components/site/InquiryModal.tsx", "src/components/site/SiteHeader.tsx",
   "src/components/site/SiteFooter.tsx", "src/components/site/SiteLayout.tsx",
@@ -25,19 +25,22 @@ const required = [
   ".env.github-pages", ".github/workflows/deploy-pages.yml",
   "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1", "scripts/verify-responsive.mjs",
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
-  "scripts/verify-gtm.mjs",
+  "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V55 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V57 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v55-gtm", "Package name is V55 LCP-defer build");
-assert(pkg.version === "55.0.0", "Package version is 55.0.0");
+assert(pkg.name === "kathanika-media-v57-production-stable", "Package name is V57 production-stable build");
+assert(pkg.version === "57.0.0", "Package version is 57.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
 assert(Boolean(pkg.scripts?.["verify:seo"]), "SEO verification is configured");
 assert(Boolean(pkg.scripts?.["verify:domain"]), "Custom-domain verification is configured");
+assert(Boolean(pkg.scripts?.["verify:integrity"]), "Code integrity verification is configured");
+assert(Boolean(pkg.scripts?.["verify:tracking:build"]), "Built tracking verification is configured");
+assert(Boolean(pkg.scripts?.["verify:artifact"]), "Production artifact verification is configured");
 const envPages = read(".env.github-pages");
 assert(envPages.includes("VITE_SITE_BASE=/"), "Custom-domain Pages build uses root base path");
 assert(envPages.includes("VITE_PUBLIC_SITE_URL=https://www.kathanika.in/"), "Canonical production URL is www.kathanika.in");
@@ -108,7 +111,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V55 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V57 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

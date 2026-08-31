@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v55-gtm",
-  "version": "55.0.0",
+  "name": "kathanika-media-v57-production-stable",
+  "version": "57.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,12 +11,12 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:source && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm",
-    "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production",
+    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4",
+    "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
     "verify:responsive": "node scripts/verify-responsive.mjs",
     "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
     "verify:pages": "node scripts/verify-pages-build.mjs",
-    "preflight:pages": "npm run generate:seo:pages && npm run verify && vite build --mode github-pages && npm run verify:pages",
+    "preflight:pages": "npm run generate:seo:pages && npm run verify && vite build --mode github-pages && npm run verify:pages && npm run verify:tracking:build && npm run verify:artifact",
     "git:preflight": "powershell -ExecutionPolicy Bypass -File ./scripts/git-preflight.ps1",
     "verify:feedback": "node scripts/verify-client-feedback.mjs",
     "generate:seo:pages": "node scripts/generate-seo.mjs github-pages",
@@ -26,7 +26,11 @@
     "verify:performance": "node scripts/verify-performance.mjs",
     "verify:domain": "node scripts/verify-custom-domain.mjs",
     "verify:lighthouse": "node scripts/verify-lighthouse-hardening.mjs",
-    "verify:gtm": "node scripts/verify-gtm.mjs"
+    "verify:gtm": "node scripts/verify-gtm.mjs",
+    "verify:ga4": "node scripts/verify-ga4.mjs",
+    "verify:integrity": "node scripts/verify-code-integrity.mjs",
+    "verify:tracking:build": "node scripts/verify-tracking-build.mjs",
+    "verify:artifact": "node scripts/verify-production-artifact.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

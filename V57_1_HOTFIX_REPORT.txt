@@ -1,0 +1,12 @@
+Kathanika Media V57.1 Production Hotfix
+
+Fixes:
+1. /brands now uses the shared seoHead() helper, including canonical, robots, Open Graph and Twitter metadata.
+2. /brands is included in generated sitemap.xml and sitemap.yml.
+3. SEO verification now covers /brands.
+4. Production artifact verifier correctly classifies protocol-relative //www.googletagmanager.com references as external rather than local assets.
+
+No GTM, GA4, backend, media, custom-domain, performance, or other production code was removed.
+5. V57 integrity and production verifiers now explicitly protect src/routes/brands.tsx.
+6. Built tracking verification now checks GTM and GA4 on /brands too.
+7. GitHub Pages build/SEO verification now checks /brands prerender, title, description, canonical, robots, Open Graph and H1.

@@ -21,8 +21,8 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V53 - Custom Domain Build + SEO Verification\n");
-const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms"];
+console.log("\nKathanika Media V57 - Custom Domain Build + SEO Verification\n");
+const routes = ["", "about", "work", "services", "creators", "contact", "brands", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");
 ok(exists("media/production/stills"), "Client production stills exist in Pages artifact");
@@ -35,7 +35,7 @@ ok(exists("og/kathanika-og.jpg"), "Open Graph image exists in Pages artifact");
 ok(exists("CNAME"), "CNAME exists in Pages artifact");
 if (exists("CNAME")) ok(read("CNAME").trim() === "www.kathanika.in", "CNAME targets www.kathanika.in");
 
-for (const route of routes.slice(0, 6)) {
+for (const route of routes.slice(0, 7)) {
   const file = routeFile(route);
   if (!file) continue;
   const html = read(file);

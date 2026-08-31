@@ -31,6 +31,7 @@ const routes = [
   { path: "services", priority: "0.9", images: [] },
   { path: "creators", priority: "0.8", images: [] },
   { path: "contact", priority: "0.8", images: [] },
+  { path: "brands", priority: "0.8", images: [] },
   { path: "privacy", priority: "0.3", images: [] },
   { path: "terms", priority: "0.3", images: [] },
 ];

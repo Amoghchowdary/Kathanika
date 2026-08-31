@@ -1,0 +1,21 @@
+KATHANIKA MEDIA V57 — PRODUCTION STABLE RELEASE
+
+Production domain: https://www.kathanika.in/
+GTM: GTM-PZF49MGL
+GA4: G-Y94QFK4PZZ
+
+V57 consolidates:
+- complete frontend and backend source retention
+- custom-domain GitHub Pages deployment
+- GTM head loader + body noscript fallback
+- direct GA4 gtag.js integration
+- per-page SEO/canonical/Open Graph/Twitter/JSON-LD
+- robots.txt + sitemap.xml + sitemap.yml + manifest
+- responsive AVIF/WebP media delivery
+- LCP-safe hero preload and critical CSS
+- deferred video and episode loading
+- production artifact verification
+- built-output tracking verification
+- code/file integrity verification
+
+Use npm run preflight:pages as the release gate before every production push.

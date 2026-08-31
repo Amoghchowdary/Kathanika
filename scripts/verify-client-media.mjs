@@ -19,7 +19,7 @@ const comp=fs.readFileSync(path.join(root,"src/components/site/ProductionMediaSh
 check(comp.includes('v50-production-wall'), 'Images and videos share one continuous production media wall');
 check(comp.includes('DeferredVideo'), 'Video previews use viewport-deferred playback');
 check(comp.includes('ClientProductionImage'), 'Production stills use responsive image sources');
-console.log('\nKathanika Media V55 — Client Media Verification\n');
+console.log('\nKathanika Media V57 — Client Media Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nClient media verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nClient media verification passed: ${checks.length} checks.`);

@@ -24,7 +24,7 @@ check(media.includes('DeferredVideo'),'Production video gallery uses deferred vi
 check(deferred.includes('IntersectionObserver') && deferred.includes('preload="none"'),'Videos load only near the viewport and do not preload media bytes');
 check(!media.includes('autoPlay'),'Production showcase no longer starts every video during initial render');
 check(exists('public/kathanika-logo-header-240.avif') && exists('public/kathanika-logo-header-480.avif'),'Header logo has responsive AVIF variants');
-console.log('\nKathanika Media V55 — Performance Verification\n');
+console.log('\nKathanika Media V57 — Performance Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nPerformance verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nPerformance verification passed: ${checks.length} checks.`);

@@ -1,0 +1,15 @@
+KATHANIKA MEDIA V56 — GOOGLE ANALYTICS 4 INTEGRATION
+
+Measurement ID: G-Y94QFK4PZZ
+Existing GTM container preserved: GTM-PZF49MGL
+
+Integration:
+- Standard gtag.js loader added in the document <head>.
+- window.dataLayer initialization added.
+- gtag('js', new Date()) initialization added.
+- gtag('config', 'G-Y94QFK4PZZ') added.
+- Existing GTM script and noscript iframe retained.
+- Added npm run verify:ga4 and included it in npm run verify.
+
+Important analytics note:
+If Google Analytics 4 using measurement ID G-Y94QFK4PZZ is also configured as a Google tag/GA4 tag inside GTM-PZF49MGL, disable one implementation to avoid duplicate page_view/events.
