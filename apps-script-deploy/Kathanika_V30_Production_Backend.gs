@@ -1539,6 +1539,19 @@ function createBusinessInquiry_(raw, requestId) {
   return { id: id, timestamp: now.toISOString() };
 }
 
+
+function inferPlatformFromProfileUrl_(profileUrl) {
+  const value = normalizeText_(profileUrl || '', 500).toLowerCase();
+  if (!value) return '';
+  if (value.indexOf('linkedin.com') !== -1) return 'LinkedIn';
+  if (value.indexOf('instagram.com') !== -1) return 'Instagram';
+  if (value.indexOf('youtube.com') !== -1 || value.indexOf('youtu.be') !== -1) return 'YouTube';
+  if (value.indexOf('tiktok.com') !== -1) return 'TikTok';
+  if (value.indexOf('x.com') !== -1 || value.indexOf('twitter.com') !== -1) return 'X / Twitter';
+  if (value.indexOf('facebook.com') !== -1 || value.indexOf('fb.com') !== -1) return 'Facebook';
+  return 'Website / Portfolio';
+}
+
 function createCareerInquiry_(raw, requestId) {
   if (normalizeText_(raw.website || '', 200)) return ignoredBotResponse_();
 
@@ -1548,7 +1561,7 @@ function createCareerInquiry_(raw, requestId) {
     phone: normalizeText_(raw.phone, 40),
     city: normalizeText_(raw.city, 100),
     category: normalizeText_(raw.category || raw.designation, 120),
-    platform: normalizeText_(raw.platform, 120),
+    platform: normalizeText_(raw.platform, 120) || inferPlatformFromProfileUrl_(raw.profileUrl || raw.company),
     profileUrl: normalizeText_(raw.profileUrl || raw.company, 500),
     audienceStage: normalizeText_(raw.audienceStage, 160),
     message: normalizeText_(raw.message, 3000),

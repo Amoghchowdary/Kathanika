@@ -1,4 +1,4 @@
-import {
+﻿import {
   Outlet,
   Link,
   createRootRouteWithContext,
@@ -46,7 +46,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
@@ -88,7 +88,7 @@ export const Route = createRootRouteWithContext<Record<string, never>>()({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kathanika Media — Building the next generation of media" },
+      { title: "Kathanika Media â€” Building the next generation of media" },
       {
         name: "description",
         content:
@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<Record<string, never>>()({
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "keywords", content: "Kathanika Media, podcast production Hyderabad, content IP development, YouTube production, media incubation, Telugu podcasts, content strategy" },
-      { property: "og:title", content: "Kathanika Media — Building the next generation of media" },
+      { property: "og:title", content: "Kathanika Media â€” Building the next generation of media" },
       {
         property: "og:description",
         content:
@@ -251,3 +251,4 @@ function RootComponent() {
     </ContentProvider>
   );
 }
+

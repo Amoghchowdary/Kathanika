@@ -10,6 +10,23 @@ import { seoHead } from "@/lib/seo";
 const title = "Career Inquiry — Kathanika Media";
 const description = "Come build what people will watch next.";
 
+function inferPlatformFromProfileUrl(profileUrl: string): string {
+  const value = profileUrl.trim();
+  if (!value) return "Website / Portfolio";
+  try {
+    const hostname = new URL(value).hostname.toLowerCase().replace(/^www\./, "");
+    if (hostname === "linkedin.com" || hostname.endsWith(".linkedin.com")) return "LinkedIn";
+    if (hostname === "instagram.com" || hostname.endsWith(".instagram.com")) return "Instagram";
+    if (hostname === "youtube.com" || hostname.endsWith(".youtube.com") || hostname === "youtu.be") return "YouTube";
+    if (hostname === "tiktok.com" || hostname.endsWith(".tiktok.com")) return "TikTok";
+    if (hostname === "x.com" || hostname.endsWith(".x.com") || hostname === "twitter.com" || hostname.endsWith(".twitter.com")) return "X / Twitter";
+    if (hostname === "facebook.com" || hostname.endsWith(".facebook.com") || hostname === "fb.com") return "Facebook";
+    return "Website / Portfolio";
+  } catch {
+    return "Website / Portfolio";
+  }
+}
+
 export const Route = createFileRoute("/creators")({
   head: () => seoHead("/creators", "Career Inquiry — Kathanika Media", "Explore creator, editorial, production and media opportunities with Kathanika Media in Hyderabad."),
   component: CareerInquiryPage,
@@ -51,6 +68,7 @@ function CareerInquiryPage() {
             setState("sending"); setError("");
             try {
               const profileUrl = String(fd.get("profileUrl") ?? "").trim();
+              const platform = inferPlatformFromProfileUrl(profileUrl);
               await addEnquiry({
                 inquiryType: "career",
                 name: String(fd.get("name") ?? "").trim(),
@@ -65,6 +83,7 @@ function CareerInquiryPage() {
                 website: String(fd.get("website") ?? ""),
                 audienceStage: String(fd.get("audience") ?? "").trim(),
                 category: "Creator / Talent",
+                platform,
                 ...(profileUrl ? { profileUrl } : {}),
               });
               form.reset(); setState("sent");
@@ -80,7 +99,7 @@ function CareerInquiryPage() {
               <Field name="phone" label="Phone" type="tel" required autoComplete="tel" />
               <Field name="city" label="City" required autoComplete="address-level2" />
             </div>
-            <Field name="profileUrl" label="Portfolio / Instagram / LinkedIn" type="url" />
+            <Field name="profileUrl" label="Portfolio / Instagram / LinkedIn" type="url" required />
             <label className="v41-field"><span>Current stage</span><select name="audience" required defaultValue=""><option value="" disabled>Select your stage</option><option>Starting out</option><option>Under 10K followers/subscribers</option><option>10K–100K followers/subscribers</option><option>100K+ followers/subscribers</option><option>Established creator / public figure</option></select></label>
             <label className="v41-field"><span>What do you want to build with Kathanika?</span><textarea name="message" rows={6} required minLength={10} /></label>
             {error ? <p className="v41-form-error" role="alert">{error}</p> : null}

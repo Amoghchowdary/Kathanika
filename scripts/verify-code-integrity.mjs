@@ -19,12 +19,12 @@ const countFiles = (dir) => {
   return count;
 };
 
-console.log("\nKathanika Media V57 — Code + Production Integrity Verification\n");
+console.log("\nKathanika Media V65 — Code + Production Integrity Verification\n");
 
 const pkg = JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v57-production-stable", "V57 package identity is correct");
-check(pkg.version === "57.0.0", "V57 package version is correct");
-check(read("VERSION.txt").trim() === "57.0.0", "VERSION.txt matches package version");
+check(pkg.name === "kathanika-media-v65-career-inquiry-fix", "V65 package identity is correct");
+check(pkg.version === "65.0.0", "V65 package version is correct");
+check(read("VERSION.txt").trim() === "65.0.0", "VERSION.txt matches package version");
 
 const criticalSource = [
   "src/routes/__root.tsx", "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
@@ -64,7 +64,7 @@ for (const [name, txt] of [["GitHub Pages", envPages], ["production", envProd]])
 }
 
 const workflow = read(".github/workflows/deploy-pages.yml");
-check(workflow.includes("name: Deploy Kathanika V57"), "GitHub Pages workflow identifies V57");
+check(workflow.includes("name: Deploy Kathanika V65"), "GitHub Pages workflow identifies V65");
 check(workflow.includes("npm install --no-audit --no-fund"), "GitHub Actions installs production dependencies");
 check(workflow.includes("npm run preflight:pages"), "GitHub Actions runs the full production preflight");
 check(workflow.includes("path: .output/public"), "GitHub Pages uploads the verified static artifact");
@@ -82,7 +82,7 @@ check(exists("public/sitemap.xml") && exists("public/robots.txt") && exists("pub
 check(!exists(".lovable"), "No Lovable production artifact is present");
 
 if (failures) {
-  console.error(`\nV57 integrity verification failed with ${failures} issue(s).`);
+  console.error(`\nV65 integrity verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV57 code + production integrity verification passed.");
+console.log("\nV65 code + production integrity verification passed.");

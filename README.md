@@ -1,6 +1,6 @@
-# Kathanika Media V57 — Production Stable
+# Kathanika Media V65 — Career Inquiry Fix
 
-V57 is the consolidated production release for `https://www.kathanika.in/`. It preserves the V54/V55 performance work, the V55 Google Tag Manager integration, the V56 direct Google Analytics 4 tag, the complete frontend source, all 90 episode assets, optimized media, SEO metadata, custom-domain configuration, GitHub Pages deployment, and Google Apps Script backend source.
+V65 is the consolidated production release for `https://www.kathanika.in/`. It preserves the V54/V55 performance work, the V55 Google Tag Manager integration, the V56 direct Google Analytics 4 tag, the complete frontend source, all 90 episode assets, optimized media, SEO metadata, custom-domain configuration, GitHub Pages deployment, and Google Apps Script backend source.
 
 ## Tracking kept intact
 

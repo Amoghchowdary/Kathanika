@@ -1,0 +1,22 @@
+Kathanika Media V65 — TypeScript Error Boundary Contract Fix
+
+Issue observed during local verification:
+src/routes/__root.tsx ErrorComponent typed `error` as Error, while current @tanstack/react-router ErrorComponentProps exposes `error` as unknown.
+
+Fix applied:
+- Changed ErrorComponent prop type from `error: Error` to `error: unknown`.
+- No runtime behavior changed: the error is still logged and the same retry/home UI is preserved.
+- Career Inquiry V65 platform fix remains intact.
+- No GTM, GA4, SEO, custom-domain, backend endpoint, Apps Script, media, or design changes were made.
+
+Expected result:
+- `npm run typecheck` no longer fails at src/routes/__root.tsx:131 for the ErrorRouteComponent assignment.
+
+Verification performed in packaging environment:
+- Exact failing source contract inspected.
+- GitHub main branch confirmed the previous `error: Error` signature.
+- Corrected source contains `error: unknown`.
+- Career Inquiry verification script and V65 package contents preserved.
+- ZIP archive integrity checked after packaging.
+
+Note: full npm dependency install/build could not be rerun in the packaging environment because registry access timed out. Run the included local verification commands before deployment.

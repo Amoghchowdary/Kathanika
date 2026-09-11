@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v57-production-stable",
-  "version": "57.0.0",
+  "name": "kathanika-media-v65-career-inquiry-fix",
+  "version": "65.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4",
+    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4",
     "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
     "verify:responsive": "node scripts/verify-responsive.mjs",
     "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
@@ -30,7 +30,8 @@
     "verify:ga4": "node scripts/verify-ga4.mjs",
     "verify:integrity": "node scripts/verify-code-integrity.mjs",
     "verify:tracking:build": "node scripts/verify-tracking-build.mjs",
-    "verify:artifact": "node scripts/verify-production-artifact.mjs"
+    "verify:artifact": "node scripts/verify-production-artifact.mjs",
+    "verify:career": "node scripts/verify-career-inquiry.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
