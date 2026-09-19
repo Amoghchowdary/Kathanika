@@ -16,16 +16,24 @@ const EVOLUTION = [
 
 const FOUNDING_TEAM = [
   {
-    name: "Nikhil Dintakurthi",
-    role: "Founder · Content Strategy, Partnerships & Business Development",
-    bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
-    note: "100+ content shows · Audience-first IP building · Telugu & English media",
-  },
-  {
     name: "Sai Prudvi",
     role: "Co-Founder & COO · Operations, Strategy & Media Business",
     bio: "Sai Prudvi is Co-Founder and COO of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
     note: "Research-led strategy · Creator economics · Brand-owned media",
+    portrait: "founder-portrait-02",
+    portraitWidth: 1200,
+    portraitHeight: 800,
+    portraitAlt: "Sai Prudvi, Co-Founder and COO of Kathanika Media",
+  },
+  {
+    name: "Nikhil Dintakurthi",
+    role: "Founder · Content Strategy, Partnerships & Business Development",
+    bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
+    note: "100+ content shows · Audience-first IP building · Telugu & English media",
+    portrait: "founder-portrait-01",
+    portraitWidth: 933,
+    portraitHeight: 1400,
+    portraitAlt: "Nikhil Dintakurthi, Founder of Kathanika Media",
   },
 ] as const;
 
@@ -127,10 +135,10 @@ function AboutPage() {
           {FOUNDING_TEAM.map((member, index) => (
             <article key={member.name} className="v66-founder-card v67-founder-card">
               <TeamPhoto
-                file={index === 0 ? "founder-portrait-01" : "founder-portrait-02"}
-                alt={`${member.name}, ${index === 0 ? "Founder" : "Co-Founder and COO"} of Kathanika Media`}
-                width={index === 0 ? 933 : 1200}
-                height={index === 0 ? 1400 : 800}
+                file={member.portrait}
+                alt={member.portraitAlt}
+                width={member.portraitWidth}
+                height={member.portraitHeight}
                 className="v67-founder-avatar"
               />
               <div className="v66-founder-index">{String(index + 1).padStart(2, "0")}</div>

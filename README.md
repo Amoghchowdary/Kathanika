@@ -1,5 +1,11 @@
-# Kathanika Media V67 — Team Layout Refinement
+# Kathanika Media V68 — Founder Order Correction
 
-V67 preserves the complete V66/V65 production website and changes only the Team Behind Kathanika presentation requested by the client. The founders-together photograph remains intact as the single full-width team image. The extra three-image gallery treatment is removed. Individual founder portraits now appear as circular images directly above Nikhil Dintakurthi and Sai Prudvi's descriptions.
+V68 preserves the complete V67/V65 production website and changes only the founder card identity/order requested by the client.
 
-Protected: Career Inquiry fix, Google Apps Script backend, GTM, GA4, SEO, performance optimizations, custom domain, media library, episode assets and deployment architecture.
+- First founder card: **Sai Prudvi — Co-Founder & COO**, using Sai's correct circular portrait.
+- Second founder card: **Nikhil Dintakurthi — Founder**, using Nikhil's correct circular portrait.
+- The large founders-together image remains intact and unchanged.
+- The extra founders gallery remains removed.
+- All bios, team content, Career Inquiry fix, backend, analytics, SEO, performance, media, custom domain and deployment safeguards are retained.
+
+Run `npm install --include=dev`, `npm run verify:team`, `npm run verify`, `npm run preflight:pages`, and `npm run git:preflight` before deployment.
