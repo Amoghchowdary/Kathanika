@@ -5,7 +5,7 @@ function read(path){ return fs.readFileSync(path, "utf8"); }
 function check(condition, message){ if(condition){ console.log(`PASS  ${message}`); } else { failures++; console.error(`FAIL  ${message}`); } }
 
 console.log("\
-Kathanika Media V66 — Career Inquiry Contract Verification\
+Kathanika Media V67 — Career Inquiry Contract Verification\
 ");
 const creator = read("src/routes/creators.tsx");
 const api = read("src/lib/api.ts");
@@ -30,6 +30,6 @@ check(read("src/routes/__root.tsx").includes("GTM-PZF49MGL"), "Google Tag Manage
 check(read("src/routes/__root.tsx").includes("G-Y94QFK4PZZ"), "Google Analytics 4 remains intact");
 
 if(failures){ console.error(`\
-V66 career inquiry verification failed with ${failures} issue(s).`); process.exit(1); }
+V67 career inquiry verification failed with ${failures} issue(s).`); process.exit(1); }
 console.log("\
-V66 Career Inquiry verification passed.");
+V67 Career Inquiry verification passed.");

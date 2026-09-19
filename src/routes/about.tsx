@@ -113,16 +113,26 @@ function AboutPage() {
           <p className="v41-section-note">Kathanika’s founding team combines content craft, research, business thinking and operating discipline to build media properties designed to last.</p>
         </div>
 
-        <div className="v66-team-gallery" aria-label="Kathanika Media founding team photographs">
-          <TeamPhoto file="founding-team-01" alt="Kathanika Media founding team together" width={1600} height={1066} className="v66-team-photo is-wide" />
-          <TeamPhoto file="founder-portrait-01" alt="Portrait from the Kathanika Media founding team" width={933} height={1400} className="v66-team-photo is-portrait" />
-          <TeamPhoto file="founder-portrait-02" alt="Portrait from the Kathanika Media founding team" width={1200} height={800} className="v66-team-photo is-portrait is-landscape" />
-          <TeamPhoto file="founding-team-02" alt="Kathanika Media founders in the studio" width={1600} height={1066} className="v66-team-photo is-wide-secondary" />
+        <div className="v67-team-hero" aria-label="Kathanika Media founders together">
+          <TeamPhoto
+            file="founding-team-01"
+            alt="Kathanika Media founders together"
+            width={1600}
+            height={1066}
+            className="v67-team-hero-photo"
+          />
         </div>
 
-        <div className="v66-founder-grid">
+        <div className="v66-founder-grid v67-founder-grid">
           {FOUNDING_TEAM.map((member, index) => (
-            <article key={member.name} className="v66-founder-card">
+            <article key={member.name} className="v66-founder-card v67-founder-card">
+              <TeamPhoto
+                file={index === 0 ? "founder-portrait-01" : "founder-portrait-02"}
+                alt={`${member.name}, ${index === 0 ? "Founder" : "Co-Founder and COO"} of Kathanika Media`}
+                width={index === 0 ? 933 : 1200}
+                height={index === 0 ? 1400 : 800}
+                className="v67-founder-avatar"
+              />
               <div className="v66-founder-index">{String(index + 1).padStart(2, "0")}</div>
               <div className="v66-founder-role">{member.role}</div>
               <h3>{member.name}</h3>

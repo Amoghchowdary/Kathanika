@@ -1,0 +1,14 @@
+Kathanika Media V67 — Team Layout Refinement
+
+Requested changes
+- Keep the supplied two-founder photograph intact.
+- Remove the additional three-image gallery treatment above it.
+- Place each founder's individual portrait in a circle below the shared photograph.
+- Place each circular portrait directly above that founder's description.
+- Preserve founder descriptions and Manikanta Kandikatla operations profile.
+
+Protected / unchanged
+- Career Inquiry V65 fix and Apps Script fallback.
+- Google Apps Script production endpoint and database contracts.
+- GTM-PZF49MGL and GA4 G-Y94QFK4PZZ.
+- Existing SEO, performance, custom-domain, media and deployment architecture.

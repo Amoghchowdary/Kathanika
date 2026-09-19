@@ -5,7 +5,7 @@ let failures = 0;
 const check = (condition, message) => condition ? console.log(`PASS  ${message}`) : (console.error(`FAIL  ${message}`), failures++);
 const idx = (s) => source.indexOf(s);
 
-console.log("\nKathanika Media V66 — Google Analytics 4 Verification\n");
+console.log("\nKathanika Media V67 — Google Analytics 4 Verification\n");
 check(source.includes("G-Y94QFK4PZZ"), "GA4 measurement ID is present");
 check(source.includes("https://www.googletagmanager.com/gtag/js?id=G-Y94QFK4PZZ"), "gtag.js loader is present");
 check(source.includes("async"), "GA4 loader remains asynchronous");
@@ -20,7 +20,7 @@ check(idx("www.googletagmanager.com/gtag/js?id=G-Y94QFK4PZZ") < idx("kathanika-c
 check(idx('id="google-tag-manager"') < idx("www.googletagmanager.com/gtag/js?id=G-Y94QFK4PZZ"), "GTM and direct GA4 tags have deterministic ordering");
 
 if (failures) {
-  console.error(`\nV66 GA4 verification failed with ${failures} issue(s).`);
+  console.error(`\nV67 GA4 verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV66 Google Analytics 4 verification passed.");
+console.log("\nV67 Google Analytics 4 verification passed.");

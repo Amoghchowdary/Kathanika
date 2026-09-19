@@ -3295,3 +3295,54 @@ select {
   .v66-ops-card { grid-template-columns: 1fr; padding: 28px 22px; }
   .v66-ops-card > p { grid-column: auto; }
 }
+
+
+/* V67 — Team layout refinement: preserve the shared founder image, then circular founder portraits above profiles */
+.v67-team-hero {
+  margin-bottom: clamp(34px, 5vw, 68px);
+  overflow: hidden;
+  border: var(--stroke, 1px) solid var(--line);
+  background: #111;
+}
+.v67-team-hero-photo {
+  display: block;
+  width: 100%;
+}
+.v67-team-hero-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+}
+.v67-founder-grid {
+  align-items: stretch;
+}
+.v67-founder-card {
+  grid-template-rows: auto auto auto auto 1fr auto;
+}
+.v67-founder-avatar {
+  display: block;
+  width: clamp(132px, 12vw, 184px);
+  aspect-ratio: 1;
+  margin: 0 0 clamp(26px, 3vw, 40px);
+  overflow: hidden;
+  border: var(--stroke, 1px) solid color-mix(in srgb, var(--card-text) 34%, transparent);
+  border-radius: 50%;
+  background: #111;
+}
+.v67-founder-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(1);
+}
+.v67-founder-card .v66-founder-role {
+  margin-top: 22px;
+}
+@media (max-width: 760px) {
+  .v67-team-hero { margin-bottom: 34px; }
+  .v67-founder-avatar { width: 132px; margin-bottom: 24px; }
+}
