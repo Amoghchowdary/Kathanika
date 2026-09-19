@@ -5,7 +5,7 @@ let failures = 0;
 const check = (condition, label) => condition ? console.log(`PASS  ${label}`) : (console.error(`FAIL  ${label}`), failures++);
 const idx = (s) => source.indexOf(s);
 
-console.log("\nKathanika Media V65 — Google Tag Manager Verification\n");
+console.log("\nKathanika Media V66 — Google Tag Manager Verification\n");
 check(source.includes("GTM-PZF49MGL"), "GTM container ID is present");
 check(source.includes("www.googletagmanager.com/gtm.js?id="), "Standard GTM loader is present");
 check(source.includes("www.googletagmanager.com/ns.html?id=GTM-PZF49MGL"), "GTM noscript iframe is present");
@@ -18,7 +18,7 @@ check(source.includes('rel="preconnect" href="https://www.googletagmanager.com"'
 check(source.includes("(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});"), "Standard GTM bootstrap logic remains intact");
 
 if (failures) {
-  console.error(`\nV65 GTM verification failed with ${failures} issue(s).`);
+  console.error(`\nV66 GTM verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV65 GTM verification passed.");
+console.log("\nV66 GTM verification passed.");

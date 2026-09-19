@@ -14,7 +14,7 @@ const routeFile = (route) => {
   return null;
 };
 
-console.log("\nKathanika Media V65 — Production Artifact Integrity Verification\n");
+console.log("\nKathanika Media V66 — Production Artifact Integrity Verification\n");
 check(existsAbs(out), ".output/public exists");
 
 for (const f of ["CNAME", "robots.txt", "sitemap.xml", "sitemap.yml", "site.webmanifest", "og/kathanika-og.jpg", "favicon.png"]) {
@@ -65,9 +65,10 @@ if (existsAbs(assetDir)) {
 
 check(exists("top-ten") && exists("top-ten-optimized"), "Original and optimized episode asset trees are deployed");
 check(exists("media/production/responsive") && exists("media/production/video"), "Optimized production media trees are deployed");
+check(exists("team/founding-team-01.avif") && exists("team/founding-team-02.avif") && exists("team/founder-portrait-01.avif") && exists("team/founder-portrait-02.avif"), "Optimized founding-team photography is deployed");
 
 if (failures) {
-  console.error(`\nV65 production artifact verification failed with ${failures} issue(s).`);
+  console.error(`\nV66 production artifact verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV65 production artifact integrity verification passed.");
+console.log("\nV66 production artifact integrity verification passed.");

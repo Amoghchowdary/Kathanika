@@ -3,6 +3,7 @@ import { Film, Megaphone, Share2, UsersRound } from "lucide-react";
 
 import { ClientProductionImage } from "@/components/site/ClientProductionImage";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
+import { withBasePath } from "@/lib/base-path";
 import { seoHead } from "@/lib/seo";
 
 const EVOLUTION = [
@@ -11,6 +12,33 @@ const EVOLUTION = [
   ["Post-COVID", "Independent Digital IPs", "Creators and media properties began building direct relationships with their audiences."],
   ["Now", "Kathanika", "A new-age media incubation hub building IPs across content, community, distribution and marketing."],
 ] as const;
+
+
+const FOUNDING_TEAM = [
+  {
+    name: "Nikhil Dintakurthi",
+    role: "Founder · Content Strategy, Partnerships & Business Development",
+    bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
+    note: "100+ content shows · Audience-first IP building · Telugu & English media",
+  },
+  {
+    name: "Sai Prudvi",
+    role: "Co-Founder & COO · Operations, Strategy & Media Business",
+    bio: "Sai Prudvi is Co-Founder and COO of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
+    note: "Research-led strategy · Creator economics · Brand-owned media",
+  },
+] as const;
+
+function TeamPhoto({ file, alt, width, height, className = "" }: { file: string; alt: string; width: number; height: number; className?: string }) {
+  const base = `/team/${file}`;
+  return (
+    <picture className={className}>
+      <source srcSet={withBasePath(`${base}.avif`)} type="image/avif" />
+      <source srcSet={withBasePath(`${base}.webp`)} type="image/webp" />
+      <img src={withBasePath(`${base}.jpg`)} alt={alt} loading="lazy" decoding="async" width={width} height={height} />
+    </picture>
+  );
+}
 
 const PILLARS = [
   { icon: Film, title: "Content", copy: "Formats and stories built to earn repeat attention." },
@@ -22,8 +50,8 @@ const PILLARS = [
 export const Route = createFileRoute("/about")({
   head: () => seoHead(
     "/about",
-    "About Kathanika Media — New-age media IP incubation",
-    "Learn how Kathanika Media builds independent content IPs across content, community, distribution and marketing from Hyderabad.",
+    "About Kathanika Media & Founding Team — Hyderabad",
+    "Meet the team behind Kathanika Media and learn how the Hyderabad-based studio builds independent content IPs across content, community, distribution and marketing.",
   ),
   component: AboutPage,
 });
@@ -78,9 +106,42 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="v66-team" aria-labelledby="v66-team-title">
+        <div className="v41-section-head compact v66-team-head">
+          <span>02</span>
+          <div><p>Team behind Kathanika Media</p><h2 id="v66-team-title">Built by people who think in stories, systems and audiences.</h2></div>
+          <p className="v41-section-note">Kathanika’s founding team combines content craft, research, business thinking and operating discipline to build media properties designed to last.</p>
+        </div>
+
+        <div className="v66-team-gallery" aria-label="Kathanika Media founding team photographs">
+          <TeamPhoto file="founding-team-01" alt="Kathanika Media founding team together" width={1600} height={1066} className="v66-team-photo is-wide" />
+          <TeamPhoto file="founder-portrait-01" alt="Portrait from the Kathanika Media founding team" width={933} height={1400} className="v66-team-photo is-portrait" />
+          <TeamPhoto file="founder-portrait-02" alt="Portrait from the Kathanika Media founding team" width={1200} height={800} className="v66-team-photo is-portrait is-landscape" />
+          <TeamPhoto file="founding-team-02" alt="Kathanika Media founders in the studio" width={1600} height={1066} className="v66-team-photo is-wide-secondary" />
+        </div>
+
+        <div className="v66-founder-grid">
+          {FOUNDING_TEAM.map((member, index) => (
+            <article key={member.name} className="v66-founder-card">
+              <div className="v66-founder-index">{String(index + 1).padStart(2, "0")}</div>
+              <div className="v66-founder-role">{member.role}</div>
+              <h3>{member.name}</h3>
+              <p>{member.bio}</p>
+              <div className="v66-founder-note">{member.note}</div>
+            </article>
+          ))}
+        </div>
+
+        <div className="v66-ops-card">
+          <span>Operations & Communications</span>
+          <h3>Manikanta Kandikatla</h3>
+          <p>Manikanta works across operations and communications at Kathanika Media, supporting show communications and corporate projects and helping the studio move from ideas to reliable execution.</p>
+        </div>
+      </section>
+
       <section className="v41-about-map">
         <div className="v41-section-head compact">
-          <span>02</span>
+          <span>03</span>
           <div><p>Evolution map</p><h2>Four media eras.</h2></div>
           <p className="v41-section-note">From centralised distribution to audience-owned media properties.</p>
         </div>
@@ -100,7 +161,7 @@ function AboutPage() {
       </section>
 
       <section className="v41-about-model">
-        <div className="v41-section-head compact"><span>03</span><div><p>How Kathanika grows</p><h2>A compounding media loop.</h2></div></div>
+        <div className="v41-section-head compact"><span>04</span><div><p>How Kathanika grows</p><h2>A compounding media loop.</h2></div></div>
         <div className="v41-model-loop">
           <article><span>01</span><strong>Build original IPs</strong></article>
           <article><span>02</span><strong>Learn from real audiences</strong></article>

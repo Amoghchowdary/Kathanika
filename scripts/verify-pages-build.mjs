@@ -21,13 +21,14 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V65 - Custom Domain Build + SEO Verification\n");
+console.log("\nKathanika Media V66 - Custom Domain Build + SEO Verification\n");
 const routes = ["", "about", "work", "services", "creators", "contact", "brands", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");
 ok(exists("media/production/stills"), "Client production stills exist in Pages artifact");
 ok(exists("media/production/responsive"), "Responsive client media exists in Pages artifact");
 ok(exists("media/production/video"), "Client production video previews exist in Pages artifact");
+ok(exists("team/founding-team-01.avif") && exists("team/founding-team-02.avif") && exists("team/founder-portrait-01.avif") && exists("team/founder-portrait-02.avif"), "Founding-team photography exists in Pages artifact");
 ok(exists("sitemap.xml"), "sitemap.xml exists in Pages artifact");
 ok(exists("robots.txt"), "robots.txt exists in Pages artifact");
 ok(exists("site.webmanifest"), "site.webmanifest exists in Pages artifact");
@@ -51,6 +52,14 @@ for (const route of routes.slice(0, 7)) {
   // On a custom domain with VITE_SITE_BASE=/, root-relative /assets/* URLs are correct.
   // Reject only the legacy GitHub project-site base path.
   ok(!/(?:src|href)=["']\/Kathanika\/assets\//i.test(html), `${label} has no legacy /Kathanika/assets references`);
+}
+
+
+const aboutFile = routeFile("about");
+if (aboutFile) {
+  const aboutHtml = read(aboutFile);
+  ok(aboutHtml.includes("Team behind Kathanika Media"), "About prerender contains Team behind Kathanika Media section");
+  ok(aboutHtml.includes("Nikhil Dintakurthi") && aboutHtml.includes("Sai Prudvi"), "About prerender contains founding-team profiles");
 }
 
 if (exists("index.html")) {

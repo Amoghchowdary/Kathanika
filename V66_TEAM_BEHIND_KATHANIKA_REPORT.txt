@@ -1,0 +1,38 @@
+Kathanika Media V66 — Team Behind Kathanika
+
+Change scope
+- Preserves the complete V65 production website and Career Inquiry fix.
+- Adds a new "Team behind Kathanika Media" section to the About page.
+- Uses the supplied founder photography with AVIF/WebP/JPEG delivery.
+- Adds founder profiles for Nikhil Dintakurthi and Sai Prudvi based on the supplied founding-team profile.
+- Adds Operations & Communications profile for Manikanta Kandikatla.
+- Updates About-page SEO title/description for founding-team context.
+- Adds a dedicated verify:team production gate.
+- Extends Pages/artifact verification to require the team photography and prerendered team content.
+
+Protected / unchanged
+- Career Inquiry V65 contract fix and Apps Script fallback.
+- Google Apps Script production endpoint and database contracts.
+- Google Tag Manager GTM-PZF49MGL.
+- Google Analytics 4 G-Y94QFK4PZZ.
+- Existing media, episode library, performance optimizations, custom domain, robots/sitemap and GitHub Pages deployment architecture.
+
+Source verification completed in packaging environment
+- V66 Team verification: PASS (25 checks)
+- Career Inquiry contract verification: PASS
+- Production verification: PASS (98 checks)
+- Responsive verification: PASS
+- Client feedback verification: PASS
+- Client media verification: PASS
+- SEO verification: PASS
+- Performance verification: PASS
+- Lighthouse hardening verification: PASS
+- Custom domain verification: PASS
+- GTM verification: PASS
+- GA4 verification: PASS
+- Code + production integrity verification: PASS
+- Modified TSX syntax parse: PASS
+- Verifier JavaScript syntax: PASS
+
+Note
+The packaging environment could not complete npm dependency installation because the registry operation timed out. Run npm install --include=dev and npm run preflight:pages locally before deployment. The V65 base was already production-tested; V66 changes are limited to About/team presentation, optimized static team assets, version metadata, and verification coverage.

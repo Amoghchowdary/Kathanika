@@ -1,6 +1,6 @@
-# Kathanika Media V65 — Career Inquiry Fix
+# Kathanika Media V66 — Team Behind Kathanika
 
-V65 is the consolidated production release for `https://www.kathanika.in/`. It preserves the V54/V55 performance work, the V55 Google Tag Manager integration, the V56 direct Google Analytics 4 tag, the complete frontend source, all 90 episode assets, optimized media, SEO metadata, custom-domain configuration, GitHub Pages deployment, and Google Apps Script backend source.
+V66 preserves the complete V65 production website and Career Inquiry fix, and adds a new “Team behind Kathanika Media” section to the About page using the supplied founder photography and approved founding-team profile information. GTM, GA4, SEO, performance optimizations, custom-domain deployment, Google Apps Script backend, episode assets and existing website behavior remain intact.
 
 ## Tracking kept intact
 
