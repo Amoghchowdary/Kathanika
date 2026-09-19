@@ -8,27 +8,27 @@ function check(condition, label) {
 function read(path) { return fs.readFileSync(path, "utf8"); }
 function exists(path) { return fs.existsSync(path); }
 
-console.log("\nKathanika Media V68 — Founder Order Correction Verification\n");
+console.log("\nKathanika Media V69 — Founder Identity Correction Verification\n");
 
 const about = read("src/routes/about.tsx");
 const css = read("src/styles.css");
 const pkg = JSON.parse(read("package.json"));
 
-check(pkg.name === "kathanika-media-v68-founder-order-correction", "V68 package identity is correct");
-check(pkg.version === "68.0.0", "V68 package version is correct");
+check(pkg.name === "kathanika-media-v69-founder-identity-correction", "V69 package identity is correct");
+check(pkg.version === "69.0.0", "V69 package version is correct");
 check(about.includes("Team behind Kathanika Media"), "About page retains Team behind Kathanika heading");
 check(about.includes("Manikanta Kandikatla"), "Manikanta Kandikatla profile is retained");
 check(about.includes('file="founding-team-01"') && about.includes('className="v67-team-hero-photo"'), "Requested intact founders-together image remains the single team hero");
 check(!about.includes('file="founding-team-02"'), "Extra founders-together image remains removed from page layout");
-const saiPos = about.indexOf('name: "Sai Prudvi"');
 const nikhilPos = about.indexOf('name: "Nikhil Dintakurthi"');
-check(saiPos >= 0 && nikhilPos >= 0 && saiPos < nikhilPos, "Sai Prudvi is the first founder profile and Nikhil Dintakurthi is second");
-const saiBlock = about.slice(saiPos, nikhilPos);
-const nikhilBlock = about.slice(nikhilPos, about.indexOf('] as const;', nikhilPos));
-check(saiBlock.includes('portrait: "founder-portrait-02"'), "First profile uses Sai Prudvi's correct portrait");
-check(saiBlock.includes('role: "Co-Founder & COO'), "First profile labels Sai Prudvi as Co-Founder & COO");
-check(nikhilBlock.includes('portrait: "founder-portrait-01"'), "Second profile uses Nikhil Dintakurthi's correct portrait");
-check(nikhilBlock.includes('role: "Founder · Content Strategy'), "Second profile labels Nikhil Dintakurthi as Founder");
+const saiPos = about.indexOf('name: "Sai Prudvi"');
+check(nikhilPos >= 0 && saiPos >= 0 && nikhilPos < saiPos, "Nikhil Dintakurthi is the first founder profile and Sai Prudvi is second");
+const nikhilBlock = about.slice(nikhilPos, saiPos);
+const saiBlock = about.slice(saiPos, about.indexOf('] as const;', saiPos));
+check(nikhilBlock.includes('portrait: "founder-portrait-02"'), "First profile uses Nikhil Dintakurthi's one-hand portrait");
+check(nikhilBlock.includes('role: "Founder · Content Strategy'), "First profile labels Nikhil Dintakurthi as Founder");
+check(saiBlock.includes('portrait: "founder-portrait-01"'), "Second profile uses Sai Prudvi's two-hands portrait");
+check(saiBlock.includes('role: "Co-Founder & COO'), "Second profile labels Sai Prudvi as Co-Founder & COO");
 check(about.includes('file={member.portrait}') && about.includes('alt={member.portraitAlt}'), "Founder cards bind each name to explicit portrait metadata rather than array-index guessing");
 check(css.includes(".v67-founder-avatar") && css.includes("border-radius: 50%"), "Founder portraits remain circular");
 check(css.includes(".v67-team-hero-photo img") && css.includes("object-fit: contain"), "Shared founders image remains intact without crop");
@@ -51,7 +51,7 @@ check(css.includes("@media (max-width: 760px)"), "Team section retains mobile re
 check(about.includes("About Kathanika Media & Founding Team — Hyderabad"), "About SEO title remains intact");
 
 if (failures) {
-  console.error(`\nV68 founder order verification failed with ${failures} issue(s).`);
+  console.error(`\nV69 founder identity verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV68 Founder Order Correction verification passed.");
+console.log("\nV69 Founder Identity Correction verification passed.");

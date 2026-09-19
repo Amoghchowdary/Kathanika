@@ -3297,7 +3297,7 @@ select {
 }
 
 
-/* V68 — Founder order correction: preserve the shared founder image, then circular founder portraits above profiles */
+/* V69 — Founder order correction: preserve the shared founder image, then circular founder portraits above profiles */
 .v67-team-hero {
   margin-bottom: clamp(34px, 5vw, 68px);
   overflow: hidden;

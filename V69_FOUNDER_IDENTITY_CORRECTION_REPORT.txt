@@ -1,0 +1,17 @@
+Kathanika Media V69 — Founder Identity Correction
+
+Client-confirmed identity mapping:
+1. Nikhil Dintakurthi — Founder — first profile — one-hand portrait — founder-portrait-02
+2. Sai Prudvi — Co-Founder & COO — second profile — two-hands portrait — founder-portrait-01
+
+Preserved without redesign:
+- Founders-together hero image
+- Founder biographies and roles
+- Manikanta Kandikatla profile
+- Career Inquiry V65 backend/frontend fix
+- Apps Script / Google Sheets architecture
+- GTM GTM-PZF49MGL
+- GA4 G-Y94QFK4PZZ
+- SEO, sitemap, robots and custom domain
+- Performance/Lighthouse optimizations
+- Existing media and episode library
