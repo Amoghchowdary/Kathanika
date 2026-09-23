@@ -5,19 +5,20 @@ function check(condition, label) {
   if (condition) console.log(`PASS  ${label}`);
   else { console.error(`FAIL  ${label}`); failures += 1; }
 }
-function read(path) { return fs.readFileSync(path, "utf8"); }
+function read(path) { return fs.readFileSync(path, "utf8").replace(/^\uFEFF/, ""); }
 function exists(path) { return fs.existsSync(path); }
 
-console.log("\nKathanika Media V69 — Founder Identity Correction Verification\n");
+console.log("\nKathanika Media V70 — Team + Removed Profile Verification\n");
 
 const about = read("src/routes/about.tsx");
 const css = read("src/styles.css");
-const pkg = JSON.parse(read("package.json"));
+const pkg = JSON.parse(read("package.json").replace(/^\uFEFF/, ""));
 
-check(pkg.name === "kathanika-media-v69-founder-identity-correction", "V69 package identity is correct");
-check(pkg.version === "69.0.0", "V69 package version is correct");
+check(pkg.name === "kathanika-media-v70-frontend-only-production", "V70 package identity is correct");
+check(pkg.version === "70.0.0", "V70 package version is correct");
 check(about.includes("Team behind Kathanika Media"), "About page retains Team behind Kathanika heading");
-check(about.includes("Manikanta Kandikatla"), "Manikanta Kandikatla profile is retained");
+check(!about.includes("Manikanta Kandikatla"), "Manikanta Kandikatla profile is removed");
+check(!about.includes('className="v66-ops-card"'), "Operations & Communications card markup is removed");
 check(about.includes('file="founding-team-01"') && about.includes('className="v67-team-hero-photo"'), "Requested intact founders-together image remains the single team hero");
 check(!about.includes('file="founding-team-02"'), "Extra founders-together image remains removed from page layout");
 const nikhilPos = about.indexOf('name: "Nikhil Dintakurthi"');
@@ -51,7 +52,7 @@ check(css.includes("@media (max-width: 760px)"), "Team section retains mobile re
 check(about.includes("About Kathanika Media & Founding Team — Hyderabad"), "About SEO title remains intact");
 
 if (failures) {
-  console.error(`\nV69 founder identity verification failed with ${failures} issue(s).`);
+  console.error(`\nV70 team verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV69 Founder Identity Correction verification passed.");
+console.log("\nV70 Team verification passed.");

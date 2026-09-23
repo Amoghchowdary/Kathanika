@@ -14,7 +14,7 @@ const EVOLUTION = [
 ] as const;
 
 
-// Client-confirmed identity map (V69):
+// Client-confirmed identity map (V70):
 // founder-portrait-02 = Nikhil Dintakurthi (one hand)
 // founder-portrait-01 = Sai Prudvi (two hands)
 const FOUNDING_TEAM = [
@@ -151,12 +151,6 @@ function AboutPage() {
               <div className="v66-founder-note">{member.note}</div>
             </article>
           ))}
-        </div>
-
-        <div className="v66-ops-card">
-          <span>Operations & Communications</span>
-          <h3>Manikanta Kandikatla</h3>
-          <p>Manikanta works across operations and communications at Kathanika Media, supporting show communications and corporate projects and helping the studio move from ideas to reliable execution.</p>
         </div>
       </section>
 

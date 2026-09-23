@@ -1,18 +1,12 @@
 param(
   [Parameter(Mandatory=$false)]
-  [string]$ApiUrl,
-  [Parameter(Mandatory=$false)]
-  [string]$RepositoryName = "kathanika"
+  [string]$ApiUrl = "https://script.google.com/macros/s/AKfycbzvaMEaiUNv0JvWslsraGHpf2Zc53IfYvj86vab5yU-Ve4VeQCItEGl63S6xgBSue_ZXw/exec"
 )
 
 $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path -Parent $PSScriptRoot
-
-if ([string]::IsNullOrWhiteSpace($ApiUrl)) {
-  $ApiUrl = Read-Host "Paste the deployed Google Apps Script Web App URL ending in /exec"
-}
-
 $ApiUrl = $ApiUrl.Trim()
+
 if ($ApiUrl -notmatch '^https://script\.google\.com/macros/s/.+/exec$') {
   Write-Host ""
   Write-Host "Invalid Apps Script URL." -ForegroundColor Red
@@ -20,22 +14,24 @@ if ($ApiUrl -notmatch '^https://script\.google\.com/macros/s/.+/exec$') {
   exit 1
 }
 
-$repo = $RepositoryName.Trim().Trim('/')
-if ([string]::IsNullOrWhiteSpace($repo)) { $repo = "kathanika" }
-$pagesBase = "/$repo/"
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+$envText = @"
+VITE_KATHANIKA_API_URL=$ApiUrl
+VITE_SITE_BASE=/
 
-$rootEnv = "VITE_KATHANIKA_API_URL=$ApiUrl`nVITE_SITE_BASE=/`n"
-$pagesEnv = "VITE_KATHANIKA_API_URL=$ApiUrl`nVITE_SITE_BASE=$pagesBase`n"
+VITE_PUBLIC_SITE_URL=https://www.kathanika.in/
 
-[System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.production"), $rootEnv, $utf8NoBom)
-[System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.local"), $rootEnv, $utf8NoBom)
-[System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.github-pages"), $pagesEnv, $utf8NoBom)
+# Optional: paste the Search Console HTML-tag verification token here.
+VITE_GOOGLE_SITE_VERIFICATION=
+"@
+
+[System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.production"), $envText, $utf8NoBom)
+[System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.github-pages"), $envText, $utf8NoBom)
 
 Write-Host ""
-Write-Host "Kathanika V30 environment configured." -ForegroundColor Green
-Write-Host "Root/custom-domain base: /"
-Write-Host "GitHub Pages base: $pagesBase"
+Write-Host "Kathanika V70 frontend environment configured." -ForegroundColor Green
+Write-Host "Production and GitHub Pages base: /"
+Write-Host "Custom domain: https://www.kathanika.in/"
 Write-Host ""
 Write-Host "Next commands:"
 Write-Host "  npm install"

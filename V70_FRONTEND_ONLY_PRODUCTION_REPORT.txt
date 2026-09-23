@@ -1,0 +1,17 @@
+KATHANIKA MEDIA V70 — FRONTEND-ONLY PRODUCTION
+
+Version: 70.0.0
+Repository target: Amoghchowdary/Kathanika
+Custom domain: https://www.kathanika.in/
+
+Changes:
+- Removed Manikanta Kandikatla Operations & Communications card.
+- Preserved confirmed founder identities and portraits.
+- Removed Google Apps Script source folders from the Git website package.
+- Kept the deployed Apps Script /exec endpoint in frontend environment configuration.
+- Added UTF-8 BOM normalization to prevent JSON.parse failures caused by Windows PowerShell UTF-8 BOM output.
+- Rebuilt integrity and career verifiers as frontend-only checks.
+- Updated all V70 verification identity checks.
+- Removed unused Recharts UI component/dependency.
+- Removed unused ESLint/Prettier tooling from the production package.
+- Preserved SEO, analytics, custom domain and GitHub Pages deployment configuration.

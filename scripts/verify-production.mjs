@@ -6,7 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const checks = [];
 const failures = [];
 const exists = (rel) => fs.existsSync(path.join(root, rel));
-const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
+const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8").replace(/^\uFEFF/, "");
 const assert = (condition, message) => {
   checks.push({ ok: Boolean(condition), message });
   if (!condition) failures.push(message);
@@ -28,11 +28,11 @@ const required = [
   "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V69 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V70 file exists: ${file}`);
 
-const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v69-founder-identity-correction", "Package name is V69 founder-identity-correction build");
-assert(pkg.version === "69.0.0", "Package version is 69.0.0");
+const pkg = JSON.parse(read("package.json").replace(/^\uFEFF/, ""));
+assert(pkg.name === "kathanika-media-v70-frontend-only-production", "Package name is V70 frontend-only production build");
+assert(pkg.version === "70.0.0", "Package version is 70.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -41,6 +41,8 @@ assert(Boolean(pkg.scripts?.["verify:domain"]), "Custom-domain verification is c
 assert(Boolean(pkg.scripts?.["verify:integrity"]), "Code integrity verification is configured");
 assert(Boolean(pkg.scripts?.["verify:tracking:build"]), "Built tracking verification is configured");
 assert(Boolean(pkg.scripts?.["verify:artifact"]), "Production artifact verification is configured");
+assert(Boolean(pkg.scripts?.["normalize:encoding"]), "UTF-8/BOM normalization is configured");
+assert(!exists("google-apps-script") && !exists("apps-script-deploy"), "Backend source folders are excluded from the frontend Git package");
 const envPages = read(".env.github-pages");
 assert(envPages.includes("VITE_SITE_BASE=/"), "Custom-domain Pages build uses root base path");
 assert(envPages.includes("VITE_PUBLIC_SITE_URL=https://www.kathanika.in/"), "Canonical production URL is www.kathanika.in");
@@ -72,6 +74,7 @@ assert(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.inclu
 
 const about = read("src/routes/about.tsx");
 assert(about.includes("ClientProductionImage") && about.includes("v50-about-pillars"), "About page includes client photography and icon-led content");
+assert(!about.includes("Manikanta Kandikatla") && !about.includes('className="v66-ops-card"'), "Removed Operations & Communications profile is absent");
 for (const icon of ["Film", "UsersRound", "Share2", "Megaphone"]) assert(about.includes(icon), `About page includes ${icon} visual icon`);
 
 const services = read("src/routes/services.tsx");
@@ -111,7 +114,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V69 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V70 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

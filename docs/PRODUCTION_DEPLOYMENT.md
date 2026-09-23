@@ -1,107 +1,62 @@
-# Kathanika Media V30 — Production Deployment
+# Kathanika Media V70 — Frontend-Only Production Deployment
 
-## 1. Apps Script backend
+## Repository scope
 
-The single-file backend is:
+This Git repository contains the website/frontend and GitHub Pages deployment files only. Google Apps Script source is intentionally excluded from Git.
 
-`apps-script-deploy/Kathanika_V30_Production_Backend.gs`
+The frontend continues to use the already deployed Apps Script Web App through `VITE_KATHANIKA_API_URL` in the environment files.
 
-For a fresh Apps Script project, paste it into `Code.gs`, run `setupDatabase()`, then run `verifyProductionSetup()`. Deploy the project as a Web App and copy the `/exec` URL.
+## Environment
 
-If the existing Kathanika Apps Script deployment is already working, V30's frontend remains endpoint-compatible with it. You do not need to recreate the Google Sheet merely to fix GitHub hosting.
+Both `.env.production` and `.env.github-pages` use:
 
-## 2. Environment
+- `VITE_SITE_BASE=/`
+- `VITE_PUBLIC_SITE_URL=https://www.kathanika.in/`
+- the deployed Apps Script `/exec` endpoint
 
-The package includes:
-
-- `.env.production` — root/custom-domain build
-- `.env.github-pages` — GitHub project Pages build using `/kathanika/`
-
-To regenerate them:
+To rewrite the environment files without a UTF-8 BOM:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\configure-production.ps1
 ```
 
-## 3. Local verification
+## Local validation
 
 ```powershell
 npm install
+npm run typecheck
 npm run verify
-npm run dev
-```
-
-Test Home, Work, Services, Business Inquiry, Career Inquiry, all nine manual Top 10 rails, and the footer. Confirm one test submission reaches each inquiry sheet.
-
-## 4. GitHub Pages preflight
-
-Before committing:
-
-```powershell
 npm run preflight:pages
-```
-
-This performs:
-
-1. strict TypeScript typecheck;
-2. V30 source/data checks;
-3. build using `/kathanika/`;
-4. verification of the generated `.output/public` Pages artifact.
-
-Optional helper:
-
-```powershell
 npm run git:preflight
 ```
 
-## 5. Git commit/push
+`npm run verify` includes encoding normalization, strict TypeScript checking, frontend integrity, inquiry contract, team profile, responsive, SEO, analytics and performance checks.
 
-For a new local repository:
+## GitHub Pages
 
-```powershell
-git init
-git branch -M main
-git remote add origin https://github.com/Amoghchowdary/kathanika.git
-git add .
-git commit -m "Kathanika Media V30 production"
-git push -u origin main
+The workflow `.github/workflows/deploy-pages.yml` runs automatically on pushes to `main`.
+
+It installs dependencies, runs `npm run preflight:pages`, uploads `.output/public`, and deploys through GitHub Pages.
+
+GitHub repository:
+
+```text
+https://github.com/Amoghchowdary/Kathanika.git
 ```
 
-If `origin` already exists:
+Custom domain:
+
+```text
+https://www.kathanika.in/
+```
+
+## Git push
 
 ```powershell
-git remote set-url origin https://github.com/Amoghchowdary/kathanika.git
 git add .
-git commit -m "Kathanika Media V30 production"
+git status
+git commit -m "Deploy Kathanika Media V70 frontend-only production"
 git push origin main
 ```
 
-`.git` is valid and must not be deleted. `.github` is also valid and required because it contains the Pages workflow.
-
-## 6. GitHub Pages setting
-
-In the repository:
-
-**Settings → Pages → Build and deployment → Source → GitHub Actions**
-
-Then open **Actions**. The workflow `Deploy Kathanika V30 to GitHub Pages` runs automatically on pushes to `main`.
-
-The workflow builds `.output/public`, verifies it, uploads the Pages artifact, and deploys it.
-
-Expected staging URL:
-
-`https://amoghchowdary.github.io/kathanika/`
-
-## 7. Custom domain later
-
-For a custom root domain, use the normal production build with `VITE_SITE_BASE=/`. Do not use `/kathanika/` for the final custom-domain build.
-
-## 8. Post-launch checks
-
-- staging URL loads without GitHub 404;
-- Home/Work/Services/Contact/Creators direct routes load;
-- images and CSS resolve under `/kathanika/`;
-- all manual rail controls work;
-- one Business Inquiry reaches Sheets;
-- one Career Inquiry reaches Sheets;
-- mobile/tablet/desktop layouts remain correct.
+Before committing, verify that `google-apps-script/` and `apps-script-deploy/` are absent.

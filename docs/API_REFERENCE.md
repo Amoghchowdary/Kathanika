@@ -1,75 +1,23 @@
-# Kathanika V30 API Reference
+# Kathanika V70 Frontend API Contract
 
-Base URL: the deployed Google Apps Script Web App `/exec` URL.
+The website communicates with the existing deployed Google Apps Script Web App through the `/exec` URL configured in `VITE_KATHANIKA_API_URL`.
+
+The backend implementation is intentionally not stored in this Git repository.
 
 ## GET `?action=health`
 
-Returns service version and server timestamp.
+Returns backend health information when supported by the deployed endpoint.
 
 ## GET `?action=content`
 
-Returns public dynamic data used by the website:
-
-- `settings`
-- `social`
-- `services`
-- `topTenChannels`
-
-The frontend falls back to bundled defaults if this request fails.
+Returns public dynamic website content. The frontend keeps bundled defaults as a fallback if the request is unavailable.
 
 ## POST business inquiry
 
-Use `Content-Type: text/plain;charset=UTF-8` with JSON body:
-
-```json
-{
-  "action": "businessInquiry",
-  "payload": {
-    "name": "...",
-    "email": "...",
-    "phone": "...",
-    "company": "...",
-    "designation": "...",
-    "city": "...",
-    "service": "...",
-    "message": "...",
-    "sourcePage": "/contact",
-    "website": ""
-  }
-}
-```
+The frontend sends JSON text with `action: "businessInquiry"` and the business inquiry payload.
 
 ## POST career inquiry
 
-```json
-{
-  "action": "careerInquiry",
-  "payload": {
-    "name": "...",
-    "email": "...",
-    "phone": "...",
-    "city": "...",
-    "category": "...",
-    "platform": "...",
-    "profileUrl": "https://...",
-    "audienceStage": "...",
-    "message": "...",
-    "sourcePage": "/creators",
-    "website": ""
-  }
-}
-```
+The frontend sends JSON text with `action: "careerInquiry"` and the career inquiry payload, including the detected platform and profile URL.
 
-## Response envelope
-
-Success:
-
-```json
-{ "ok": true, "data": {}, "requestId": "..." }
-```
-
-Validation/backend error:
-
-```json
-{ "ok": false, "error": "...", "requestId": "..." }
-```
+Requests use `Content-Type: text/plain;charset=UTF-8` for the deployed Apps Script CORS contract.

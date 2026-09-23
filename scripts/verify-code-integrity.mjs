@@ -6,7 +6,7 @@ const pass = (m) => console.log(`PASS  ${m}`);
 const fail = (m) => { failures += 1; console.error(`FAIL  ${m}`); };
 const check = (c, m) => c ? pass(m) : fail(m);
 const exists = (p) => fs.existsSync(p);
-const read = (p) => fs.readFileSync(p, "utf8");
+const read = (p) => fs.readFileSync(p, "utf8").replace(/^\uFEFF/, "");
 const countFiles = (dir) => {
   let count = 0;
   const walk = (d) => {
@@ -19,12 +19,13 @@ const countFiles = (dir) => {
   return count;
 };
 
-console.log("\nKathanika Media V69 — Code + Production Integrity Verification\n");
+console.log("\nKathanika Media V70 — Frontend-Only Code + Production Integrity Verification\n");
 
-const pkg = JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v69-founder-identity-correction", "V69 package identity is correct");
-check(pkg.version === "69.0.0", "V69 package version is correct");
-check(read("VERSION.txt").trim() === "69.0.0", "VERSION.txt matches package version");
+const pkg = JSON.parse(read("package.json").replace(/^\uFEFF/, ""));
+check(pkg.name === "kathanika-media-v70-frontend-only-production", "V70 package identity is correct");
+check(pkg.version === "70.0.0", "V70 package version is correct");
+check(read("VERSION.txt").trim() === "70.0.0", "VERSION.txt matches package version");
+check(Boolean(pkg.scripts?.["normalize:encoding"]), "UTF-8/BOM normalization is configured");
 
 const criticalSource = [
   "src/routes/__root.tsx", "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
@@ -33,47 +34,41 @@ const criticalSource = [
   "src/components/site/InquiryModal.tsx", "src/components/site/DeferredEpisodeLibrary.tsx",
   "src/components/site/EpisodeLibrary.tsx", "src/components/site/ProductionMediaShowcase.tsx",
   "src/content/store.tsx", "src/content/top-ten-defaults.ts", "src/lib/api.ts", "src/lib/seo.ts",
-  "src/styles.css", "vite.config.ts", "tsconfig.json"
+  "src/styles.css", "vite.config.ts", "tsconfig.json", ".github/workflows/deploy-pages.yml",
 ];
-for (const f of criticalSource) check(exists(f), `Critical source retained: ${f}`);
+for (const f of criticalSource) check(exists(f), `Critical frontend source retained: ${f}`);
 
-const backend = [
-  "google-apps-script/Code.gs", "google-apps-script/Config.gs", "google-apps-script/Content.gs",
-  "google-apps-script/Database.gs", "google-apps-script/Inquiries.gs", "google-apps-script/Seed.gs",
-  "google-apps-script/SeedData.gs", "google-apps-script/Utils.gs", "google-apps-script/appsscript.json",
-  "apps-script-deploy/Kathanika_V30_Production_Backend.gs", "apps-script-deploy/appsscript.json"
-];
-for (const f of backend) check(exists(f), `Backend source retained: ${f}`);
+check(!exists("google-apps-script"), "Google Apps Script source is excluded from the Git website package");
+check(!exists("apps-script-deploy"), "Apps Script deployment source is excluded from the Git website package");
 
 const srcCount = countFiles("src");
 const publicCount = countFiles("public");
-const gasCount = countFiles("google-apps-script");
-const deployCount = countFiles("apps-script-deploy");
-check(srcCount >= 117, `Frontend source file set is intact (${srcCount} files)`);
-check(publicCount >= 388, `Public/media asset set is intact (${publicCount} files)`);
-check(gasCount >= 10, `Google Apps Script source set is intact (${gasCount} files)`);
-check(deployCount >= 3, `Apps Script deployment source set is intact (${deployCount} files)`);
+check(srcCount >= 110, `Frontend source file set is intact (${srcCount} files)`);
+check(publicCount >= 380, `Public/media asset set is intact (${publicCount} files)`);
 
 const envPages = read(".env.github-pages");
 const envProd = read(".env.production");
 const api = "https://script.google.com/macros/s/AKfycbzvaMEaiUNv0JvWslsraGHpf2Zc53IfYvj86vab5yU-Ve4VeQCItEGl63S6xgBSue_ZXw/exec";
 for (const [name, txt] of [["GitHub Pages", envPages], ["production", envProd]]) {
-  check(txt.includes(`VITE_KATHANIKA_API_URL=${api}`), `${name} environment keeps the production Apps Script endpoint`);
+  check(txt.includes(`VITE_KATHANIKA_API_URL=${api}`), `${name} environment keeps the deployed backend endpoint`);
   check(txt.includes("VITE_SITE_BASE=/"), `${name} environment uses custom-domain root base`);
   check(txt.includes("VITE_PUBLIC_SITE_URL=https://www.kathanika.in/"), `${name} environment uses production canonical URL`);
 }
 
 const workflow = read(".github/workflows/deploy-pages.yml");
-check(workflow.includes("name: Deploy Kathanika V69"), "GitHub Pages workflow identifies V69");
-check(Boolean(pkg.scripts?.["verify:team"]), "Production script configured: verify:team");
-check(workflow.includes("npm install --no-audit --no-fund"), "GitHub Actions installs production dependencies");
+check(workflow.includes("name: Deploy Kathanika V70"), "GitHub Pages workflow identifies V70");
+check(workflow.includes("npm install --no-audit --no-fund"), "GitHub Actions installs dependencies");
 check(workflow.includes("npm run preflight:pages"), "GitHub Actions runs the full production preflight");
 check(workflow.includes("path: .output/public"), "GitHub Pages uploads the verified static artifact");
 check(workflow.includes("actions/deploy-pages@v4"), "GitHub Pages deploy action remains configured");
 
-for (const script of ["verify:integrity", "verify:source", "verify:seo", "verify:performance", "verify:lighthouse", "verify:domain", "verify:gtm", "verify:ga4", "verify:tracking:build", "verify:artifact", "preflight:pages", "git:preflight"]) {
+for (const script of ["verify:integrity", "verify:source", "verify:career", "verify:team", "verify:seo", "verify:performance", "verify:lighthouse", "verify:domain", "verify:gtm", "verify:ga4", "verify:tracking:build", "verify:artifact", "preflight:pages", "git:preflight"]) {
   check(Boolean(pkg.scripts?.[script]), `Production script configured: ${script}`);
 }
+
+const about = read("src/routes/about.tsx");
+check(!about.includes("Manikanta Kandikatla"), "Removed Operations & Communications profile is absent");
+check(!about.includes('className="v66-ops-card"'), "Removed operations card markup is absent");
 
 const root = read("src/routes/__root.tsx");
 check(root.includes("GTM-PZF49MGL") && root.includes("G-Y94QFK4PZZ"), "Both production tracking IDs remain in the root document");
@@ -83,7 +78,7 @@ check(exists("public/sitemap.xml") && exists("public/robots.txt") && exists("pub
 check(!exists(".lovable"), "No Lovable production artifact is present");
 
 if (failures) {
-  console.error(`\nV69 integrity verification failed with ${failures} issue(s).`);
+  console.error(`\nV70 frontend integrity verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV69 code + production integrity verification passed.");
+console.log("\nV70 frontend-only code + production integrity verification passed.");

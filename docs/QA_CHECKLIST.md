@@ -1,52 +1,36 @@
-# V30 Production QA Checklist
+# V70 Frontend Production QA Checklist
+
+## Build and source
+- [ ] `npm install` completes.
+- [ ] `npm run typecheck` passes.
+- [ ] `npm run verify` passes.
+- [ ] `npm run preflight:pages` passes.
+- [ ] `npm run git:preflight` passes on Windows PowerShell.
+- [ ] `google-apps-script/` is absent.
+- [ ] `apps-script-deploy/` is absent.
+- [ ] No `.gs` backend source is committed.
+
+## About page
+- [ ] Founder team hero remains intact.
+- [ ] Nikhil Dintakurthi remains the first founder profile.
+- [ ] Sai Prudvi remains the second founder profile.
+- [ ] Manikanta Kandikatla / Operations & Communications card is absent.
 
 ## Frontend
-- [ ] Desktop: 1440×900 and 1920×1080
-- [ ] Tablet: 768×1024 and 1024×1366
-- [ ] Mobile: 360×800, 390×844 and 430×932
-- [ ] No horizontal page overflow
-- [ ] Header/menu works on all breakpoints
-- [ ] Kathanika logo renders on home page
-- [ ] All 9 channel rails render
-- [ ] Each channel has ranks 1–10
-- [ ] Manual left/right controls wrap at both ends
-- [ ] Touch/trackpad scrolling works
-- [ ] Each cover opens the exact YouTube URL in a new tab
-- [ ] Services, Work, Career Inquiry, Business Inquiry, Privacy and Terms routes load directly
+- [ ] Home, About, Work, Services, Creators, Brands, Contact, Privacy and Terms routes load directly.
+- [ ] Header/menu works on desktop, tablet and mobile.
+- [ ] Kathanika logo renders correctly.
+- [ ] Episode rails and media assets load correctly.
+- [ ] No horizontal overflow appears on common mobile widths.
 
-## Database self-setup
+## API connectivity
+- [ ] Business Inquiry reaches the existing deployed backend endpoint.
+- [ ] Career Inquiry reaches the existing deployed backend endpoint.
+- [ ] Frontend uses `/exec`, never `/dev`.
+- [ ] No backend source or credentials are exposed in Git.
 
-- [ ] Create a new standalone Apps Script project.
-- [ ] Run `setupDatabase()` once and authorize it.
-- [ ] Confirm `Kathanika_Website_DB` is created in My Drive.
-- [ ] Confirm all 8 database tabs exist.
-- [ ] Confirm Channels has 9 seeded channels and Video_Content has 90 seeded videos.
-- [ ] Run `verifyProductionSetup()` and confirm `ok: true` with no issues.
-- [ ] Run `getDatabaseStatus()` and confirm it returns the same Spreadsheet URL.
-
-## Backend
-- [ ] `?action=health` returns `ok: true`
-- [ ] `?action=content` returns 9 channels and 90 videos
-- [ ] Business Inquiry creates exactly one `Business_Inquiries` row
-- [ ] Career Inquiry creates exactly one `Career_Inquiries` row
-- [ ] Duplicate immediate submissions are rejected
-- [ ] Invalid email/profile URL is rejected server-side
-- [ ] Honeypot submissions do not create rows
-- [ ] Notification email reaches the configured mailbox
-- [ ] Error cases appear in `Error_Log`
-
-## Data
-- [ ] Phone: +91 90638 54291
-- [ ] Email: kathanikamedia@gmail.com
-- [ ] Banjara Hills office address is correct
-- [ ] Services match approved client list
-- [ ] All 90 `Video_URL` cells are populated
-- [ ] All `Cover_URL` paths resolve
-
-## Release
-- [ ] Production `.env.production` contains only the Apps Script `/exec` URL
-- [ ] No credentials or Spreadsheet ID are exposed in frontend files
-- [ ] `npm run verify` passes on deployment machine
-- [ ] `npm run build:production` passes on deployment machine
-- [ ] Production deployment uses `/exec`, not `/dev`
-- [ ] Custom domain/HTTPS is working
+## SEO and analytics
+- [ ] `public/CNAME` is `www.kathanika.in`.
+- [ ] `sitemap.xml`, `robots.txt`, manifest and OG image exist.
+- [ ] Canonicals use `https://www.kathanika.in/`.
+- [ ] GTM and GA4 production IDs are intact.

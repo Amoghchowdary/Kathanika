@@ -1,11 +1,26 @@
-# Kathanika Media V69 — Founder Identity Correction
+# Kathanika Media V70 — Frontend-Only Production
 
-V69 preserves the complete V68/V67/V65 production website and changes only the founder identity/order mapping confirmed by the client.
+V70 is the cleaned GitHub website release for Kathanika Media.
 
-- First founder card: **Nikhil Dintakurthi — Founder**, using the **one-hand portrait** (`founder-portrait-02`).
-- Second founder card: **Sai Prudvi — Co-Founder & COO**, using the **two-hands portrait** (`founder-portrait-01`).
-- The large founders-together image remains intact and unchanged.
-- The extra founders gallery remains removed.
-- All biographies, Manikanta Kandikatla profile, Career Inquiry fix, backend, analytics, SEO, performance, media, custom domain and deployment safeguards are retained.
+Key changes:
 
-Run `npm install --include=dev`, `npm run typecheck`, `npm run verify:team`, `npm run verify`, `npm run preflight:pages`, and `npm run git:preflight` before deployment.
+- Removes the **Manikanta Kandikatla / Operations & Communications** card from the About page.
+- Keeps the founder order and portraits confirmed in V69.
+- Keeps the existing deployed Google Apps Script Web App endpoint, but **does not include any Apps Script source files in Git**.
+- Removes the `google-apps-script/` and `apps-script-deploy/` source folders from the website repository.
+- Adds UTF-8/BOM normalization so Windows PowerShell BOMs cannot break Node JSON parsing again.
+- Updates all production verifiers to V70 and makes the integrity/career checks frontend-only.
+- Keeps SEO, sitemap, robots, structured data, GTM, GA4, custom domain and GitHub Pages deployment safeguards intact.
+- Removes unused Recharts chart code and unused ESLint tooling from this production package.
+
+Before deployment run:
+
+```powershell
+npm install
+npm run typecheck
+npm run verify
+npm run preflight:pages
+npm run git:preflight
+```
+
+The expected GitHub Pages artifact is `.output/public` and the production custom domain remains `https://www.kathanika.in/`.

@@ -13,7 +13,7 @@ const routeFile = (route) => {
   return null;
 };
 
-console.log("\nKathanika Media V69 — Built Tracking Verification\n");
+console.log("\nKathanika Media V70 — Built Tracking Verification\n");
 check(fs.existsSync(out), ".output/public production artifact exists");
 
 const routes = ["", "about", "work", "services", "creators", "contact", "brands", "privacy", "terms"];
@@ -46,7 +46,7 @@ for (const route of routes) {
 }
 
 if (failures) {
-  console.error(`\nV69 built tracking verification failed with ${failures} issue(s).`);
+  console.error(`\nV70 built tracking verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV69 built tracking verification passed.");
+console.log("\nV70 built tracking verification passed.");

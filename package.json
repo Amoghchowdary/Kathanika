@@ -1,22 +1,22 @@
 {
-  "name": "kathanika-media-v69-founder-identity-correction",
-  "version": "69.0.0",
+  "name": "kathanika-media-v70-frontend-only-production",
+  "version": "70.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
-    "build:production": "npm run generate:seo:production && vite build --mode production",
+    "build": "npm run normalize:encoding && vite build",
+    "build:production": "npm run normalize:encoding && npm run generate:seo:production && vite build --mode production",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4",
-    "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
+    "verify": "npm run normalize:encoding && npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4",
+    "preflight": "npm run normalize:encoding && npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
     "verify:responsive": "node scripts/verify-responsive.mjs",
-    "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
+    "build:pages": "npm run normalize:encoding && npm run generate:seo:pages && vite build --mode github-pages",
     "verify:pages": "node scripts/verify-pages-build.mjs",
-    "preflight:pages": "npm run generate:seo:pages && npm run verify && vite build --mode github-pages && npm run verify:pages && npm run verify:tracking:build && npm run verify:artifact",
+    "preflight:pages": "npm run normalize:encoding && npm run generate:seo:pages && npm run verify && vite build --mode github-pages && npm run verify:pages && npm run verify:tracking:build && npm run verify:artifact",
     "git:preflight": "powershell -ExecutionPolicy Bypass -File ./scripts/git-preflight.ps1",
     "verify:feedback": "node scripts/verify-client-feedback.mjs",
     "generate:seo:pages": "node scripts/generate-seo.mjs github-pages",
@@ -32,7 +32,8 @@
     "verify:tracking:build": "node scripts/verify-tracking-build.mjs",
     "verify:artifact": "node scripts/verify-production-artifact.mjs",
     "verify:career": "node scripts/verify-career-inquiry.mjs",
-    "verify:team": "node scripts/verify-team.mjs"
+    "verify:team": "node scripts/verify-team.mjs",
+    "normalize:encoding": "node scripts/normalize-utf8.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -78,7 +79,6 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.71.2",
     "react-resizable-panels": "^4.6.5",
-    "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.1",
@@ -87,21 +87,12 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.32.0",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.2.0",
-    "eslint": "^9.32.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-prettier": "^5.2.6",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^15.15.0",
     "nitro": "3.0.260603-beta",
-    "prettier": "^3.7.3",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.56.1",
     "vite": "^8.2.0"
   }
 }
