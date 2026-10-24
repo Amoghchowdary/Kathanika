@@ -1,33 +1,33 @@
 import fs from "node:fs";
-
 let failures = 0;
-const read = (p) => fs.readFileSync(p, "utf8").replace(/^\uFEFF/, "");
-const check = (condition, message) => {
-  if (condition) console.log(`PASS  ${message}`);
-  else { failures += 1; console.error(`FAIL  ${message}`); }
-};
+const read = (path) => fs.readFileSync(path, "utf8");
+const check = (condition, message) => condition ? console.log(`PASS  ${message}`) : (console.error(`FAIL  ${message}`), failures++);
 
-console.log("\nKathanika Media V70 — Frontend Career Inquiry Contract Verification\n");
-const creator = read("src/routes/creators.tsx");
+console.log("\nKathanika Media V70 — Career Inquiry Contract Verification\n");
+const career = read("src/routes/creators.tsx");
 const api = read("src/lib/api.ts");
-const envPages = read(".env.github-pages");
-const envProd = read(".env.production");
-const root = read("src/routes/__root.tsx");
-const endpoint = "AKfycbzvaMEaiUNv0JvWslsraGHpf2Zc53IfYvj86vab5yU-Ve4VeQCItEGl63S6xgBSue_ZXw";
+const backend = read("google-apps-script/Inquiries.gs");
+const config = read("google-apps-script/Config.gs");
+const database = read("google-apps-script/Database.gs");
+const code = read("google-apps-script/Code.gs");
+const bundled = read("apps-script-deploy/Kathanika_V31_Production_Backend.gs");
+const env = read(".env.github-pages");
 
-check(creator.includes("inferPlatformFromProfileUrl"), "Career form derives primary platform from profile URL");
-check(creator.includes("platform,"), "Career payload sends platform to backend");
-check(creator.includes('name="profileUrl"') && creator.includes('type="url" required'), "Career profile URL is client-required");
-check(creator.includes('return "LinkedIn"') && creator.includes('return "Instagram"') && creator.includes('return "YouTube"'), "Common creator platforms are detected client-side");
-check(api.includes('action: payload.inquiryType === "career" ? "careerInquiry"'), "API routes career requests to careerInquiry");
+check(career.includes('aria-labelledby="career-inquiry-title"') && career.includes('<form className="v41-form"'), "Career Inquiry form is visibly embedded on the Careers page");
+check(!career.includes("InquiryModal"), "Career Inquiry is no longer hidden behind a modal");
+for (const field of ['name="name"', 'name="email"', 'name="phone"', 'name="city"', 'name="role"', 'name="experienceLevel"', 'name="availability"', 'name="portfolioUrl"', 'name="message"']) check(career.includes(field), `Career form includes ${field}`);
+check(career.includes('inquiryType: "career"') && career.includes('sourcePage: "/creators"'), "Career payload is explicitly routed as a career inquiry");
+check(api.includes('payload.inquiryType === "career"') && api.includes('"careerInquiry"'), "Frontend API routes career submissions to careerInquiry");
+check(config.includes("CAREER: 'Career_Inquiries_V70'"), "V70 career submissions use a dedicated new sheet without repurposing legacy career data");
+check(database.includes("Career_Inquiries_V70") && database.includes("'Role'") && database.includes("'Experience_Level'") && database.includes("'Availability'"), "V70 career sheet has recruitment-oriented columns");
+check(backend.includes("function createCareerInquiry_") && backend.includes("raw.role") && backend.includes("raw.experienceLevel") && backend.includes("raw.availability"), "Backend validates V70 recruitment fields");
+check(backend.includes("appendInquiryLocked_(KATHANIKA.SHEETS.CAREER, 14"), "Career database 14-column write contract is intact");
+check(code.includes("action === 'careerInquiry'"), "Modular Apps Script route handles careerInquiry");
+check(bundled.includes("Career_Inquiries_V70") && bundled.includes("function createCareerInquiry_"), "Bundled production backend contains V70 Career Inquiry support");
 check(api.includes('Content-Type": "text/plain;charset=UTF-8"'), "Apps Script CORS-safe POST contract remains intact");
-check(envPages.includes(endpoint) && envProd.includes(endpoint), "Frontend environments retain the deployed backend endpoint");
-check(!fs.existsSync("google-apps-script") && !fs.existsSync("apps-script-deploy"), "Backend source is intentionally excluded from Git while deployed API connectivity is retained");
-check(root.includes("GTM-PZF49MGL"), "Google Tag Manager remains intact");
-check(root.includes("G-Y94QFK4PZZ"), "Google Analytics 4 remains intact");
+check(env.includes("VITE_KATHANIKA_API_URL="), "Production frontend retains an Apps Script API endpoint setting");
+check(read("src/routes/__root.tsx").includes("GTM-PZF49MGL"), "Google Tag Manager remains intact");
+check(read("src/routes/__root.tsx").includes("G-Y94QFK4PZZ"), "Google Analytics 4 remains intact");
 
-if (failures) {
-  console.error(`\nV70 career inquiry verification failed with ${failures} issue(s).`);
-  process.exit(1);
-}
-console.log("\nV70 Career Inquiry frontend verification passed.");
+if (failures) { console.error(`\nV70 career inquiry verification failed with ${failures} issue(s).`); process.exit(1); }
+console.log("\nV70 Career Inquiry verification passed.");

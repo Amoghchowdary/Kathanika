@@ -1,0 +1,32 @@
+KATHANIKA MEDIA V70 — APPS SCRIPT V31 UPGRADE
+
+RECOMMENDED: update the existing Kathanika Apps Script project so the current /exec URL can remain unchanged.
+
+1. Open the existing Kathanika Apps Script project.
+2. Open Kathanika_V31_Production_Backend.gs from this folder.
+3. Replace the existing Code.gs contents with the V31 bundle and Save.
+4. Select setupDatabase and click Run.
+   - Existing database data is reused.
+   - New Career_Inquiries_V70 and Course_Inquiries sheets are created automatically.
+   - Legacy Career_Inquiries data is not overwritten.
+5. Select verifyProductionSetup and click Run.
+   Expected: ok = true and issues = [].
+6. Deploy > Manage deployments > Edit the existing Web app deployment.
+7. Select New version and Deploy.
+8. Keep Execute as: Me and the access level required by the public website.
+9. If the existing /exec URL remains the same, no frontend environment change is required.
+10. Test one Career Inquiry and one Course Inquiry and confirm rows are written to their dedicated sheets.
+
+If you intentionally create a new Apps Script deployment URL, run:
+    powershell -ExecutionPolicy Bypass -File .\scripts\configure-production.ps1
+and paste the new /exec URL.
+
+FRONTEND VALIDATION
+    npm install --include=dev
+    npm run typecheck
+    npm run verify:courses
+    npm run verify:team
+    npm run verify:career
+    npm run verify
+    npm run preflight:pages
+    npm run git:preflight

@@ -16,7 +16,7 @@ const routeFile = (route) => {
 console.log("\nKathanika Media V70 — Built Tracking Verification\n");
 check(fs.existsSync(out), ".output/public production artifact exists");
 
-const routes = ["", "about", "work", "services", "creators", "contact", "brands", "privacy", "terms"];
+const routes = ["", "about", "work", "services", "courses", "creators", "contact", "brands", "privacy", "terms"];
 for (const route of routes) {
   const f = routeFile(route);
   const label = route || "home";

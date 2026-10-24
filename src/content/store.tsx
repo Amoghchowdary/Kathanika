@@ -90,10 +90,14 @@ export function ContentProvider({ children }: { children: ReactNode }) {
   }, [refresh]);
 
   const addEnquiry = useCallback<ContentContextValue["addEnquiry"]>(async (enquiry) => {
-    const inquiryType: "business" | "career" =
-      enquiry.inquiryType ?? (enquiry.sourcePage === "/creators" ? "career" : "business");
+    const inquiryType: "business" | "career" | "course" =
+      enquiry.inquiryType ??
+      (enquiry.sourcePage === "/creators" ? "career" : enquiry.sourcePage === "/courses" ? "course" : "business");
 
-    const { profileUrl, platform, audienceStage, category, website, ...baseEnquiry } = enquiry;
+    const {
+      profileUrl, platform, audienceStage, category, role, experienceLevel, portfolioUrl, availability,
+      courseName, preferredSoftware, preferredContact, website, ...baseEnquiry
+    } = enquiry;
 
     const payload: InquirySubmission = {
       ...baseEnquiry,
@@ -102,6 +106,13 @@ export function ContentProvider({ children }: { children: ReactNode }) {
       ...(platform !== undefined ? { platform } : {}),
       ...(audienceStage !== undefined ? { audienceStage } : {}),
       ...(category !== undefined ? { category } : {}),
+      ...(role !== undefined ? { role } : {}),
+      ...(experienceLevel !== undefined ? { experienceLevel } : {}),
+      ...(portfolioUrl !== undefined ? { portfolioUrl } : {}),
+      ...(availability !== undefined ? { availability } : {}),
+      ...(courseName !== undefined ? { courseName } : {}),
+      ...(preferredSoftware !== undefined ? { preferredSoftware } : {}),
+      ...(preferredContact !== undefined ? { preferredContact } : {}),
       ...(website !== undefined ? { website } : {}),
     };
 

@@ -29,6 +29,7 @@ const routes = [
   { path: "about", priority: "0.9", images: ["media/production/responsive/IMG_20260722_204442-1280.webp", "media/production/responsive/IMG_5530-960.webp"] },
   { path: "work", priority: "0.9", images: ["media/production/responsive/IMG_5147-1280.webp", "media/production/responsive/IMG_4711-960.webp"] },
   { path: "services", priority: "0.9", images: [] },
+  { path: "courses", priority: "0.9", images: [] },
   { path: "creators", priority: "0.8", images: [] },
   { path: "contact", priority: "0.8", images: [] },
   { path: "brands", priority: "0.8", images: [] },

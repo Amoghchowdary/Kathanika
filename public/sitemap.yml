@@ -1,11 +1,12 @@
 # Human-readable sitemap manifest. Search engines use sitemap.xml.
 site: https://www.kathanika.in/
-last_modified: 2026-09-23
+last_modified: 2026-10-24
 routes:
   - https://www.kathanika.in/
   - https://www.kathanika.in/about
   - https://www.kathanika.in/work
   - https://www.kathanika.in/services
+  - https://www.kathanika.in/courses
   - https://www.kathanika.in/creators
   - https://www.kathanika.in/contact
   - https://www.kathanika.in/brands

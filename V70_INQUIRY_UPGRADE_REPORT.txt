@@ -1,0 +1,10 @@
+KATHANIKA MEDIA V70 — CAREER + COURSE INQUIRY UPGRADE
+
+- Preserved the V69 native Courses page and Courses navigation.
+- Brochure/poster remains removed from the website and production assets.
+- Rebuilt Career Inquiry as a visible recruitment-style page form.
+- Career submissions now use Career_Inquiries_V70 to preserve any legacy Career_Inquiries data.
+- Added a native Course Inquiry form on /courses.
+- Added Course_Inquiries backend table and courseInquiry Apps Script action.
+- Preserved Business Inquiry, GTM, GA4, SEO, responsive behavior, team content and media.
+- Frontend version 70.0.0; Apps Script API version 31.0.0.

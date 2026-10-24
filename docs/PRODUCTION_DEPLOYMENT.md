@@ -1,62 +1,28 @@
-# Kathanika Media V70 — Frontend-Only Production Deployment
+# Kathanika Media V70 — Production Deployment
 
-## Repository scope
+## 1. Upgrade the Apps Script backend first
 
-This Git repository contains the website/frontend and GitHub Pages deployment files only. Google Apps Script source is intentionally excluded from Git.
+Use `apps-script-deploy/Kathanika_V31_Production_Backend.gs` in the existing Kathanika Apps Script project.
 
-The frontend continues to use the already deployed Apps Script Web App through `VITE_KATHANIKA_API_URL` in the environment files.
+1. Replace the deployed Apps Script source with the V31 bundle and Save.
+2. Run `setupDatabase()` once. It reuses the configured Kathanika database and creates missing V70 tables without deleting legacy inquiry data.
+3. Run `verifyProductionSetup()` and confirm `ok: true` with no issues.
+4. Deploy a new version of the existing Web App deployment so the current `/exec` URL can remain unchanged.
+5. Test one Career Inquiry and one Course Inquiry and confirm rows appear in `Career_Inquiries_V70` and `Course_Inquiries`.
 
-## Environment
-
-Both `.env.production` and `.env.github-pages` use:
-
-- `VITE_SITE_BASE=/`
-- `VITE_PUBLIC_SITE_URL=https://www.kathanika.in/`
-- the deployed Apps Script `/exec` endpoint
-
-To rewrite the environment files without a UTF-8 BOM:
+## 2. Verify the V70 frontend
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\configure-production.ps1
-```
-
-## Local validation
-
-```powershell
-npm install
+npm install --include=dev
 npm run typecheck
+npm run verify:courses
+npm run verify:team
+npm run verify:career
 npm run verify
 npm run preflight:pages
 npm run git:preflight
 ```
 
-`npm run verify` includes encoding normalization, strict TypeScript checking, frontend integrity, inquiry contract, team profile, responsive, SEO, analytics and performance checks.
+## 3. GitHub Pages deployment
 
-## GitHub Pages
-
-The workflow `.github/workflows/deploy-pages.yml` runs automatically on pushes to `main`.
-
-It installs dependencies, runs `npm run preflight:pages`, uploads `.output/public`, and deploys through GitHub Pages.
-
-GitHub repository:
-
-```text
-https://github.com/Amoghchowdary/Kathanika.git
-```
-
-Custom domain:
-
-```text
-https://www.kathanika.in/
-```
-
-## Git push
-
-```powershell
-git add .
-git status
-git commit -m "Deploy Kathanika Media V70 frontend-only production"
-git push origin main
-```
-
-Before committing, verify that `google-apps-script/` and `apps-script-deploy/` are absent.
+The production workflow is `.github/workflows/deploy-pages.yml` and runs the full V70 Pages preflight before deployment. The custom domain remains `www.kathanika.in`.

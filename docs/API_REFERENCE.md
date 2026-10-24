@@ -1,23 +1,18 @@
-# Kathanika V70 Frontend API Contract
+# Kathanika V31 API Reference
 
-The website communicates with the existing deployed Google Apps Script Web App through the `/exec` URL configured in `VITE_KATHANIKA_API_URL`.
+Frontend companion: Kathanika Media V70.
 
-The backend implementation is intentionally not stored in this Git repository.
+## GET
 
-## GET `?action=health`
+- `?action=health` — API status/version.
+- `?action=content` — public website content.
 
-Returns backend health information when supported by the deployed endpoint.
+## POST
 
-## GET `?action=content`
+Send JSON as `text/plain;charset=UTF-8` so the public Apps Script web app remains compatible with browser CORS simple-request behavior.
 
-Returns public dynamic website content. The frontend keeps bundled defaults as a fallback if the request is unavailable.
+- `businessInquiry` — existing business inquiry flow.
+- `careerInquiry` — V70 recruitment inquiry flow, stored in `Career_Inquiries_V70`.
+- `courseInquiry` — V70 course lead flow, stored in `Course_Inquiries`.
 
-## POST business inquiry
-
-The frontend sends JSON text with `action: "businessInquiry"` and the business inquiry payload.
-
-## POST career inquiry
-
-The frontend sends JSON text with `action: "careerInquiry"` and the career inquiry payload, including the detected platform and profile URL.
-
-Requests use `Content-Type: text/plain;charset=UTF-8` for the deployed Apps Script CORS contract.
+Each endpoint returns the standard `{ ok, data, requestId }` envelope or `{ ok: false, error, requestId }`.

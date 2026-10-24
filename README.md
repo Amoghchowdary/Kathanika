@@ -1,26 +1,14 @@
-# Kathanika Media V70 — Frontend-Only Production
+# Kathanika Media V70 — Career + Course Inquiries
 
-V70 is the cleaned GitHub website release for Kathanika Media.
+V70 carries forward the approved V69 Courses build and adds production-native inquiry flows.
 
-Key changes:
+- Courses navigation and native Video Editing course page retained.
+- Brochure/poster presentation remains removed from the website and deployable assets.
+- Career Inquiry is now a visible, recruitment-style form on the Careers page.
+- Career Inquiry submits to a dedicated V70 Apps Script / Google Sheets table.
+- Course Inquiry is now a visible form on the Courses page.
+- Course Inquiry submits through its own backend action to a dedicated Google Sheets table.
+- Existing Business Inquiry, SEO, responsive behavior, analytics, team content and production media are preserved.
 
-- Removes the **Manikanta Kandikatla / Operations & Communications** card from the About page.
-- Keeps the founder order and portraits confirmed in V69.
-- Keeps the existing deployed Google Apps Script Web App endpoint, but **does not include any Apps Script source files in Git**.
-- Removes the `google-apps-script/` and `apps-script-deploy/` source folders from the website repository.
-- Adds UTF-8/BOM normalization so Windows PowerShell BOMs cannot break Node JSON parsing again.
-- Updates all production verifiers to V70 and makes the integrity/career checks frontend-only.
-- Keeps SEO, sitemap, robots, structured data, GTM, GA4, custom domain and GitHub Pages deployment safeguards intact.
-- Removes unused Recharts chart code and unused ESLint tooling from this production package.
-
-Before deployment run:
-
-```powershell
-npm install
-npm run typecheck
-npm run verify
-npm run preflight:pages
-npm run git:preflight
-```
-
-The expected GitHub Pages artifact is `.output/public` and the production custom domain remains `https://www.kathanika.in/`.
+Frontend version: 70.0.0
+Backend API version: 31.0.0

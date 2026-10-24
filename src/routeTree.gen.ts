@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -37,6 +38,11 @@ const BrandsRoute = BrandsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CoursesRoute = CoursesRouteImport.update({
+  id: '/courses',
+  path: '/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreatorsRoute = CreatorsRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/courses'
     | '/creators'
     | '/privacy'
     | '/services'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/courses'
     | '/creators'
     | '/privacy'
     | '/services'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/courses'
     | '/creators'
     | '/privacy'
     | '/services'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BrandsRoute: typeof BrandsRoute
   ContactRoute: typeof ContactRoute
+  CoursesRoute: typeof CoursesRoute
   CreatorsRoute: typeof CreatorsRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/courses': {
+      id: '/courses'
+      path: '/courses'
+      fullPath: '/courses'
+      preLoaderRoute: typeof CoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creators': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BrandsRoute: BrandsRoute,
   ContactRoute: ContactRoute,
+  CoursesRoute: CoursesRoute,
   CreatorsRoute: CreatorsRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,

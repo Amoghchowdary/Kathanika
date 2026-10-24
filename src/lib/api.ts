@@ -18,11 +18,18 @@ type ApiEnvelope<T> = {
 };
 
 export type InquirySubmission = Omit<Enquiry, "id" | "timestamp" | "status"> & {
-  inquiryType: "business" | "career";
+  inquiryType: "business" | "career" | "course";
   profileUrl?: string;
   platform?: string;
   audienceStage?: string;
   category?: string;
+  role?: string;
+  experienceLevel?: string;
+  portfolioUrl?: string;
+  availability?: string;
+  courseName?: string;
+  preferredSoftware?: string;
+  preferredContact?: string;
   website?: string;
 };
 
@@ -50,7 +57,7 @@ export async function fetchPublicContent(): Promise<PublicContentPayload> {
   try {
     const url = new URL(API_URL);
     url.searchParams.set("action", "content");
-    url.searchParams.set("v", "30");
+    url.searchParams.set("v", "31");
     const response = await fetch(url.toString(), {
       method: "GET",
       redirect: "follow",
@@ -73,7 +80,12 @@ export async function submitInquiry(payload: InquirySubmission): Promise<{ id: s
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=UTF-8" },
       body: JSON.stringify({
-        action: payload.inquiryType === "career" ? "careerInquiry" : "businessInquiry",
+        action:
+          payload.inquiryType === "career"
+            ? "careerInquiry"
+            : payload.inquiryType === "course"
+              ? "courseInquiry"
+              : "businessInquiry",
         payload,
       }),
       redirect: "follow",
