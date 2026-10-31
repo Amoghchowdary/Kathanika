@@ -14,7 +14,7 @@ const routeFile = (route) => {
   return null;
 };
 
-console.log("\nKathanika Media V70 — Production Artifact Integrity Verification\n");
+console.log("\nKathanika Media V74 — Production Artifact Integrity Verification\n");
 check(existsAbs(out), ".output/public exists");
 
 for (const f of ["CNAME", "robots.txt", "sitemap.xml", "sitemap.yml", "site.webmanifest", "og/kathanika-og.jpg", "favicon.png"]) {
@@ -22,7 +22,7 @@ for (const f of ["CNAME", "robots.txt", "sitemap.xml", "sitemap.yml", "site.webm
 }
 if (exists("CNAME")) check(read("CNAME").trim() === "www.kathanika.in", "Built CNAME targets www.kathanika.in");
 
-const routes = ["", "about", "work", "services", "courses", "creators", "contact", "privacy", "terms", "brands"];
+const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms", "brands"];
 const htmlFiles = [];
 for (const route of routes) {
   const f = routeFile(route);
@@ -66,10 +66,9 @@ if (existsAbs(assetDir)) {
 check(exists("top-ten") && exists("top-ten-optimized"), "Original and optimized episode asset trees are deployed");
 check(exists("media/production/responsive") && exists("media/production/video"), "Optimized production media trees are deployed");
 check(exists("team/founding-team-01.avif") && exists("team/founding-team-02.avif") && exists("team/founder-portrait-01.avif") && exists("team/founder-portrait-02.avif"), "Optimized founding-team photography is deployed");
-check(!exists("courses/video-editing-from-scratch.avif") && !exists("courses/video-editing-from-scratch.webp") && !exists("courses/video-editing-from-scratch.jpg"), "Course brochure assets are excluded from the production artifact");
 
 if (failures) {
-  console.error(`\nV70 production artifact verification failed with ${failures} issue(s).`);
+  console.error(`\nV74 production artifact verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV70 production artifact integrity verification passed.");
+console.log("\nV74 production artifact integrity verification passed.");

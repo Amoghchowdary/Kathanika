@@ -16,6 +16,7 @@ const LINKS = [
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const currentPath = typeof window !== "undefined" ? window.location.pathname.replace(/\/$/, "") || "/" : "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 18);
@@ -56,7 +57,7 @@ export function SiteHeader() {
           </picture>
         </a>
         <nav className="v41-desktop-nav" aria-label="Primary navigation">
-          {LINKS.map(([label, href]) => <a key={href} href={withBasePath(href)}>{label}</a>)}
+          {LINKS.map(([label, href]) => { const resolved = withBasePath(href).replace(/\/$/, "") || "/"; const active = currentPath === resolved; return <a key={href} href={withBasePath(href)} className={active ? "is-active" : ""} aria-current={active ? "page" : undefined}>{label}</a>; })}
         </nav>
         <button className="v41-menu-button" type="button" onClick={() => setOpen(true)} aria-label="Open navigation" aria-expanded={open}>
           <Menu />
@@ -74,7 +75,7 @@ export function SiteHeader() {
         </div>
         <nav aria-label="Mobile navigation">
           {LINKS.map(([label, href], index) => (
-            <a key={href} href={withBasePath(href)} onClick={() => setOpen(false)}>
+            <a key={href} href={withBasePath(href)} onClick={() => setOpen(false)} className={currentPath === (withBasePath(href).replace(/\/$/, "") || "/") ? "is-active" : ""}>
               <span>{String(index + 1).padStart(2, "0")}</span>{label}
             </a>
           ))}

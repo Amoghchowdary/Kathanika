@@ -26,6 +26,8 @@ function WorkPage() {
 
       <ProductionMediaShowcase />
 
+      <section className="v71-work-proof"><div><span>Selected work</span><h2>Few best teams we worked with.</h2></div><p>Each property below links to public episodes so visitors can inspect the work directly. Portfolio-wide, Kathanika reports 3 Cr+ monthly content reach; per-property views and impressions are intentionally shown only when verified from the respective channel.</p></section>
+
       <section className="v41-work-list">
         {channels.map((channel, channelIndex) => {
           const videos = sortActive(channel.videos).slice(0, 3);
@@ -33,7 +35,7 @@ function WorkPage() {
             <article className="v41-work-channel v48-work-channel" key={channel.id}>
               <div className="v41-work-channel-head v48-work-channel-head">
                 <span>{String(channelIndex + 1).padStart(2, "0")}</span>
-                <h2>{channel.name}</h2>
+                <div className="v71-work-title"><h2>{channel.name}</h2><p>Distinct audience, recurring format and distribution-led iteration. Open the latest episode to review the public-facing output and current performance.</p></div>
                 <a href={videos[0]?.videoUrl} target="_blank" rel="noreferrer">Watch latest <ArrowUpRight /></a>
               </div>
               <div className="v41-work-covers">

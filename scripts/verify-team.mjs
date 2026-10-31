@@ -8,27 +8,29 @@ function check(condition, label) {
 function read(path) { return fs.readFileSync(path, "utf8"); }
 function exists(path) { return fs.existsSync(path); }
 
-console.log("\nKathanika Media V70 — Founding Team Verification\n");
+console.log("\nKathanika Media V74 — Founders Only Verification\n");
 
 const about = read("src/routes/about.tsx");
 const css = read("src/styles.css");
 const pkg = JSON.parse(read("package.json"));
 
-check(pkg.name === "kathanika-media-v70-inquiries", "V70 package identity is correct");
-check(pkg.version === "70.0.0", "V70 package version is correct");
+check(pkg.name === "kathanika-media-v74-release-integrity-fix", "V74 package identity is correct");
+check(pkg.version === "74.0.0", "V74 package version is correct");
 check(about.includes("Team behind Kathanika Media"), "About page retains Team behind Kathanika heading");
-check(about.includes("Manikanta Kandikatla"), "Manikanta Kandikatla profile is retained");
+check(!about.includes("Manikanta Kandikatla") && !about.includes("Operations & Communications"), "Former operations profile is removed from About page");
+check(!about.includes('role: "Founder ·') && !about.includes('role: "Co-Founder & COO') && !about.includes("Operations, Strategy & Media Business"), "Founder role titles are simplified to Founder and Co-Founder only");
+check((about.match(/name: "/g) || []).length === 2, "About page contains exactly two named founder profiles");
 check(about.includes('file="founding-team-01"') && about.includes('className="v67-team-hero-photo"'), "Requested intact founders-together image remains the single team hero");
-check(!about.includes('file="founding-team-02"'), "Extra founders-together image remains removed from page layout");
+check(about.includes('file="founding-team-02"') && about.includes('className="v71-team-life-photo"'), "V71 team-life image is preserved");
 const nikhilPos = about.indexOf('name: "Nikhil Dintakurthi"');
 const saiPos = about.indexOf('name: "Sai Prudvi"');
 check(nikhilPos >= 0 && saiPos >= 0 && nikhilPos < saiPos, "Nikhil Dintakurthi is the first founder profile and Sai Prudvi is second");
 const nikhilBlock = about.slice(nikhilPos, saiPos);
 const saiBlock = about.slice(saiPos, about.indexOf('] as const;', saiPos));
 check(nikhilBlock.includes('portrait: "founder-portrait-02"'), "First profile uses Nikhil Dintakurthi's one-hand portrait");
-check(nikhilBlock.includes('role: "Founder · Content Strategy'), "First profile labels Nikhil Dintakurthi as Founder");
+check(nikhilBlock.includes('role: "Founder"'), "First profile labels Nikhil Dintakurthi as Founder only");
 check(saiBlock.includes('portrait: "founder-portrait-01"'), "Second profile uses Sai Prudvi's two-hands portrait");
-check(saiBlock.includes('role: "Co-Founder & COO'), "Second profile labels Sai Prudvi as Co-Founder & COO");
+check(saiBlock.includes('role: "Co-Founder"'), "Second profile labels Sai Prudvi as Co-Founder only");
 check(about.includes('file={member.portrait}') && about.includes('alt={member.portraitAlt}'), "Founder cards bind each name to explicit portrait metadata rather than array-index guessing");
 check(css.includes(".v67-founder-avatar") && css.includes("border-radius: 50%"), "Founder portraits remain circular");
 check(css.includes(".v67-team-hero-photo img") && css.includes("object-fit: contain"), "Shared founders image remains intact without crop");
@@ -51,7 +53,7 @@ check(css.includes("@media (max-width: 760px)"), "Team section retains mobile re
 check(about.includes("About Kathanika Media & Founding Team — Hyderabad"), "About SEO title remains intact");
 
 if (failures) {
-  console.error(`\nV70 founding team verification failed with ${failures} issue(s).`);
+  console.error(`\nV74 founders-only verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV70 Founding Team verification passed.");
+console.log("\nV74 Founders Only verification passed.");

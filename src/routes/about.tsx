@@ -14,10 +14,13 @@ const EVOLUTION = [
 ] as const;
 
 
+// Client-confirmed identity map (V69):
+// founder-portrait-02 = Nikhil Dintakurthi (one hand)
+// founder-portrait-01 = Sai Prudvi (two hands)
 const FOUNDING_TEAM = [
   {
     name: "Nikhil Dintakurthi",
-    role: "Founder · Content Strategy, Partnerships & Business Development",
+    role: "Founder",
     bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
     note: "100+ content shows · Audience-first IP building · Telugu & English media",
     portrait: "founder-portrait-02",
@@ -27,7 +30,7 @@ const FOUNDING_TEAM = [
   },
   {
     name: "Sai Prudvi",
-    role: "Co-Founder & COO · Operations, Strategy & Media Business",
+    role: "Co-Founder",
     bio: "Sai Prudvi is Co-Founder and COO of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
     note: "Research-led strategy · Creator economics · Brand-owned media",
     portrait: "founder-portrait-01",
@@ -131,6 +134,8 @@ function AboutPage() {
           />
         </div>
 
+        <div className="v71-team-life"><TeamPhoto file="founding-team-02" alt="Kathanika Media team working together" width={1600} height={1066} className="v71-team-life-photo" /><div><span>Team life</span><h3>People behind the productions.</h3><p>Strategy, production and creative work happen side by side — with the team close to the creators, sets and audiences they serve.</p></div></div>
+
         <div className="v66-founder-grid v67-founder-grid">
           {FOUNDING_TEAM.map((member, index) => (
             <article key={member.name} className="v66-founder-card v67-founder-card">
@@ -150,11 +155,6 @@ function AboutPage() {
           ))}
         </div>
 
-        <div className="v66-ops-card">
-          <span>Operations & Communications</span>
-          <h3>Manikanta Kandikatla</h3>
-          <p>Manikanta works across operations and communications at Kathanika Media, supporting show communications and corporate projects and helping the studio move from ideas to reliable execution.</p>
-        </div>
       </section>
 
       <section className="v41-about-map">

@@ -35,6 +35,18 @@ function createBusinessInquiry_(raw, requestId) {
 }
 
 
+function inferPlatformFromProfileUrl_(profileUrl) {
+  const value = normalizeText_(profileUrl || '', 500).toLowerCase();
+  if (!value) return '';
+  if (value.indexOf('linkedin.com') !== -1) return 'LinkedIn';
+  if (value.indexOf('instagram.com') !== -1) return 'Instagram';
+  if (value.indexOf('youtube.com') !== -1 || value.indexOf('youtu.be') !== -1) return 'YouTube';
+  if (value.indexOf('tiktok.com') !== -1) return 'TikTok';
+  if (value.indexOf('x.com') !== -1 || value.indexOf('twitter.com') !== -1) return 'X / Twitter';
+  if (value.indexOf('facebook.com') !== -1 || value.indexOf('fb.com') !== -1) return 'Facebook';
+  return 'Website / Portfolio';
+}
+
 function createCareerInquiry_(raw, requestId) {
   if (normalizeText_(raw.website || '', 200)) return ignoredBotResponse_();
 
@@ -43,10 +55,10 @@ function createCareerInquiry_(raw, requestId) {
     email: normalizeEmail_(raw.email),
     phone: normalizeText_(raw.phone, 40),
     city: normalizeText_(raw.city, 100),
-    role: normalizeText_(raw.role || raw.category || raw.designation, 140),
-    experienceLevel: normalizeText_(raw.experienceLevel || raw.audienceStage, 120),
-    portfolioUrl: normalizeText_(raw.portfolioUrl || raw.profileUrl || raw.company, 500),
-    availability: normalizeText_(raw.availability, 120),
+    category: normalizeText_(raw.category || raw.designation, 120),
+    platform: normalizeText_(raw.platform, 120) || inferPlatformFromProfileUrl_(raw.profileUrl || raw.company),
+    profileUrl: normalizeText_(raw.profileUrl || raw.company, 500),
+    audienceStage: normalizeText_(raw.audienceStage, 160),
     message: normalizeText_(raw.message, 3000),
     sourcePage: normalizeText_(raw.sourcePage || '/creators', 120),
   };
@@ -55,61 +67,22 @@ function createCareerInquiry_(raw, requestId) {
   require_(isEmail_(data.email), 'A valid email is required.');
   require_(isPhone_(data.phone), 'A valid phone number is required.');
   require_(data.city.length >= 2, 'City is required.');
-  require_(data.role.length >= 2, 'Role / area of interest is required.');
-  require_(data.experienceLevel.length >= 2, 'Experience level is required.');
-  if (data.portfolioUrl) require_(isHttpUrl_(data.portfolioUrl), 'Portfolio / profile URL must be a valid web address.');
-  require_(data.availability.length >= 2, 'Availability is required.');
-  require_(data.message.length >= 20, 'Please add a little more detail about your work and interest in Kathanika.');
+  require_(data.category.length >= 2, 'Creator category is required.');
+  require_(data.platform.length >= 2, 'Primary platform is required.');
+  require_(isHttpUrl_(data.profileUrl), 'A valid channel / profile URL is required.');
+  require_(data.audienceStage.length >= 2, 'Audience stage is required.');
+  require_(data.message.length >= 10, 'Please add a little more detail about what you want to build.');
 
   enforceRateLimit_(data.email + '|' + data.phone, 'career');
-  const hash = hash_(['career-v70', data.email, data.phone, data.role, data.message].join('|').toLowerCase());
+  const hash = hash_(['career', data.email, data.phone, data.profileUrl, data.message].join('|').toLowerCase());
   const id = 'CI-' + Utilities.getUuid().split('-')[0].toUpperCase();
   const now = new Date();
   appendInquiryLocked_(KATHANIKA.SHEETS.CAREER, 14, hash, [
-    id, now, safeCell_(data.name), safeCell_(data.email), safeCell_(data.phone), safeCell_(data.city), safeCell_(data.role), safeCell_(data.experienceLevel),
-    safeCell_(data.portfolioUrl), safeCell_(data.availability), safeCell_(data.message), safeCell_(data.sourcePage), KATHANIKA.DEFAULT_STATUS, hash,
+    id, now, safeCell_(data.name), safeCell_(data.email), safeCell_(data.phone), safeCell_(data.city), safeCell_(data.category), safeCell_(data.platform),
+    safeCell_(data.profileUrl), safeCell_(data.audienceStage), safeCell_(data.message), safeCell_(data.sourcePage), KATHANIKA.DEFAULT_STATUS, hash,
   ]);
   notifyOwner_('New Kathanika Career Inquiry — ' + data.name,
-    'Application ID: ' + id + '\nName: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + data.phone + '\nCity: ' + data.city + '\nRole: ' + data.role + '\nExperience: ' + data.experienceLevel + '\nAvailability: ' + data.availability + '\nPortfolio: ' + (data.portfolioUrl || 'Not provided') + '\n\n' + data.message);
-  return { id: id, timestamp: now.toISOString() };
-}
-
-function createCourseInquiry_(raw, requestId) {
-  if (normalizeText_(raw.website || '', 200)) return ignoredBotResponse_();
-
-  const data = {
-    name: normalizeText_(raw.name, 100),
-    email: normalizeEmail_(raw.email),
-    phone: normalizeText_(raw.phone, 40),
-    city: normalizeText_(raw.city, 100),
-    courseName: normalizeText_(raw.courseName || raw.service, 180),
-    experienceLevel: normalizeText_(raw.experienceLevel || raw.designation, 120),
-    preferredSoftware: normalizeText_(raw.preferredSoftware, 120),
-    preferredContact: normalizeText_(raw.preferredContact, 80),
-    message: normalizeText_(raw.message, 3000),
-    sourcePage: normalizeText_(raw.sourcePage || '/courses', 120),
-  };
-
-  require_(data.name.length >= 2, 'Name is required.');
-  require_(isEmail_(data.email), 'A valid email is required.');
-  require_(isPhone_(data.phone), 'A valid phone number is required.');
-  require_(data.city.length >= 2, 'City is required.');
-  require_(data.courseName.length >= 2, 'Course is required.');
-  require_(data.experienceLevel.length >= 2, 'Current editing level is required.');
-  require_(data.preferredSoftware.length >= 2, 'Preferred software is required.');
-  require_(data.preferredContact.length >= 2, 'Preferred contact method is required.');
-  require_(data.message.length >= 10, 'Please add your course question.');
-
-  enforceRateLimit_(data.email + '|' + data.phone, 'course');
-  const hash = hash_(['course', data.email, data.phone, data.courseName, data.message].join('|').toLowerCase());
-  const id = 'COI-' + Utilities.getUuid().split('-')[0].toUpperCase();
-  const now = new Date();
-  appendInquiryLocked_(KATHANIKA.SHEETS.COURSE, 14, hash, [
-    id, now, safeCell_(data.name), safeCell_(data.email), safeCell_(data.phone), safeCell_(data.city), safeCell_(data.courseName), safeCell_(data.experienceLevel),
-    safeCell_(data.preferredSoftware), safeCell_(data.preferredContact), safeCell_(data.message), safeCell_(data.sourcePage), KATHANIKA.DEFAULT_STATUS, hash,
-  ]);
-  notifyOwner_('New Kathanika Course Inquiry — ' + data.name,
-    'Inquiry ID: ' + id + '\nName: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + data.phone + '\nCity: ' + data.city + '\nCourse: ' + data.courseName + '\nEditing level: ' + data.experienceLevel + '\nPreferred software: ' + data.preferredSoftware + '\nPreferred contact: ' + data.preferredContact + '\n\n' + data.message);
+    'Application ID: ' + id + '\nName: ' + data.name + '\nEmail: ' + data.email + '\nPhone: ' + data.phone + '\nCategory: ' + data.category + '\nPlatform: ' + data.platform + '\nProfile: ' + data.profileUrl + '\nAudience: ' + data.audienceStage + '\n\n' + data.message);
   return { id: id, timestamp: now.toISOString() };
 }
 

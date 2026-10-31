@@ -1,0 +1,12 @@
+Kathanika Media V65 — Career Inquiry Fix
+
+Issue: Career Inquiry frontend omitted `platform`, while Apps Script required it, causing "Primary platform is required."
+
+Fixes:
+- Frontend infers platform from Portfolio / Instagram / LinkedIn URL and submits `platform`.
+- Profile URL is required in the browser because production backend requires a valid HTTP URL.
+- Apps Script now infers platform server-side when older/cached clients omit it.
+- Both modular and bundled Apps Script sources updated.
+- Career sheet 14-column contract preserved.
+- Existing production Apps Script endpoint preserved.
+- GTM, GA4, SEO, performance, media, design and routes preserved.

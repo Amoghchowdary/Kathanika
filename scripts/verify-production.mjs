@@ -15,7 +15,7 @@ const assert = (condition, message) => {
 const required = [
   "package.json", "vite.config.ts", "src/styles.css", "src/lib/seo.ts",
   "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
-  "src/routes/services.tsx", "src/routes/courses.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
+  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
   "src/components/site/HeroOrbit.tsx", "src/components/site/EpisodeLibrary.tsx",
   "src/components/site/InquiryModal.tsx", "src/components/site/SiteHeader.tsx",
   "src/components/site/SiteFooter.tsx", "src/components/site/SiteLayout.tsx",
@@ -25,14 +25,14 @@ const required = [
   ".env.github-pages", ".github/workflows/deploy-pages.yml",
   "scripts/verify-pages-build.mjs", "scripts/git-preflight.ps1", "scripts/verify-responsive.mjs",
   "scripts/generate-seo.mjs", "scripts/verify-seo.mjs", "scripts/verify-client-media.mjs", "scripts/verify-performance.mjs",
-  "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-courses.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
+  "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V70 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V74 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v70-inquiries", "Package name is V70 courses build");
-assert(pkg.version === "70.0.0", "Package version is 70.0.0");
+assert(pkg.name === "kathanika-media-v74-release-integrity-fix", "Package name is V74 founder-identity-correction build");
+assert(pkg.version === "74.0.0", "Package version is 74.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -111,7 +111,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V70 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V74 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

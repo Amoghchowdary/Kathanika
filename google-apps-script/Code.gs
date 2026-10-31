@@ -41,10 +41,6 @@ function doPost(e) {
       return jsonOutput_({ ok: true, data: createCareerInquiry_(payload, requestId), requestId });
     }
 
-    if (action === 'courseInquiry') {
-      return jsonOutput_({ ok: true, data: createCourseInquiry_(payload, requestId), requestId });
-    }
-
     return jsonOutput_({ ok: false, error: 'Unknown action.', requestId });
   } catch (error) {
     logError_(requestId, action, error);

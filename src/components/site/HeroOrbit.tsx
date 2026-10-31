@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 import { ClientProductionImage } from "./ClientProductionImage";
 
@@ -56,6 +57,7 @@ export function HeroOrbit() {
   const [active, setActive] = useState(0);
   const [initialHold, setInitialHold] = useState(true);
   const [desktopSecondaryMedia, setDesktopSecondaryMedia] = useState(false);
+  const [paused, setPaused] = useState(false);
   const reducedMotion = useMemo(
     () => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches,
     [],
@@ -69,7 +71,7 @@ export function HeroOrbit() {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || paused) return;
 
     let interval: number | undefined;
     const firstTransition = window.setTimeout(() => {
@@ -84,7 +86,7 @@ export function HeroOrbit() {
       window.clearTimeout(firstTransition);
       if (interval !== undefined) window.clearInterval(interval);
     };
-  }, [reducedMotion]);
+  }, [reducedMotion, paused]);
 
   return (
     <section className="v41-hero v48-hero" aria-label="Kathanika Media highlights">
@@ -130,6 +132,18 @@ export function HeroOrbit() {
             </div>
           </article>
         ))}
+      </div>
+
+
+      <div className="v71-hero-controls" aria-label="Homepage slide controls">
+        <button type="button" onClick={() => { setInitialHold(false); setActive((active - 1 + STORIES.length) % STORIES.length); }} aria-label="Previous slide"><ChevronLeft /></button>
+        <div className="v71-hero-dots" role="tablist" aria-label="Choose slide">
+          {STORIES.map((story, index) => (
+            <button key={story.number} type="button" className={index === active ? "is-active" : ""} onClick={() => { setInitialHold(false); setActive(index); }} aria-label={`Go to slide ${index + 1}`} aria-selected={index === active}>{story.number}</button>
+          ))}
+        </div>
+        <button type="button" onClick={() => setPaused((value) => !value)} aria-label={paused ? "Resume slides" : "Pause slides"}>{paused ? <Play /> : <Pause />}</button>
+        <button type="button" onClick={() => { setInitialHold(false); setActive((active + 1) % STORIES.length); }} aria-label="Next slide"><ChevronRight /></button>
       </div>
 
       <div className="v41-hero-progress" style={{ "--hero-progress-duration": `${initialHold ? FIRST_SLIDE_MS : SLIDE_MS}ms` } as CSSProperties} role="group" aria-label={`Slide ${active + 1} of ${STORIES.length}`}>

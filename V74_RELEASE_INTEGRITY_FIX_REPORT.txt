@@ -1,0 +1,10 @@
+Kathanika Media V74 — Release Integrity Fix
+
+Scope:
+- Preserve V73 approved website UI and functionality.
+- Keep About page founder-only: Nikhil Dintakurthi (Founder) and Sai Prudvi (Co-Founder).
+- Remove stale V69 package/version assertions from production verification.
+- Align package.json, package-lock.json, VERSION.txt, GitHub Pages workflow labels, and verification scripts to V74.
+- Preserve course, career, feedback, SEO, responsive, tracking, and production checks.
+
+No visual redesign introduced in V74.

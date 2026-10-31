@@ -1,14 +1,11 @@
-# Kathanika Media V70 — Career + Course Inquiries
+# Kathanika Media V69 — Founder Identity Correction
 
-V70 carries forward the approved V69 Courses build and adds production-native inquiry flows.
+V69 preserves the complete V68/V67/V65 production website and changes only the founder identity/order mapping confirmed by the client.
 
-- Courses navigation and native Video Editing course page retained.
-- Brochure/poster presentation remains removed from the website and deployable assets.
-- Career Inquiry is now a visible, recruitment-style form on the Careers page.
-- Career Inquiry submits to a dedicated V70 Apps Script / Google Sheets table.
-- Course Inquiry is now a visible form on the Courses page.
-- Course Inquiry submits through its own backend action to a dedicated Google Sheets table.
-- Existing Business Inquiry, SEO, responsive behavior, analytics, team content and production media are preserved.
+- First founder card: **Nikhil Dintakurthi — Founder**, using the **one-hand portrait** (`founder-portrait-02`).
+- Second founder card: **Sai Prudvi — Co-Founder & COO**, using the **two-hands portrait** (`founder-portrait-01`).
+- The large founders-together image remains intact and unchanged.
+- The extra founders gallery remains removed.
+- All biographies, Manikanta Kandikatla profile, Career Inquiry fix, backend, analytics, SEO, performance, media, custom domain and deployment safeguards are retained.
 
-Frontend version: 70.0.0
-Backend API version: 31.0.0
+Run `npm install --include=dev`, `npm run typecheck`, `npm run verify:team`, `npm run verify`, `npm run preflight:pages`, and `npm run git:preflight` before deployment.

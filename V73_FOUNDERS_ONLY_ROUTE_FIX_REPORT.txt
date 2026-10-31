@@ -1,0 +1,25 @@
+KATHANIKA MEDIA V73 — FOUNDERS ONLY + ROUTE FIX
+
+Requested About-page refinement
+- Removed the former operations-person profile from About.
+- About founder profiles now contain exactly two people: Nikhil Dintakurthi and Sai Prudvi.
+- Role labels simplified to "Founder" and "Co-Founder" only.
+- Removed Operations / COO descriptors from founder titles.
+- Preserved founder imagery, biographies, approved layout and other V71/V72 refinements.
+
+Engineering corrections
+- Fixed FaqAssistant TypeScript unsafe index access by using charAt(0).
+- Added /courses to the generated TanStack route tree.
+- Added npm script verify:courses.
+- Added scripts/verify-courses.mjs.
+- Added verify:courses into the aggregate npm run verify workflow.
+- Updated package identity/version to V73.
+
+Verification completed in packaging environment
+- node scripts/verify-team.mjs: PASS
+- node scripts/verify-courses.mjs: PASS
+- node scripts/verify-career-inquiry.mjs: PASS
+- node scripts/verify-client-feedback.mjs: PASS
+
+Environment note
+- Full npm dependency installation timed out in the packaging runtime, so TypeScript could not be rerun there because vite/client was unavailable. On the user's Windows machine, run npm install --include=dev before npm run typecheck.

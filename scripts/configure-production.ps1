@@ -33,7 +33,7 @@ $pagesEnv = "VITE_KATHANIKA_API_URL=$ApiUrl`nVITE_SITE_BASE=$pagesBase`n"
 [System.IO.File]::WriteAllText((Join-Path $ProjectRoot ".env.github-pages"), $pagesEnv, $utf8NoBom)
 
 Write-Host ""
-Write-Host "Kathanika V31 environment configured." -ForegroundColor Green
+Write-Host "Kathanika V30 environment configured." -ForegroundColor Green
 Write-Host "Root/custom-domain base: /"
 Write-Host "GitHub Pages base: $pagesBase"
 Write-Host ""

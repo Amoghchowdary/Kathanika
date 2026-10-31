@@ -1,18 +1,75 @@
-# Kathanika V31 API Reference
+# Kathanika V30 API Reference
 
-Frontend companion: Kathanika Media V70.
+Base URL: the deployed Google Apps Script Web App `/exec` URL.
 
-## GET
+## GET `?action=health`
 
-- `?action=health` — API status/version.
-- `?action=content` — public website content.
+Returns service version and server timestamp.
 
-## POST
+## GET `?action=content`
 
-Send JSON as `text/plain;charset=UTF-8` so the public Apps Script web app remains compatible with browser CORS simple-request behavior.
+Returns public dynamic data used by the website:
 
-- `businessInquiry` — existing business inquiry flow.
-- `careerInquiry` — V70 recruitment inquiry flow, stored in `Career_Inquiries_V70`.
-- `courseInquiry` — V70 course lead flow, stored in `Course_Inquiries`.
+- `settings`
+- `social`
+- `services`
+- `topTenChannels`
 
-Each endpoint returns the standard `{ ok, data, requestId }` envelope or `{ ok: false, error, requestId }`.
+The frontend falls back to bundled defaults if this request fails.
+
+## POST business inquiry
+
+Use `Content-Type: text/plain;charset=UTF-8` with JSON body:
+
+```json
+{
+  "action": "businessInquiry",
+  "payload": {
+    "name": "...",
+    "email": "...",
+    "phone": "...",
+    "company": "...",
+    "designation": "...",
+    "city": "...",
+    "service": "...",
+    "message": "...",
+    "sourcePage": "/contact",
+    "website": ""
+  }
+}
+```
+
+## POST career inquiry
+
+```json
+{
+  "action": "careerInquiry",
+  "payload": {
+    "name": "...",
+    "email": "...",
+    "phone": "...",
+    "city": "...",
+    "category": "...",
+    "platform": "...",
+    "profileUrl": "https://...",
+    "audienceStage": "...",
+    "message": "...",
+    "sourcePage": "/creators",
+    "website": ""
+  }
+}
+```
+
+## Response envelope
+
+Success:
+
+```json
+{ "ok": true, "data": {}, "requestId": "..." }
+```
+
+Validation/backend error:
+
+```json
+{ "ok": false, "error": "...", "requestId": "..." }
+```

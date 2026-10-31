@@ -1,4 +1,4 @@
-# Kathanika Apps Script API — V31 Self-Setup
+# Kathanika Apps Script API — V30 Self-Setup
 
 This backend is designed for a standalone Google Apps Script project. No spreadsheet or Excel upload is required.
 
@@ -6,7 +6,7 @@ This backend is designed for a standalone Google Apps Script project. No spreads
 
 For a simple deployment, use the generated single file:
 
-`../apps-script-deploy/Kathanika_V31_Production_Backend.gs`
+`../apps-script-deploy/Kathanika_V30_Production_Backend.gs`
 
 Paste it into `Code.gs`.
 
@@ -22,7 +22,7 @@ setupDatabase()
 
 Authorize the Google account that should own the production database.
 
-The function creates `Kathanika_Website_DB`, creates all production tabs, including separate V70 Career and Course inquiry tables, applies schema/validation/formatting, seeds the approved site settings, 10 services, 9 channels and 90 videos, and stores the generated Spreadsheet ID in Script Properties.
+The function creates `Kathanika_Website_DB`, creates all eight tabs, applies schema/validation/formatting, seeds the approved site settings, 10 services, 9 channels and 90 videos, and stores the generated Spreadsheet ID in Script Properties.
 
 Running it again is safe: the configured database is reused.
 
@@ -56,7 +56,6 @@ getDatabaseStatus()
 - `GET ?action=content`
 - `POST { action: "businessInquiry", payload: {...} }`
 - `POST { action: "careerInquiry", payload: {...} }`
-- `POST { action: "courseInquiry", payload: {...} }`
 
 ## Content refresh
 

@@ -1,14 +1,13 @@
 const KATHANIKA = Object.freeze({
-  API_VERSION: '31.0.0',
+  API_VERSION: '30.0.0',
   DATABASE_NAME: 'Kathanika_Website_DB',
   DEFAULT_NOTIFICATION_EMAIL: 'kathanikamedia@gmail.com',
-  CACHE_KEY: 'kathanika_public_content_v31',
+  CACHE_KEY: 'kathanika_public_content_v30',
   CACHE_SECONDS: 300,
   DEFAULT_STATUS: 'New',
   SHEETS: Object.freeze({
     BUSINESS: 'Business_Inquiries',
-    CAREER: 'Career_Inquiries_V70',
-    COURSE: 'Course_Inquiries',
+    CAREER: 'Career_Inquiries',
     CHANNELS: 'Channels',
     VIDEOS: 'Video_Content',
     SETTINGS: 'Site_Settings',

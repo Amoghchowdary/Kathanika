@@ -3,13 +3,9 @@ const SHEET_HEADERS = Object.freeze({
     'Inquiry_ID', 'Created_At', 'Name', 'Work_Email', 'Phone', 'Company', 'Designation',
     'City', 'Service', 'Message', 'Source_Page', 'Status', 'Request_Hash'
   ],
-  Career_Inquiries_V70: [
-    'Application_ID', 'Created_At', 'Name', 'Email', 'Phone', 'City', 'Role',
-    'Experience_Level', 'Portfolio_URL', 'Availability', 'Message', 'Source_Page', 'Status', 'Request_Hash'
-  ],
-  Course_Inquiries: [
-    'Inquiry_ID', 'Created_At', 'Name', 'Email', 'Phone', 'City', 'Course',
-    'Experience_Level', 'Preferred_Software', 'Preferred_Contact', 'Message', 'Source_Page', 'Status', 'Request_Hash'
+  Career_Inquiries: [
+    'Application_ID', 'Created_At', 'Creator_Name', 'Email', 'Phone', 'City', 'Creator_Category',
+    'Primary_Platform', 'Profile_URL', 'Audience_Stage', 'Message', 'Source_Page', 'Status', 'Request_Hash'
   ],
   Channels: ['Channel_ID', 'Channel_Name', 'Slug', 'Active', 'Display_Order', 'Updated_At'],
   Video_Content: ['Video_ID', 'Channel_ID', 'Rank', 'Cover_URL', 'Video_URL', 'Active', 'Display_Order', 'Updated_At'],
@@ -204,8 +200,8 @@ function verifyProductionSetup() {
     databaseName: status.databaseName,
     issues: issues,
     message: issues.length === 0
-      ? 'Kathanika V31 database verification passed.'
-      : 'Kathanika V31 database verification found ' + issues.length + ' issue(s).',
+      ? 'Kathanika V30 database verification passed.'
+      : 'Kathanika V30 database verification found ' + issues.length + ' issue(s).',
   };
 
   console.log(JSON.stringify(result, null, 2));
@@ -261,7 +257,7 @@ function applySheetUx_(sheet, name) {
   if (name === KATHANIKA.SHEETS.BUSINESS) {
     const rule = SpreadsheetApp.newDataValidation().requireValueInList(['New','Contacted','Follow-up','Qualified','Closed','Archived'], true).setAllowInvalid(false).build();
     sheet.getRange('L2:L1000').setDataValidation(rule);
-  } else if (name === KATHANIKA.SHEETS.CAREER || name === KATHANIKA.SHEETS.COURSE) {
+  } else if (name === KATHANIKA.SHEETS.CAREER) {
     const rule = SpreadsheetApp.newDataValidation().requireValueInList(['New','Contacted','Follow-up','Qualified','Closed','Archived'], true).setAllowInvalid(false).build();
     sheet.getRange('M2:M1000').setDataValidation(rule);
   } else if (name === KATHANIKA.SHEETS.CHANNELS) {
@@ -299,7 +295,7 @@ function autoSizeDatabase_(ss) {
     // Keep long-content columns usable instead of excessively wide.
     if (name === KATHANIKA.SHEETS.BUSINESS) {
       sheet.setColumnWidth(10, 360);
-    } else if (name === KATHANIKA.SHEETS.CAREER || name === KATHANIKA.SHEETS.COURSE) {
+    } else if (name === KATHANIKA.SHEETS.CAREER) {
       sheet.setColumnWidth(11, 360);
     } else if (name === KATHANIKA.SHEETS.VIDEOS) {
       sheet.setColumnWidth(4, 320);

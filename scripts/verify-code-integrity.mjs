@@ -19,16 +19,16 @@ const countFiles = (dir) => {
   return count;
 };
 
-console.log("\nKathanika Media V70 — Code + Production Integrity Verification\n");
+console.log("\nKathanika Media V74 — Code + Production Integrity Verification\n");
 
 const pkg = JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v70-inquiries", "V70 package identity is correct");
-check(pkg.version === "70.0.0", "V70 package version is correct");
-check(read("VERSION.txt").trim() === "70.0.0", "VERSION.txt matches package version");
+check(pkg.name === "kathanika-media-v74-release-integrity-fix", "V74 package identity is correct");
+check(pkg.version === "74.0.0", "V74 package version is correct");
+check(read("VERSION.txt").trim() === "74.0.0", "VERSION.txt matches package version");
 
 const criticalSource = [
   "src/routes/__root.tsx", "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
-  "src/routes/services.tsx", "src/routes/courses.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
+  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
   "src/components/site/HeroOrbit.tsx", "src/components/site/SiteHeader.tsx", "src/components/site/SiteFooter.tsx",
   "src/components/site/InquiryModal.tsx", "src/components/site/DeferredEpisodeLibrary.tsx",
   "src/components/site/EpisodeLibrary.tsx", "src/components/site/ProductionMediaShowcase.tsx",
@@ -41,7 +41,7 @@ const backend = [
   "google-apps-script/Code.gs", "google-apps-script/Config.gs", "google-apps-script/Content.gs",
   "google-apps-script/Database.gs", "google-apps-script/Inquiries.gs", "google-apps-script/Seed.gs",
   "google-apps-script/SeedData.gs", "google-apps-script/Utils.gs", "google-apps-script/appsscript.json",
-  "apps-script-deploy/Kathanika_V31_Production_Backend.gs", "apps-script-deploy/appsscript.json"
+  "apps-script-deploy/Kathanika_V30_Production_Backend.gs", "apps-script-deploy/appsscript.json"
 ];
 for (const f of backend) check(exists(f), `Backend source retained: ${f}`);
 
@@ -64,9 +64,8 @@ for (const [name, txt] of [["GitHub Pages", envPages], ["production", envProd]])
 }
 
 const workflow = read(".github/workflows/deploy-pages.yml");
-check(workflow.includes("name: Deploy Kathanika V70"), "GitHub Pages workflow identifies V70");
+check(workflow.includes("name: Deploy Kathanika V74"), "GitHub Pages workflow identifies V74");
 check(Boolean(pkg.scripts?.["verify:team"]), "Production script configured: verify:team");
-check(Boolean(pkg.scripts?.["verify:courses"]), "Production script configured: verify:courses");
 check(workflow.includes("npm install --no-audit --no-fund"), "GitHub Actions installs production dependencies");
 check(workflow.includes("npm run preflight:pages"), "GitHub Actions runs the full production preflight");
 check(workflow.includes("path: .output/public"), "GitHub Pages uploads the verified static artifact");
@@ -84,7 +83,7 @@ check(exists("public/sitemap.xml") && exists("public/robots.txt") && exists("pub
 check(!exists(".lovable"), "No Lovable production artifact is present");
 
 if (failures) {
-  console.error(`\nV70 integrity verification failed with ${failures} issue(s).`);
+  console.error(`\nV74 integrity verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV70 code + production integrity verification passed.");
+console.log("\nV74 code + production integrity verification passed.");

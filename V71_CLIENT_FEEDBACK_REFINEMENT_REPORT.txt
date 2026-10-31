@@ -1,0 +1,18 @@
+Kathanika Media V71 — Client Feedback Refinement
+
+Implemented:
+- Visible page/section numbering contrast correction.
+- Homepage slider previous/next controls, numbered controls and pause/resume.
+- Active navigation state on desktop and mobile.
+- Lightweight on-site FAQ assistant with human handoff links.
+- Work section heading and case-context copy without inventing unverified per-client metrics.
+- Extra team-life imagery using supplied production/team assets.
+- Complete Courses page using approved fee/duration/software information; unprovided delivery/timing/language/instructor/project details are explicitly marked to be announced/confirmed.
+- Course inquiry connected through the already-working Business Inquiry backend path for compatibility.
+- Privacy and Terms pages expanded from empty shells into substantive policies.
+- Courses navigation/footer/sitemap inclusion.
+- Existing approved homepage visual system and core service/work design preserved.
+
+External operational items not faked in code:
+- Instagram auto-reply automation requires Meta/Instagram credentials and account permissions.
+- Regular LinkedIn/Facebook/X publishing requires an approved social publishing workflow/account access.
