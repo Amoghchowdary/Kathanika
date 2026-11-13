@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v76-polished-human-finish",
-  "version": "76.0.0",
+  "name": "kathanika-media-v77-responsive-refinement",
+  "version": "77.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -34,8 +34,9 @@
     "verify:career": "node scripts/verify-career-inquiry.mjs",
     "verify:team": "node scripts/verify-team.mjs",
     "verify:courses": "node scripts/verify-courses.mjs",
-    "verify:nav-seo": "node scripts/verify-nav-seo-v76.mjs",
-    "verify:polish": "node scripts/verify-v76-polish.mjs"
+    "verify:nav-seo": "node scripts/verify-nav-seo-v77.mjs",
+    "verify:polish": "node scripts/verify-v77-polish.mjs",
+    "verify:v77": "node scripts/verify-v77-refinement.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

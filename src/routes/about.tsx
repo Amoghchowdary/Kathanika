@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Film, Megaphone, Share2, UsersRound } from "lucide-react";
 
-import { ClientProductionImage } from "@/components/site/ClientProductionImage";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { withBasePath } from "@/lib/base-path";
 import { seoHead } from "@/lib/seo";
@@ -14,29 +13,18 @@ const EVOLUTION = [
 ] as const;
 
 
-// Client-confirmed identity map (V69):
-// founder-portrait-02 = Nikhil Dintakurthi (one hand)
-// founder-portrait-01 = Sai Prudvi (two hands)
 const FOUNDING_TEAM = [
   {
     name: "Nikhil Dintakurthi",
     role: "Founder",
     bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
     note: "100+ content shows · Audience-first IP building · Telugu & English media",
-    portrait: "founder-portrait-02",
-    portraitWidth: 1200,
-    portraitHeight: 800,
-    portraitAlt: "Nikhil Dintakurthi, Founder of Kathanika Media",
   },
   {
     name: "Sai Prudvi",
     role: "Co-Founder",
-    bio: "Sai Prudvi is Co-Founder and COO of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
+    bio: "Sai Prudvi is Co-Founder of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
     note: "Research-led strategy · Creator economics · Brand-owned media",
-    portrait: "founder-portrait-01",
-    portraitWidth: 933,
-    portraitHeight: 1400,
-    portraitAlt: "Sai Prudvi, Co-Founder and COO of Kathanika Media",
   },
 ] as const;
 
@@ -76,45 +64,30 @@ function AboutPage() {
         intro="Kathanika is building for the shift from centralised media distribution to independent, audience-owned content IPs."
       />
 
-      <section className="v50-about-visual" aria-labelledby="v50-about-visual-title">
-        <div className="v50-about-visual-copy">
-          <span>Inside Kathanika</span>
-          <h2 id="v50-about-visual-title">A media company built close to the work.</h2>
-          <p>Ideas are shaped with creators, tested with real audiences and strengthened through production, distribution and iteration.</p>
+      <section className="v77-about-opening" aria-labelledby="v77-about-opening-title">
+        <div className="v77-about-opening-copy">
+          <span>Founders · Kathanika Media</span>
+          <h2 id="v77-about-opening-title">Built together, close to the work.</h2>
+          <p>Kathanika began with a shared belief: meaningful media is built by staying close to the audience, the creator and the craft. The founders work across strategy, production and distribution as one operating team.</p>
         </div>
-        <div className="v50-about-media-collage">
-          <figure className="is-main">
-            <ClientProductionImage
-              file="IMG_20260722_204442.webp"
-              alt="Kathanika production team filming a seated conversation"
-              sizes="(max-width: 900px) 94vw, 54vw"
-            />
-          </figure>
-          <figure>
-            <ClientProductionImage
-              file="IMG_5530.webp"
-              alt="Guests in conversation on a Kathanika production set"
-              sizes="(max-width: 900px) 46vw, 26vw"
-            />
-          </figure>
-          <figure>
-            <ClientProductionImage
-              file="IMG_4711.webp"
-              alt="Cameras and crew on a Kathanika production"
-              sizes="(max-width: 900px) 46vw, 26vw"
-            />
-          </figure>
-        </div>
-        <div className="v50-about-pillars" role="group" aria-label="Kathanika media pillars">
-          {PILLARS.map(({ icon: Icon, title, copy }, index) => (
-            <article key={title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <Icon aria-hidden="true" />
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </article>
-          ))}
-        </div>
+        <TeamPhoto
+          file="founding-team-01"
+          alt="Kathanika Media founders Nikhil Dintakurthi and Sai Prudvi together"
+          width={1600}
+          height={1066}
+          className="v77-about-founders-opening"
+        />
+      </section>
+
+      <section className="v77-about-pillars" aria-label="How Kathanika builds media">
+        {PILLARS.map(({ icon: Icon, title, copy }, index) => (
+          <article key={title}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <Icon aria-hidden="true" />
+            <h3>{title}</h3>
+            <p>{copy}</p>
+          </article>
+        ))}
       </section>
 
       <section className="v66-team" aria-labelledby="v66-team-title">
@@ -124,55 +97,9 @@ function AboutPage() {
           <p className="v41-section-note">Kathanika’s founding team combines content craft, research, business thinking and operating discipline to build media properties designed to last.</p>
         </div>
 
-        <div className="v67-team-hero" aria-label="Kathanika Media founders together">
-          <TeamPhoto
-            file="founding-team-01"
-            alt="Kathanika Media founders together"
-            width={1600}
-            height={1066}
-            className="v67-team-hero-photo"
-          />
-        </div>
-
-        <div className="v71-team-life"><TeamPhoto file="founding-team-02" alt="Kathanika Media team working together" width={1600} height={1066} className="v71-team-life-photo" /><div><span>Team life</span><h3>People behind the productions.</h3><p>Strategy, production and creative work happen side by side — with the team close to the creators, sets and audiences they serve.</p></div></div>
-
-        <div className="v76-about-story-grid" aria-label="Kathanika Media production life">
-          <figure className="is-tall">
-            <ClientProductionImage file="IMG_5584.webp" alt="A behind-the-scenes moment from a Kathanika Media production" sizes="(max-width: 760px) 92vw, 31vw" />
-            <figcaption>Behind the scenes · Hyderabad</figcaption>
-          </figure>
-          <figure>
-            <ClientProductionImage file="IMG_5444.webp" alt="Kathanika Media production environment with creators and crew" sizes="(max-width: 760px) 92vw, 31vw" />
-            <figcaption>Creators, crew, conversation</figcaption>
-          </figure>
-          <figure>
-            <ClientProductionImage file="IMG_4809.webp" alt="Kathanika Media team working on a production set" sizes="(max-width: 760px) 92vw, 31vw" />
-            <figcaption>Close to the work</figcaption>
-          </figure>
-          <figure>
-            <ClientProductionImage file="IMG_5144.webp" alt="Camera-led content production at Kathanika Media" sizes="(max-width: 760px) 92vw, 31vw" />
-            <figcaption>Production with intent</figcaption>
-          </figure>
-          <figure className="is-wide">
-            <ClientProductionImage file="IMG_5719.webp" alt="A Kathanika Media production session in progress" sizes="(max-width: 760px) 92vw, 62vw" />
-            <figcaption>Stories built in the room, not in a template</figcaption>
-          </figure>
-          <figure>
-            <ClientProductionImage file="IMG_20260704_114854.webp" alt="Kathanika Media production detail" sizes="(max-width: 760px) 92vw, 31vw" />
-            <figcaption>Details matter</figcaption>
-          </figure>
-        </div>
-
         <div className="v66-founder-grid v67-founder-grid">
           {FOUNDING_TEAM.map((member, index) => (
             <article key={member.name} className="v66-founder-card v67-founder-card">
-              <TeamPhoto
-                file={member.portrait}
-                alt={member.portraitAlt}
-                width={member.portraitWidth}
-                height={member.portraitHeight}
-                className="v67-founder-avatar"
-              />
               <div className="v66-founder-index">{String(index + 1).padStart(2, "0")}</div>
               <div className="v66-founder-role">{member.role}</div>
               <h3>{member.name}</h3>

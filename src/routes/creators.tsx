@@ -10,6 +10,16 @@ import { seoHead } from "@/lib/seo";
 const title = "Career Inquiry — Kathanika Media";
 const description = "Come build what people will watch next.";
 
+const CAREER_ROLES = [
+  { title: "Creators", copy: "Bring an original point of view, a format worth repeating, and the discipline to build an audience over time." },
+  { title: "Writers", copy: "Shape ideas into scripts, narratives, hooks and episode structures that sound human and hold attention." },
+  { title: "Editors", copy: "Turn raw footage into precise stories across long-form, short-form and social cuts with rhythm, clarity and taste." },
+  { title: "Researchers", copy: "Find the facts, context, references and questions that make conversations sharper and content more trustworthy." },
+  { title: "Designers", copy: "Build visual systems, thumbnails, identities and campaign assets that make each media property recognisable." },
+  { title: "Producers", copy: "Own the details behind a shoot or show: planning, coordination, guests, schedules, set flow and delivery." },
+  { title: "Strategists", copy: "Connect audience insight, positioning, distribution and commercial thinking into a practical growth plan." },
+] as const;
+
 function inferPlatformFromProfileUrl(profileUrl: string): string {
   const value = profileUrl.trim();
   if (!value) return "Website / Portfolio";
@@ -45,7 +55,16 @@ function CareerInquiryPage() {
 
       <section className="v41-inquiry-intro">
         <div className="v41-inquiry-tags">
-          {["Creators", "Writers", "Editors", "Researchers", "Designers", "Producers", "Strategists"].map((role) => <span key={role}>{role}</span>)}
+          {CAREER_ROLES.map((role) => <span key={role.title}>{role.title}</span>)}
+        </div>
+        <div className="v77-career-role-grid" aria-label="Career paths at Kathanika Media">
+          {CAREER_ROLES.map((role, index) => (
+            <article key={role.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{role.title}</h3>
+              <p>{role.copy}</p>
+            </article>
+          ))}
         </div>
         <div className="v41-inquiry-closed-card">
           <span>Career form</span>

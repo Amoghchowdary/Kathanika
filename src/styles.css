@@ -3381,3 +3381,221 @@ html{scroll-behavior:smooth}body{text-rendering:optimizeLegibility}::selection{b
 @media(max-width:900px){.v76-about-story-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:minmax(190px,44vw)}.v76-about-story-grid figure.is-tall{grid-row:span 2}.v76-about-story-grid figure.is-wide{grid-column:span 2}}
 @media(max-width:640px){.v76-about-story-grid{grid-template-columns:1fr;grid-auto-rows:auto;gap:10px}.v76-about-story-grid figure,.v76-about-story-grid figure.is-tall,.v76-about-story-grid figure.is-wide{grid-column:1;grid-row:auto;min-height:240px;aspect-ratio:4/3}.v76-about-story-grid figure.is-tall{aspect-ratio:3/4}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* =========================================================
+   V77 — CLIENT REFINEMENT / RESPONSIVE REPRESENTATION
+   ========================================================= */
+
+/* Ask Kathanika: make the assistant discoverable without becoming noisy. */
+.v71-faq-assistant {
+  right: clamp(14px, 2vw, 28px);
+  bottom: clamp(14px, 2vw, 28px);
+}
+.v71-faq-launch {
+  min-height: 56px;
+  padding: 0 18px;
+  gap: 11px;
+  border: 1px solid color-mix(in srgb, var(--accent) 78%, #fff 22%);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--card-text);
+  box-shadow: 0 14px 38px rgba(31, 17, 8, .18);
+  transition: transform .24s var(--v76-ease), box-shadow .24s ease, background .24s ease;
+}
+.v71-faq-launch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 46px rgba(31, 17, 8, .24);
+}
+.v71-faq-launch > span {
+  display: grid;
+  gap: 1px;
+  text-align: left;
+  line-height: 1.05;
+}
+.v71-faq-launch > span strong { font-size: 13px; font-weight: 650; }
+.v71-faq-launch > span small { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; opacity: .62; }
+.v71-faq-panel { border-radius: 18px; overflow: hidden; }
+
+/* About: one founders-together image only; everything else is editorial/text. */
+.v77-about-opening {
+  display: grid;
+  grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr);
+  gap: clamp(26px, 5vw, 78px);
+  align-items: center;
+  padding: clamp(56px, 7vw, 112px) clamp(22px, 5.5vw, 92px);
+  border-bottom: var(--stroke) solid var(--line);
+}
+.v77-about-opening-copy > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--accent);
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.v77-about-opening-copy h2 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(44px, 5.2vw, 82px);
+  line-height: .96;
+  letter-spacing: -.055em;
+  font-weight: 500;
+  text-wrap: balance;
+}
+.v77-about-opening-copy p {
+  max-width: 620px;
+  margin: 26px 0 0;
+  font-size: 14px;
+  line-height: 1.75;
+  opacity: .76;
+}
+.v77-about-founders-opening {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #24190f;
+  box-shadow: 0 24px 70px rgba(35,18,8,.14);
+}
+.v77-about-founders-opening img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+}
+.v77-about-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border-bottom: var(--stroke) solid var(--line);
+}
+.v77-about-pillars article {
+  min-height: 220px;
+  padding: clamp(24px, 3vw, 42px);
+  background: var(--bg);
+  display: grid;
+  align-content: end;
+  gap: 10px;
+}
+.v77-about-pillars article > span { color: var(--accent); font-size: 10px; letter-spacing: .12em; }
+.v77-about-pillars svg { width: 21px; height: 21px; }
+.v77-about-pillars h3 { margin: 4px 0 0; font-size: 24px; font-weight: 520; }
+.v77-about-pillars p { margin: 0; max-width: 300px; font-size: 13px; line-height: 1.65; opacity: .7; }
+.v67-founder-grid { margin-top: clamp(38px, 5vw, 70px); }
+.v67-founder-card { padding-top: clamp(28px, 4vw, 52px); }
+.v67-founder-card .v66-founder-index { margin-top: 0; }
+
+/* Courses: opaque, high-contrast surfaces instead of transparent fields. */
+.v71-course-shell {
+  gap: clamp(16px, 2vw, 28px);
+  padding: clamp(22px, 4vw, 64px);
+  background: var(--bg);
+  border-top: var(--stroke) solid var(--line);
+  border-bottom: var(--stroke) solid var(--line);
+}
+.v71-course-overview,
+.v71-course-form-wrap {
+  background: var(--card-bg);
+  color: var(--card-text);
+  border: 1px solid color-mix(in srgb, var(--card-text) 14%, transparent);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(34, 18, 8, .12);
+}
+.v71-course-price > span,
+.v71-course-facts span,
+.v71-course-form-wrap > span,
+.v71-course-learning > span { opacity: .72; }
+.v71-course-facts {
+  gap: 12px;
+  background: transparent;
+}
+.v71-course-facts article {
+  min-height: 142px;
+  background: color-mix(in srgb, var(--card-bg) 91%, var(--card-text) 9%);
+  border: 1px solid color-mix(in srgb, var(--card-text) 14%, transparent);
+  border-radius: 16px;
+}
+.v71-course-form-wrap .v41-field {
+  gap: 8px;
+  padding: 12px 14px 10px;
+  border: 1px solid color-mix(in srgb, var(--card-text) 16%, transparent);
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--card-bg) 94%, var(--card-text) 6%);
+}
+.v71-course-form-wrap .v41-field > span { opacity: .68; }
+.v71-course-form-wrap .v41-field input,
+.v71-course-form-wrap .v41-field select,
+.v71-course-form-wrap .v41-field textarea {
+  padding: 7px 0 5px;
+  border-bottom: 0;
+  background: transparent;
+  color: var(--card-text);
+}
+.v71-course-form-wrap .v41-field:focus-within {
+  border-color: color-mix(in srgb, var(--card-text) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-text) 8%, transparent);
+}
+.v71-course-form-wrap .v41-submit {
+  min-height: 52px;
+  border-radius: 999px;
+  background: var(--card-text);
+  color: var(--card-bg);
+}
+
+/* Career roles: explain the work instead of presenting unexplained chips. */
+.v77-career-role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: -36px 0 clamp(62px, 8vw, 110px);
+}
+.v77-career-role-grid article {
+  min-height: 230px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--bg) 96%, var(--fg) 4%);
+  display: grid;
+  align-content: end;
+  gap: 9px;
+}
+.v77-career-role-grid article > span { color: var(--accent); font-size: 10px; letter-spacing: .12em; }
+.v77-career-role-grid h3 { margin: 0; font-size: clamp(24px, 2vw, 34px); font-weight: 520; letter-spacing: -.035em; }
+.v77-career-role-grid p { margin: 0; font-size: 13px; line-height: 1.65; opacity: .72; }
+
+/* Three-device responsive control. */
+@media (max-width: 1180px) {
+  .v77-about-opening { grid-template-columns: .88fr 1.12fr; }
+  .v77-about-pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v77-career-role-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v71-course-shell { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .v71-faq-launch { width: auto; min-width: 56px; padding: 0 15px; }
+  .v71-faq-launch > span { display: grid; }
+  .v71-faq-launch > span small { display: none; }
+  .v77-about-opening { grid-template-columns: 1fr; padding: 46px 18px 58px; gap: 28px; }
+  .v77-about-opening-copy h2 { font-size: clamp(42px, 13vw, 62px); }
+  .v77-about-founders-opening { border-radius: 16px; }
+  .v77-about-founders-opening img { aspect-ratio: 4 / 3; }
+  .v77-about-pillars { grid-template-columns: 1fr; }
+  .v77-about-pillars article { min-height: 170px; }
+  .v77-career-role-grid { grid-template-columns: 1fr; margin-top: -18px; }
+  .v77-career-role-grid article { min-height: 180px; }
+  .v71-course-shell { padding: 18px; gap: 18px; }
+  .v71-course-overview, .v71-course-form-wrap { padding: 26px 20px; border-radius: 18px; }
+  .v71-course-facts { grid-template-columns: 1fr; margin: 34px 0; }
+}
+
+@media (max-width: 420px) {
+  .v71-faq-assistant { right: 10px; bottom: 10px; }
+  .v71-faq-launch { min-height: 50px; padding-inline: 13px; }
+  .v71-faq-launch > span strong { font-size: 12px; }
+  .v77-about-opening-copy p { font-size: 13px; }
+  .v77-career-role-grid article { padding: 21px; }
+  .v71-course-overview, .v71-course-form-wrap { padding: 22px 16px; }
+}

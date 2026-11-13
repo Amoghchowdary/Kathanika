@@ -1,0 +1,12 @@
+import fs from "node:fs";
+const read=(p)=>fs.readFileSync(p,"utf8");let failures=0;const check=(ok,label)=>{console.log(`${ok?"PASS":"FAIL"}  ${label}`);if(!ok)failures+=1;};
+console.log("\nKathanika Media V77 — Polish Exit Control\n");
+const css=read("src/styles.css"),about=read("src/routes/about.tsx"),pkg=JSON.parse(read("package.json"));
+check(pkg.version==="77.0.0","V77 version is correct");
+check(about.includes("v77-about-opening"),"About founders-first opening is present");
+check(css.includes("prefers-reduced-motion"),"Reduced-motion accessibility remains present");
+check(css.includes("content-visibility: auto")||css.includes("content-visibility:auto"),"Rendering optimization remains enabled");
+check(css.includes(".v41-header.is-scrolled"),"Scrolled header polish remains present");
+check(css.includes('a[aria-current="page"]::after'),"Active route underline remains tied to aria-current state");
+check(css.includes("v77-career-role-grid")&&css.includes("v71-course-form-wrap .v41-field"),"V77 career/course polish is present");
+if(failures){console.error(`\nV77 polish exit control failed with ${failures} issue(s).`);process.exit(1)} console.log("\nV77 polish exit control passed.");

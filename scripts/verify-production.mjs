@@ -28,11 +28,11 @@ const required = [
   "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V76 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V77 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v76-polished-human-finish", "Package name is V76 founder-identity-correction build");
-assert(pkg.version === "76.0.0", "Package version is 76.0.0");
+assert(pkg.name === "kathanika-media-v77-responsive-refinement", "Package name is V77 founder-identity-correction build");
+assert(pkg.version === "77.0.0", "Package version is 77.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -54,7 +54,7 @@ for (const hex of ["#8a5f41", "#a77f60", "#f3e4c9", "#ccd67f", "#f3e5ca", "#4a2f
 assert(css.includes('ui-sans-serif') && css.includes('system-ui'), "Critical typography uses zero-request system font stacks");
 assert(!read("src/routes/__root.tsx").includes("fonts.googleapis.com"), "No external Google Fonts request remains in the critical path");
 assert(css.includes(".v50-production-wall"), "Continuous mixed production media wall is present");
-assert(css.includes(".v50-about-visual") && css.includes(".v50-about-pillars"), "About page visual and icon system is styled");
+assert(css.includes(".v77-about-opening") && css.includes(".v77-about-pillars"), "About founders-first visual and icon system is styled");
 assert(css.includes("content-visibility: auto"), "Below-fold rendering is optimized");
 assert(css.includes("@media (max-width: 1100px)"), "Small-laptop/tablet bridge responsiveness is present");
 
@@ -71,7 +71,7 @@ assert(hero.includes("setInterval") && hero.includes("FIRST_SLIDE_MS = 9000") &&
 assert(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual controls");
 
 const about = read("src/routes/about.tsx");
-assert(about.includes("ClientProductionImage") && about.includes("v50-about-pillars"), "About page includes client photography and icon-led content");
+assert(about.includes('file="founding-team-01"') && about.includes("v77-about-pillars") && !about.includes("ClientProductionImage"), "About uses only the founders-together opening image plus icon-led content");
 for (const icon of ["Film", "UsersRound", "Share2", "Megaphone"]) assert(about.includes(icon), `About page includes ${icon} visual icon`);
 
 const services = read("src/routes/services.tsx");
@@ -111,7 +111,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V76 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V77 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

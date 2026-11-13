@@ -1,7 +1,7 @@
 import fs from "node:fs";
 const read=(p)=>fs.readFileSync(p,"utf8"); const exists=(p)=>fs.existsSync(p); let failures=0;
 const check=(ok,label)=>{console.log(`${ok?"PASS":"FAIL"}  ${label}`); if(!ok) failures+=1;};
-console.log("\nKathanika Media V76 — Navigation + Product-Intent SEO Exit Control\n");
+console.log("\nKathanika Media V77 — Navigation + Product-Intent SEO Exit Control\n");
 const header=read("src/components/site/SiteHeader.tsx");
 check(header.includes('import { Link } from "@tanstack/react-router"'),"Header uses TanStack Router Link for route-native active state");
 check(!header.includes("useRouterState") && !header.includes("currentPath") && !header.includes("window.location.pathname"),"No stale pathname-derived navigation state remains");
@@ -15,4 +15,4 @@ const root=read("src/routes/__root.tsx");check(root.includes('"ProfessionalServi
 const courses=read("src/routes/courses.tsx");check(courses.includes('"@type": "Course"'),"Courses page includes Course structured data");check(courses.includes('price: "5000"')&&courses.includes('priceCurrency: "INR"'),"Course schema matches ₹5,000 fee");
 const sitemap=read("public/sitemap.xml");for(const path of ["podcast-as-a-service","content-production","ip-building","courses"]){check(sitemap.includes(`https://www.kathanika.in/${path}`),`Sitemap contains /${path}`)}
 const seo=read("src/lib/seo.ts");check(seo.includes('rel: "canonical"'),"Canonical links remain enabled");check(seo.includes("index, follow"),"Index/follow directives remain enabled");
-if(failures){console.error(`\nV76 navigation + SEO exit control failed with ${failures} issue(s).`);process.exit(1)} console.log("\nV76 navigation + SEO exit control passed.");
+if(failures){console.error(`\nV77 navigation + SEO exit control failed with ${failures} issue(s).`);process.exit(1)} console.log("\nV77 navigation + SEO exit control passed.");
