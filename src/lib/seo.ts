@@ -11,8 +11,16 @@ export function absoluteSiteUrl(path = "/"): string {
   return normalized ? new URL(normalized, base).toString() : base;
 }
 
+export function canonicalPageUrl(path = "/"): string {
+  const base = publicSiteUrl();
+  const clean = path.trim();
+  if (!clean || clean === "/") return base;
+  const withoutEdges = clean.replace(/^\/+|\/+$/g, "");
+  return new URL(`${withoutEdges}/`, base).toString();
+}
+
 export function seoHead(path: string, title: string, description: string) {
-  const canonical = absoluteSiteUrl(path);
+  const canonical = canonicalPageUrl(path);
   const image = absoluteSiteUrl("og/kathanika-og.jpg");
 
   return {

@@ -52,9 +52,9 @@ export function FaqAssistant() {
           </div>
 
           <div className="v71-faq-handoff v79-faq-handoff">
-            <a href={withBasePath('/contact')}>Business inquiry</a>
-            <a href={withBasePath('/creators')}>Career inquiry</a>
-            <a href={withBasePath('/courses')}>Course inquiry</a>
+            <a href={withBasePath('/contact/')}>Business inquiry</a>
+            <a href={withBasePath('/creators/')}>Career inquiry</a>
+            <a href={withBasePath('/courses/')}>Course inquiry</a>
           </div>
         </div>
       ) : null}

@@ -6,12 +6,12 @@ import { withBasePath } from "@/lib/base-path";
 
 const LINKS = [
   ["Home", "/"],
-  ["About", "/about"],
-  ["Work", "/work"],
-  ["Services", "/services"],
-  ["Courses", "/courses"],
-  ["Career Inquiry", "/creators"],
-  ["Business Inquiry", "/contact"],
+  ["About", "/about/"],
+  ["Work", "/work/"],
+  ["Services", "/services/"],
+  ["Courses", "/courses/"],
+  ["Career Inquiry", "/creators/"],
+  ["Business Inquiry", "/contact/"],
 ] as const;
 
 export function SiteHeader() {

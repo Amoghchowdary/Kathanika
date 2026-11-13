@@ -5,12 +5,12 @@ import { withBasePath } from "@/lib/base-path";
 
 const FOOTER_LINKS = [
   ["Home", "/"],
-  ["About", "/about"],
-  ["Work", "/work"],
-  ["Services", "/services"],
-  ["Courses", "/courses"],
-  ["Career Inquiry", "/creators"],
-  ["Business Inquiry", "/contact"],
+  ["About", "/about/"],
+  ["Work", "/work/"],
+  ["Services", "/services/"],
+  ["Courses", "/courses/"],
+  ["Career Inquiry", "/creators/"],
+  ["Business Inquiry", "/contact/"],
 ] as const;
 
 const FALLBACK_SOCIALS = {
@@ -40,7 +40,7 @@ export function SiteFooter() {
         </div>
         <div className="v44-footer-lead-copy">
           <p>Build a media property people choose to return to.</p>
-          <a className="v44-footer-cta" href={withBasePath("/contact")}>
+          <a className="v44-footer-cta" href={withBasePath("/contact/")}>
             Start Business Inquiry <ArrowUpRight />
           </a>
         </div>
@@ -85,7 +85,7 @@ export function SiteFooter() {
       <div className="v41-footer-bottom v44-footer-bottom">
         <span>© {new Date().getFullYear()} Kathanika Media</span>
         <span>Content · Community · Distribution · Marketing</span>
-        <div><a href={withBasePath("/privacy")}>Privacy</a><a href={withBasePath("/terms")}>Terms</a></div>
+        <div><a href={withBasePath("/privacy/")}>Privacy</a><a href={withBasePath("/terms/")}>Terms</a></div>
       </div>
     </footer>
   );

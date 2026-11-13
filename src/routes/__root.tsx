@@ -26,25 +26,42 @@ const CRITICAL_CSS = `
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <main className="v82-not-found" aria-labelledby="v82-not-found-title">
+      <div className="v82-not-found-inner">
+        <Link to="/" className="v82-not-found-brand" aria-label="Kathanika Media home">
+          <picture>
+            <source srcSet={withBasePath("/kathanika-logo-header-240.avif")} type="image/avif" />
+            <img
+              src={withBasePath("/kathanika-logo-header-240.webp")}
+              width="240"
+              height="74"
+              alt="Kathanika Media"
+            />
+          </picture>
+        </Link>
+
+        <div className="v82-not-found-code" aria-hidden="true">404</div>
+        <p className="v82-not-found-kicker">THE STORY MOVED</p>
+        <h1 id="v82-not-found-title">This page is no longer in the edit.</h1>
+        <p className="v82-not-found-copy">
+          The link may be old, the page may have moved, or the URL may have been typed differently.
+          Continue with Kathanika&apos;s current work, services, courses or business desk.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+
+        <nav className="v82-not-found-actions" aria-label="404 recovery links">
+          <Link to="/" className="is-primary">Home</Link>
+          <Link to="/work/">Work</Link>
+          <Link to="/services/">Services</Link>
+          <Link to="/courses/">Courses</Link>
+          <Link to="/contact/">Business Inquiry</Link>
+        </nav>
+
+        <p className="v82-not-found-footnote">Kathanika Media · Hyderabad · Content · Community · Distribution</p>
       </div>
-    </div>
+    </main>
   );
 }
+
 
 function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);

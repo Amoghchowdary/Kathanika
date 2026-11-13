@@ -24,6 +24,12 @@ const rawSite = process.env.VITE_PUBLIC_SITE_URL || env.VITE_PUBLIC_SITE_URL || 
 const site = rawSite.endsWith("/") ? rawSite : `${rawSite}/`;
 const today = new Date().toISOString().slice(0, 10);
 
+function pageUrl(route) {
+  if (!route) return site;
+  const clean = route.replace(/^\/+|\/+$/g, "");
+  return new URL(`${clean}/`, site).toString();
+}
+
 const routes = [
   { path: "", priority: "1.0", images: ["media/production/responsive/IMG_4711-1280.webp"] },
   { path: "about", priority: "0.9", images: ["media/production/responsive/IMG_20260722_204442-1280.webp", "media/production/responsive/IMG_5530-960.webp"] },
@@ -42,12 +48,12 @@ const routes = [
 
 const xmlUrls = routes.map(({ path: route, priority, images }) => {
   const imageXml = images.map((image) => `\n    <image:image>\n      <image:loc>${new URL(image, site).toString()}</image:loc>\n    </image:image>`).join("");
-  return `  <url>\n    <loc>${new URL(route, site).toString()}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>${imageXml}\n  </url>`;
+  return `  <url>\n    <loc>${pageUrl(route)}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>${priority}</priority>${imageXml}\n  </url>`;
 }).join("\n");
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${xmlUrls}\n</urlset>\n`;
 const robots = `User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap.xml", site).toString()}\n`;
-const yaml = `# Human-readable sitemap manifest. Search engines use sitemap.xml.\nsite: ${site}\nlast_modified: ${today}\nroutes:\n${routes.map(({ path: route }) => `  - ${new URL(route, site).toString()}`).join("\n")}\n`;
+const yaml = `# Human-readable sitemap manifest. Search engines use sitemap.xml.\nsite: ${site}\nlast_modified: ${today}\nroutes:\n${routes.map(({ path: route }) => `  - ${pageUrl(route)}`).join("\n")}\n`;
 
 fs.mkdirSync(path.join(root, "public"), { recursive: true });
 fs.writeFileSync(path.join(root, "public", "sitemap.xml"), xml);

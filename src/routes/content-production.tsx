@@ -42,9 +42,9 @@ function Page() {
       { q: "Can one long-form shoot become multiple content assets?", a: "Yes. The production model can include short-form cut-downs, clips and platform-specific packaging so a long-form production can support a wider content system." },
     ]}
     related={[
-      { label: "Podcast as a Service", href: "/podcast-as-a-service" },
-      { label: "IP Building", href: "/ip-building" },
-      { label: "Courses", href: "/courses" },
+      { label: "Podcast as a Service", href: "/podcast-as-a-service/" },
+      { label: "IP Building", href: "/ip-building/" },
+      { label: "Courses", href: "/courses/" },
     ]}
   />;
 }

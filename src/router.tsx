@@ -8,6 +8,7 @@ export const getRouter = () => {
     basepath: routerBasePath(),
     context: {},
     scrollRestoration: true,
+    trailingSlash: "always",
     defaultPreloadStaleTime: 0,
   });
 

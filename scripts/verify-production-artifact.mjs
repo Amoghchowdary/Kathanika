@@ -14,13 +14,17 @@ const routeFile = (route) => {
   return null;
 };
 
-console.log("\nKathanika Media V79 — Production Artifact Integrity Verification\n");
+console.log("\nKathanika Media V84 — Production Artifact Integrity Verification\n");
 check(existsAbs(out), ".output/public exists");
 
-for (const f of ["CNAME", "robots.txt", "sitemap.xml", "sitemap.yml", "site.webmanifest", "og/kathanika-og.jpg", "favicon.png"]) {
+for (const f of ["CNAME", "robots.txt", "sitemap.xml", "sitemap.yml", "site.webmanifest", "og/kathanika-og.jpg", "favicon.png", "404.html"]) {
   check(exists(f), `Production artifact includes ${f}`);
 }
 if (exists("CNAME")) check(read("CNAME").trim() === "www.kathanika.in", "Built CNAME targets www.kathanika.in");
+if (exists("404.html")) {
+  const notFound = read("404.html");
+  check(notFound.includes("Page not found — Kathanika Media") && notFound.includes("THE STORY MOVED"), "Built 404.html is the branded Kathanika recovery page");
+}
 
 const routes = ["", "about", "work", "services", "creators", "contact", "privacy", "terms", "brands"];
 const htmlFiles = [];
@@ -68,7 +72,7 @@ check(exists("media/production/responsive") && exists("media/production/video"),
 check(exists("team/founding-team-01.avif") && exists("team/founding-team-02.avif") && exists("team/founder-portrait-01.avif") && exists("team/founder-portrait-02.avif"), "Optimized founding-team photography is deployed");
 
 if (failures) {
-  console.error(`\nV79 production artifact verification failed with ${failures} issue(s).`);
+  console.error(`\nV84 production artifact verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV79 production artifact integrity verification passed.");
+console.log("\nV84 production artifact integrity verification passed.");

@@ -61,25 +61,25 @@ export function EditorialGrid() {
       title: "Creator Incubation",
       copy: "Ideas turned into intellectual property.",
       image: images.editCreator,
-      to: "/creators",
+      to: "/creators/",
     },
     {
       title: "Content for Brands",
       copy: "Expertise turned into audience.",
       image: images.editBrand,
-      to: "/brands",
+      to: "/brands/",
     },
     {
       title: "Latest Production",
       copy: "Shot across five cities this quarter.",
       image: images.hero3,
-      to: "/work",
+      to: "/work/",
     },
     {
       title: "Podcast as a Service",
       copy: "Studio, edit, publish, distribute.",
       image: images.editPost,
-      to: "/services",
+      to: "/services/",
     },
   ];
 
@@ -191,7 +191,7 @@ const ecosystems = [
       "IP development",
     ],
     cta: "Build Your IP",
-    to: "/creators",
+    to: "/creators/",
     image: images.editCreator,
   },
   {
@@ -210,7 +210,7 @@ const ecosystems = [
       "Personal branding",
     ],
     cta: "Build Your Content Ecosystem",
-    to: "/brands",
+    to: "/brands/",
     image: images.editBrand,
   },
 ] as const;
@@ -358,7 +358,7 @@ export function ServicesWall({ title = "Everything content." }: { title?: string
             return (
               <li key={s.id} className="group min-w-0">
                 <Link
-                  to="/contact"
+                  to="/contact/"
                   className="service-card flex h-full min-h-[220px] flex-col justify-between p-6 sm:p-7 lg:min-h-[250px] lg:p-8"
                 >
                   <span>
@@ -664,13 +664,13 @@ export function ClosingCta() {
           <p className="mt-6 text-lg text-muted-foreground">What should they see from you?</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              to="/contact"
+              to="/contact/"
               className="inline-flex h-13 items-center gap-2 rounded-full bg-primary px-7 py-4 text-[12px] font-semibold tracking-[0.1em] text-primary-foreground uppercase transition-opacity hover:opacity-85"
             >
               Business Inquiry <ArrowRight className="size-4" />
             </Link>
             <Link
-              to="/creators"
+              to="/creators/"
               className="inline-flex items-center rounded-full border border-foreground/40 px-7 py-4 text-[12px] font-semibold tracking-[0.1em] text-foreground uppercase transition-colors hover:bg-foreground/10"
             >
               Career Inquiry

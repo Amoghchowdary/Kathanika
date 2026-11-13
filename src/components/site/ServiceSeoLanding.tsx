@@ -92,7 +92,7 @@ export function ServiceSeoLanding(props: ServiceSeoLandingProps) {
           <div>{props.related.map((item) => <a key={item.href} href={withBasePath(item.href)}>{item.label}<ArrowUpRight aria-hidden="true" /></a>)}</div>
         </div>
 
-        <a className="v41-outline-cta" href={withBasePath("/contact")}>Start Business Inquiry <ArrowUpRight /></a>
+        <a className="v41-outline-cta" href={withBasePath("/contact/")}>Start Business Inquiry <ArrowUpRight /></a>
       </section>
     </SiteLayout>
   );

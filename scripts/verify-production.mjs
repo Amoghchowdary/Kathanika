@@ -28,11 +28,11 @@ const required = [
   "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V81 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V84 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v81-verification-gate-fix", "Package name is V81 founder-identity-correction build");
-assert(pkg.version === "81.0.0", "Package version is 81.0.0");
+assert(pkg.name === "kathanika-media-v84-cumulative-release-fix", "Package name is V84 founder-identity-correction build");
+assert(pkg.version === "84.0.0", "Package version is 84.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -112,7 +112,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V81 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V84 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);

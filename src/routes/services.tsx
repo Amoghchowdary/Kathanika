@@ -82,9 +82,9 @@ function ServicesPage() {
           <p className="v41-section-note">Dedicated service pages explain the scope, operating model and deliverables behind Kathanika’s core offers.</p>
         </div>
         <div className="v75-intent-grid">
-          <a href={withBasePath("/podcast-as-a-service")}><span>01</span><h3>Podcast as a Service</h3><p>Strategy, production, post-production, clips, publishing and distribution for an owned recurring show.</p><ArrowUpRight /></a>
-          <a href={withBasePath("/content-production")}><span>02</span><h3>Content Production</h3><p>Long-form, YouTube, podcast and short-form production systems from a Hyderabad content company.</p><ArrowUpRight /></a>
-          <a href={withBasePath("/ip-building")}><span>03</span><h3>IP Building</h3><p>Audience, format, identity, production and distribution architecture for long-term brand-owned media.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/podcast-as-a-service/")}><span>01</span><h3>Podcast as a Service</h3><p>Strategy, production, post-production, clips, publishing and distribution for an owned recurring show.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/content-production/")}><span>02</span><h3>Content Production</h3><p>Long-form, YouTube, podcast and short-form production systems from a Hyderabad content company.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/ip-building/")}><span>03</span><h3>IP Building</h3><p>Audience, format, identity, production and distribution architecture for long-term brand-owned media.</p><ArrowUpRight /></a>
         </div>
       </section>
 
@@ -119,7 +119,7 @@ function ServicesPage() {
             );
           })}
         </div>
-        <a className="v41-outline-cta" href={withBasePath("/contact")}>Start Business Inquiry <ArrowUpRight /></a>
+        <a className="v41-outline-cta" href={withBasePath("/contact/")}>Start Business Inquiry <ArrowUpRight /></a>
       </section>
     </SiteLayout>
   );

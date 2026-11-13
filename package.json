@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v81-verification-gate-fix",
-  "version": "81.0.0",
+  "name": "kathanika-media-v84-cumulative-release-fix",
+  "version": "84.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,12 +11,12 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:courses && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4 && npm run verify:nav-seo && npm run verify:polish && npm run verify:v81",
+    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:courses && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4 && npm run verify:nav-seo && npm run verify:polish && npm run verify:v84",
     "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
     "verify:responsive": "node scripts/verify-responsive.mjs",
-    "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
+    "build:pages": "npm run generate:seo:pages && vite build --mode github-pages && node scripts/finalize-pages-artifact.mjs",
     "verify:pages": "node scripts/verify-pages-build.mjs",
-    "preflight:pages": "npm run generate:seo:pages && npm run verify && vite build --mode github-pages && npm run verify:pages && npm run verify:tracking:build && npm run verify:artifact",
+    "preflight:pages": "npm run generate:seo:pages && npm run verify && vite build --mode github-pages && node scripts/finalize-pages-artifact.mjs && npm run verify:pages && npm run verify:tracking:build && npm run verify:artifact",
     "git:preflight": "powershell -ExecutionPolicy Bypass -File ./scripts/git-preflight.ps1",
     "verify:feedback": "node scripts/verify-client-feedback.mjs",
     "generate:seo:pages": "node scripts/generate-seo.mjs github-pages",
@@ -36,7 +36,7 @@
     "verify:courses": "node scripts/verify-courses.mjs",
     "verify:nav-seo": "node scripts/verify-nav-seo-v77.mjs",
     "verify:polish": "node scripts/verify-v77-polish.mjs",
-    "verify:v81": "node scripts/verify-v81-refinement.mjs"
+    "verify:v84": "node scripts/verify-v84-cumulative.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

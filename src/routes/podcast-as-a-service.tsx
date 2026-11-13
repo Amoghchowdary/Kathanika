@@ -42,9 +42,9 @@ function Page() {
       { q: "Does Kathanika work only in Hyderabad?", a: "Kathanika is based in Hyderabad and works on Telugu and English media properties. Project scope and production logistics can be discussed through the business inquiry." },
     ]}
     related={[
-      { label: "IP Building", href: "/ip-building" },
-      { label: "Content Production", href: "/content-production" },
-      { label: "All Services", href: "/services" },
+      { label: "IP Building", href: "/ip-building/" },
+      { label: "Content Production", href: "/content-production/" },
+      { label: "All Services", href: "/services/" },
     ]}
   />;
 }

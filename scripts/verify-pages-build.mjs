@@ -21,7 +21,7 @@ const envText = fs.existsSync(envFile) ? fs.readFileSync(envFile, "utf8") : "";
 const baseMatch = envText.match(/^VITE_SITE_BASE=(.+)$/m);
 const siteBase = baseMatch?.[1]?.trim() || "/";
 
-console.log("\nKathanika Media V79 - Custom Domain Build + SEO Verification\n");
+console.log("\nKathanika Media V84 - Custom Domain Build + SEO Verification\n");
 const routes = ["", "about", "work", "services", "creators", "contact", "brands", "privacy", "terms"];
 for (const route of routes) ok(Boolean(routeFile(route)), `${route || "home"} prerender exists`);
 ok(exists("top-ten"), "Episode assets exist in Pages artifact");
@@ -34,6 +34,11 @@ ok(exists("robots.txt"), "robots.txt exists in Pages artifact");
 ok(exists("site.webmanifest"), "site.webmanifest exists in Pages artifact");
 ok(exists("og/kathanika-og.jpg"), "Open Graph image exists in Pages artifact");
 ok(exists("CNAME"), "CNAME exists in Pages artifact");
+ok(exists("404.html"), "Custom 404.html exists at GitHub Pages artifact root");
+if (exists("404.html")) {
+  const notFound = read("404.html");
+  ok(notFound.includes("Page not found — Kathanika Media") && notFound.includes("THE STORY MOVED"), "Custom 404 artifact is the branded Kathanika page");
+}
 if (exists("CNAME")) ok(read("CNAME").trim() === "www.kathanika.in", "CNAME targets www.kathanika.in");
 
 for (const route of routes.slice(0, 7)) {

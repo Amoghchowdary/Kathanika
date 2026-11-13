@@ -42,9 +42,9 @@ function Page() {
       { q: "Is IP building different from social media management?", a: "Yes. Social media management focuses on channel operations. IP building starts with the media property itself: what it is, why it exists, whom it serves and why people should return." },
     ]}
     related={[
-      { label: "Podcast as a Service", href: "/podcast-as-a-service" },
-      { label: "Content Production", href: "/content-production" },
-      { label: "Business Inquiry", href: "/contact" },
+      { label: "Podcast as a Service", href: "/podcast-as-a-service/" },
+      { label: "Content Production", href: "/content-production/" },
+      { label: "Business Inquiry", href: "/contact/" },
     ]}
   />;
 }
