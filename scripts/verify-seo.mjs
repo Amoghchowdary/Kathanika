@@ -14,7 +14,7 @@ check(exists('public/og/kathanika-og.jpg'), '1200x630 Open Graph image exists');
 check(exists('public/CNAME') && read('public/CNAME').trim()==='www.kathanika.in', 'CNAME targets www.kathanika.in');
 check(seo.includes('https://www.kathanika.in/'), 'SEO helper defaults to the custom production domain');
 const sitemap=read('public/sitemap.xml');
-for(const route of ['https://www.kathanika.in/','https://www.kathanika.in/about','https://www.kathanika.in/work','https://www.kathanika.in/services','https://www.kathanika.in/podcast-as-a-service','https://www.kathanika.in/content-production','https://www.kathanika.in/ip-building','https://www.kathanika.in/courses','https://www.kathanika.in/creators','https://www.kathanika.in/contact','https://www.kathanika.in/brands']) check(sitemap.includes(route), `Sitemap contains ${route}`);
+for(const route of ['https://www.kathanika.in/','https://www.kathanika.in/about','https://www.kathanika.in/work','https://www.kathanika.in/services','https://www.kathanika.in/media-company-hyderabad','https://www.kathanika.in/podcast-as-a-service','https://www.kathanika.in/content-as-a-service','https://www.kathanika.in/content-production','https://www.kathanika.in/youtube-as-a-service','https://www.kathanika.in/reels-as-a-service','https://www.kathanika.in/social-media-management','https://www.kathanika.in/personal-branding','https://www.kathanika.in/ip-building','https://www.kathanika.in/courses','https://www.kathanika.in/creators','https://www.kathanika.in/contact','https://www.kathanika.in/brands']) check(sitemap.includes(route), `Sitemap contains ${route}`);
 check(!sitemap.includes('amoghchowdary.github.io'), 'Sitemap contains no legacy GitHub Pages canonical URLs');
 check(sitemap.includes('xmlns:image=') && sitemap.includes('<image:image>'), 'XML sitemap includes image discovery markup');
 check(read('public/robots.txt').includes('Sitemap: https://www.kathanika.in/sitemap.xml'), 'robots.txt advertises the custom-domain sitemap');
@@ -26,8 +26,8 @@ check(rootRoute.includes('theme-color') && rootRoute.includes('application-name'
 check(rootRoute.includes('rel: "manifest"'), 'Manifest is linked from the document head');
 check(rootRoute.includes('rel="preload"') && rootRoute.includes('as="image"') && rootRoute.includes('IMG_4711-1024.avif'), 'LCP image is preloaded for performance/SEO');
 check(footer.includes('rel="me noopener noreferrer"'), 'Social backlinks expose identity relationship metadata');
-for(const file of ['index.tsx','about.tsx','work.tsx','services.tsx','podcast-as-a-service.tsx','content-production.tsx','ip-building.tsx','courses.tsx','creators.tsx','contact.tsx','brands.tsx']) check(read(`src/routes/${file}`).includes('seoHead('), `${file} uses page-specific SEO metadata`);
-console.log('\nKathanika Media V84 — Custom Domain SEO Verification\n');
+for(const file of ['index.tsx','about.tsx','work.tsx','services.tsx','media-company-hyderabad.tsx','podcast-as-a-service.tsx','content-as-a-service.tsx','content-production.tsx','youtube-as-a-service.tsx','reels-as-a-service.tsx','social-media-management.tsx','personal-branding.tsx','ip-building.tsx','courses.tsx','creators.tsx','contact.tsx','brands.tsx']) check(read(`src/routes/${file}`).includes('seoHead('), `${file} uses page-specific SEO metadata`);
+console.log('\nKathanika Media V85 — Custom Domain SEO Verification\n');
 for(const [ok,msg] of checks) console.log(`${ok?'PASS':'FAIL'}  ${msg}`);
 if(failures.length){console.error(`\nSEO verification failed: ${failures.length} issue(s).`);process.exit(1)}
 console.log(`\nSEO verification passed: ${checks.length} checks.`);

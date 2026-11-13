@@ -13,6 +13,7 @@ const FOOTER_LINKS = [
   ["Business Inquiry", "/contact/"],
 ] as const;
 
+
 const FALLBACK_SOCIALS = {
   youtube: "https://www.youtube.com/@kathanikamedia",
   instagram: "https://www.instagram.com/kathanikamedia/",

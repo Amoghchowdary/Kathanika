@@ -1,7 +1,7 @@
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
-import { absoluteSiteUrl } from "@/lib/seo";
+import { absoluteSiteUrl, canonicalPageUrl } from "@/lib/seo";
 import { withBasePath } from "@/lib/base-path";
 
 type ServiceSeoLandingProps = {
@@ -20,7 +20,7 @@ type ServiceSeoLandingProps = {
 };
 
 export function ServiceSeoLanding(props: ServiceSeoLandingProps) {
-  const canonical = absoluteSiteUrl(props.slug);
+  const canonical = canonicalPageUrl(props.slug);
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -47,9 +47,17 @@ export function ServiceSeoLanding(props: ServiceSeoLandingProps) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Home", item: absoluteSiteUrl("/") },
-          { "@type": "ListItem", position: 2, name: "Services", item: absoluteSiteUrl("/services") },
+          { "@type": "ListItem", position: 2, name: "Services", item: canonicalPageUrl("/services") },
           { "@type": "ListItem", position: 3, name: props.eyebrow, item: canonical },
         ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: props.faq.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: { "@type": "Answer", text: item.a },
+        })),
       },
     ],
   };
@@ -87,12 +95,22 @@ export function ServiceSeoLanding(props: ServiceSeoLandingProps) {
           </div>
         </div>
 
+        <div className="v85-service-proof" aria-label="Kathanika Media proof points">
+          <article><strong>12+</strong><span>Content IPs built</span></article>
+          <article><strong>3 Cr+</strong><span>Monthly content reach</span></article>
+          <article><strong>Telugu + English</strong><span>Media capability</span></article>
+          <article><strong>Hyderabad</strong><span>Banjara Hills production base</span></article>
+        </div>
+
         <div className="v75-seo-related" aria-label="Related Kathanika services">
           <span>Explore related capabilities</span>
           <div>{props.related.map((item) => <a key={item.href} href={withBasePath(item.href)}>{item.label}<ArrowUpRight aria-hidden="true" /></a>)}</div>
         </div>
 
-        <a className="v41-outline-cta" href={withBasePath("/contact/")}>Start Business Inquiry <ArrowUpRight /></a>
+        <div className="v85-service-actions">
+          <a className="v41-outline-cta" href={withBasePath("/work/")}>See Kathanika work <ArrowUpRight /></a>
+          <a className="v41-outline-cta" href={withBasePath("/contact/")}>Start Business Inquiry <ArrowUpRight /></a>
+        </div>
       </section>
     </SiteLayout>
   );

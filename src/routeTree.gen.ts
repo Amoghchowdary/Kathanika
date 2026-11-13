@@ -13,15 +13,21 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContentAsAServiceRouteImport } from './routes/content-as-a-service'
 import { Route as ContentProductionRouteImport } from './routes/content-production'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CreatorsRouteImport } from './routes/creators'
 import { Route as IpBuildingRouteImport } from './routes/ip-building'
+import { Route as MediaCompanyHyderabadRouteImport } from './routes/media-company-hyderabad'
+import { Route as PersonalBrandingRouteImport } from './routes/personal-branding'
 import { Route as PodcastAsAServiceRouteImport } from './routes/podcast-as-a-service'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ReelsAsAServiceRouteImport } from './routes/reels-as-a-service'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as SocialMediaManagementRouteImport } from './routes/social-media-management'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as WorkRouteImport } from './routes/work'
+import { Route as YoutubeAsAServiceRouteImport } from './routes/youtube-as-a-service'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,6 +47,11 @@ const BrandsRoute = BrandsRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContentAsAServiceRoute = ContentAsAServiceRouteImport.update({
+  id: '/content-as-a-service',
+  path: '/content-as-a-service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContentProductionRoute = ContentProductionRouteImport.update({
@@ -63,6 +74,16 @@ const IpBuildingRoute = IpBuildingRouteImport.update({
   path: '/ip-building',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MediaCompanyHyderabadRoute = MediaCompanyHyderabadRouteImport.update({
+  id: '/media-company-hyderabad',
+  path: '/media-company-hyderabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PersonalBrandingRoute = PersonalBrandingRouteImport.update({
+  id: '/personal-branding',
+  path: '/personal-branding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PodcastAsAServiceRoute = PodcastAsAServiceRouteImport.update({
   id: '/podcast-as-a-service',
   path: '/podcast-as-a-service',
@@ -73,9 +94,19 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReelsAsAServiceRoute = ReelsAsAServiceRouteImport.update({
+  id: '/reels-as-a-service',
+  path: '/reels-as-a-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialMediaManagementRoute = SocialMediaManagementRouteImport.update({
+  id: '/social-media-management',
+  path: '/social-media-management',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -88,36 +119,53 @@ const WorkRoute = WorkRouteImport.update({
   path: '/work',
   getParentRoute: () => rootRouteImport,
 } as any)
+const YoutubeAsAServiceRoute = YoutubeAsAServiceRouteImport.update({
+  id: '/youtube-as-a-service',
+  path: '/youtube-as-a-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-as-a-service': typeof ContentAsAServiceRoute
   '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/ip-building': typeof IpBuildingRoute
+  '/media-company-hyderabad': typeof MediaCompanyHyderabadRoute
+  '/personal-branding': typeof PersonalBrandingRoute
   '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
+  '/reels-as-a-service': typeof ReelsAsAServiceRoute
   '/services': typeof ServicesRoute
+  '/social-media-management': typeof SocialMediaManagementRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
+  '/youtube-as-a-service': typeof YoutubeAsAServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-as-a-service': typeof ContentAsAServiceRoute
   '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/ip-building': typeof IpBuildingRoute
+  '/media-company-hyderabad': typeof MediaCompanyHyderabadRoute
+  '/personal-branding': typeof PersonalBrandingRoute
   '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
+  '/reels-as-a-service': typeof ReelsAsAServiceRoute
   '/services': typeof ServicesRoute
+  '/social-media-management': typeof SocialMediaManagementRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
+  '/youtube-as-a-service': typeof YoutubeAsAServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -125,15 +173,21 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-as-a-service': typeof ContentAsAServiceRoute
   '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
   '/ip-building': typeof IpBuildingRoute
+  '/media-company-hyderabad': typeof MediaCompanyHyderabadRoute
+  '/personal-branding': typeof PersonalBrandingRoute
   '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
+  '/reels-as-a-service': typeof ReelsAsAServiceRoute
   '/services': typeof ServicesRoute
+  '/social-media-management': typeof SocialMediaManagementRoute
   '/terms': typeof TermsRoute
   '/work': typeof WorkRoute
+  '/youtube-as-a-service': typeof YoutubeAsAServiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -142,45 +196,63 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-as-a-service'
     | '/content-production'
     | '/courses'
     | '/creators'
     | '/ip-building'
+    | '/media-company-hyderabad'
+    | '/personal-branding'
     | '/podcast-as-a-service'
     | '/privacy'
+    | '/reels-as-a-service'
     | '/services'
+    | '/social-media-management'
     | '/terms'
     | '/work'
+    | '/youtube-as-a-service'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-as-a-service'
     | '/content-production'
     | '/courses'
     | '/creators'
     | '/ip-building'
+    | '/media-company-hyderabad'
+    | '/personal-branding'
     | '/podcast-as-a-service'
     | '/privacy'
+    | '/reels-as-a-service'
     | '/services'
+    | '/social-media-management'
     | '/terms'
     | '/work'
+    | '/youtube-as-a-service'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-as-a-service'
     | '/content-production'
     | '/courses'
     | '/creators'
     | '/ip-building'
+    | '/media-company-hyderabad'
+    | '/personal-branding'
     | '/podcast-as-a-service'
     | '/privacy'
+    | '/reels-as-a-service'
     | '/services'
+    | '/social-media-management'
     | '/terms'
     | '/work'
+    | '/youtube-as-a-service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -188,15 +260,21 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BrandsRoute: typeof BrandsRoute
   ContactRoute: typeof ContactRoute
+  ContentAsAServiceRoute: typeof ContentAsAServiceRoute
   ContentProductionRoute: typeof ContentProductionRoute
   CoursesRoute: typeof CoursesRoute
   CreatorsRoute: typeof CreatorsRoute
   IpBuildingRoute: typeof IpBuildingRoute
+  MediaCompanyHyderabadRoute: typeof MediaCompanyHyderabadRoute
+  PersonalBrandingRoute: typeof PersonalBrandingRoute
   PodcastAsAServiceRoute: typeof PodcastAsAServiceRoute
   PrivacyRoute: typeof PrivacyRoute
+  ReelsAsAServiceRoute: typeof ReelsAsAServiceRoute
   ServicesRoute: typeof ServicesRoute
+  SocialMediaManagementRoute: typeof SocialMediaManagementRoute
   TermsRoute: typeof TermsRoute
   WorkRoute: typeof WorkRoute
+  YoutubeAsAServiceRoute: typeof YoutubeAsAServiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -229,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/content-as-a-service': {
+      id: '/content-as-a-service'
+      path: '/content-as-a-service'
+      fullPath: '/content-as-a-service'
+      preLoaderRoute: typeof ContentAsAServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/content-production': {
       id: '/content-production'
       path: '/content-production'
@@ -257,6 +342,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IpBuildingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/media-company-hyderabad': {
+      id: '/media-company-hyderabad'
+      path: '/media-company-hyderabad'
+      fullPath: '/media-company-hyderabad'
+      preLoaderRoute: typeof MediaCompanyHyderabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/personal-branding': {
+      id: '/personal-branding'
+      path: '/personal-branding'
+      fullPath: '/personal-branding'
+      preLoaderRoute: typeof PersonalBrandingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/podcast-as-a-service': {
       id: '/podcast-as-a-service'
       path: '/podcast-as-a-service'
@@ -271,11 +370,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reels-as-a-service': {
+      id: '/reels-as-a-service'
+      path: '/reels-as-a-service'
+      fullPath: '/reels-as-a-service'
+      preLoaderRoute: typeof ReelsAsAServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social-media-management': {
+      id: '/social-media-management'
+      path: '/social-media-management'
+      fullPath: '/social-media-management'
+      preLoaderRoute: typeof SocialMediaManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -292,6 +405,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/youtube-as-a-service': {
+      id: '/youtube-as-a-service'
+      path: '/youtube-as-a-service'
+      fullPath: '/youtube-as-a-service'
+      preLoaderRoute: typeof YoutubeAsAServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -300,15 +420,21 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BrandsRoute: BrandsRoute,
   ContactRoute: ContactRoute,
+  ContentAsAServiceRoute: ContentAsAServiceRoute,
   ContentProductionRoute: ContentProductionRoute,
   CoursesRoute: CoursesRoute,
   CreatorsRoute: CreatorsRoute,
   IpBuildingRoute: IpBuildingRoute,
+  MediaCompanyHyderabadRoute: MediaCompanyHyderabadRoute,
+  PersonalBrandingRoute: PersonalBrandingRoute,
   PodcastAsAServiceRoute: PodcastAsAServiceRoute,
   PrivacyRoute: PrivacyRoute,
+  ReelsAsAServiceRoute: ReelsAsAServiceRoute,
   ServicesRoute: ServicesRoute,
+  SocialMediaManagementRoute: SocialMediaManagementRoute,
   TermsRoute: TermsRoute,
   WorkRoute: WorkRoute,
+  YoutubeAsAServiceRoute: YoutubeAsAServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

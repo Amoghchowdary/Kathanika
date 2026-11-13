@@ -3,7 +3,7 @@ import { ArrowUpRight, Award, Clock3, Laptop, Languages, MonitorPlay, UserRound 
 import { useState } from "react";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { useContent } from "@/content/store";
-import { absoluteSiteUrl, seoHead } from "@/lib/seo";
+import { absoluteSiteUrl, canonicalPageUrl, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/courses")({
   head: () => seoHead("/courses", "Video Editing Course in Hyderabad | Kathanika Media", "Learn video editing with Kathanika Media: a five-week practical course covering CapCut, Premiere Pro and DaVinci Resolve with assignments and a completion certificate."),
@@ -19,11 +19,11 @@ function CoursesPage() {
     "@type": "Course",
     name: "Learn Video Editing from Scratch — Beginner to Pro",
     description: "A five-week practical video editing course by Kathanika Media covering CapCut, Adobe Premiere Pro and DaVinci Resolve with hands-on assignments.",
-    url: absoluteSiteUrl("/courses"),
+    url: canonicalPageUrl("/courses"),
     provider: { "@type": "Organization", name: "Kathanika Media", url: absoluteSiteUrl("/") },
     educationalLevel: ["Beginner", "Intermediate"],
     inLanguage: "en-IN",
-    offers: { "@type": "Offer", price: "5000", priceCurrency: "INR", url: absoluteSiteUrl("/courses") },
+    offers: { "@type": "Offer", price: "5000", priceCurrency: "INR", url: canonicalPageUrl("/courses") },
   };
   return <SiteLayout>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />

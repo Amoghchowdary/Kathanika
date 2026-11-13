@@ -23,7 +23,7 @@ const EVOLUTION = [
 ] as const;
 
 export const Route = createFileRoute("/")({
-  head: () => seoHead("/", "Kathanika Media | Content, Podcasts & IP Building in Hyderabad", "Kathanika Media is a Hyderabad content company building podcasts, original content IPs, YouTube and audience-led media properties across Telugu and English."),
+  head: () => seoHead("/", "Media & Content Production Company in Hyderabad | Kathanika Media", "Kathanika Media is a Hyderabad media and content production company for podcasts, YouTube, reels, content IP building, personal branding and audience-led media systems across Telugu and English."),
   component: Index,
 });
 
@@ -72,6 +72,22 @@ function Index() {
               <i aria-hidden="true" />
             </article>
           ))}
+        </div>
+
+        <div className="v85-home-search-cluster" aria-label="Popular Kathanika services">
+          <div>
+            <span>Hyderabad media services</span>
+            <h2>Search by the media outcome you need.</h2>
+            <p>Explore Kathanika's productised services for podcasts, ongoing content, YouTube, reels, personal branding and original media IPs.</p>
+          </div>
+          <nav>
+            <a href="/podcast-as-a-service/">Podcast as a Service</a>
+            <a href="/content-as-a-service/">Content as a Service</a>
+            <a href="/youtube-as-a-service/">YouTube as a Service</a>
+            <a href="/reels-as-a-service/">Reels as a Service</a>
+            <a href="/personal-branding/">Personal Branding</a>
+            <a href="/media-company-hyderabad/">Media Company Hyderabad</a>
+          </nav>
         </div>
       </section>
 

@@ -5,8 +5,8 @@ import { seoHead } from "@/lib/seo";
 export const Route = createFileRoute("/podcast-as-a-service")({
   head: () => seoHead(
     "/podcast-as-a-service",
-    "Podcast as a Service in Hyderabad | Kathanika Media",
-    "End-to-end podcast strategy, production, editing, clips, publishing and distribution for brands, founders and institutions in Hyderabad and across India.",
+    "Podcast Production Company in Hyderabad | Podcast as a Service | Kathanika",
+    "Kathanika Media is a podcast production company in Hyderabad offering Podcast as a Service: strategy, recording, editing, clips, publishing and distribution for brands, founders and institutions.",
   ),
   component: Page,
 });
@@ -15,7 +15,7 @@ function Page() {
   return <ServiceSeoLanding
     eyebrow="Podcast as a Service"
     title="Build a podcast people choose to return to."
-    intro="Kathanika Media provides end-to-end podcast-as-a-service for brands, founders and institutions: format strategy, production, post-production, short-form repurposing, publishing and distribution from Hyderabad."
+    intro="Kathanika Media is a Hyderabad podcast production company providing end-to-end Podcast as a Service for brands, founders and institutions: format strategy, recording, production, post-production, short-form repurposing, publishing and distribution."
     slug="/podcast-as-a-service"
     serviceType="Podcast production and podcast-as-a-service"
     audience="Brands, founders, institutions and experts building an owned show"

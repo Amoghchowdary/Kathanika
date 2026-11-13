@@ -81,10 +81,16 @@ function ServicesPage() {
           <div><p>Productised media services</p><h2 id="v75-intent-title">Start with the outcome you want to own.</h2></div>
           <p className="v41-section-note">Dedicated service pages explain the scope, operating model and deliverables behind Kathanika’s core offers.</p>
         </div>
-        <div className="v75-intent-grid">
+        <div className="v75-intent-grid v85-intent-grid">
           <a href={withBasePath("/podcast-as-a-service/")}><span>01</span><h3>Podcast as a Service</h3><p>Strategy, production, post-production, clips, publishing and distribution for an owned recurring show.</p><ArrowUpRight /></a>
-          <a href={withBasePath("/content-production/")}><span>02</span><h3>Content Production</h3><p>Long-form, YouTube, podcast and short-form production systems from a Hyderabad content company.</p><ArrowUpRight /></a>
-          <a href={withBasePath("/ip-building/")}><span>03</span><h3>IP Building</h3><p>Audience, format, identity, production and distribution architecture for long-term brand-owned media.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/content-as-a-service/")}><span>02</span><h3>Content as a Service</h3><p>Recurring editorial strategy, production and publishing for an always-on content system.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/content-production/")}><span>03</span><h3>Content Production</h3><p>Long-form, YouTube, podcast and short-form production systems from a Hyderabad content company.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/youtube-as-a-service/")}><span>04</span><h3>YouTube as a Service</h3><p>Channel architecture, recurring shows, production, editing, thumbnails, titles and publishing.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/reels-as-a-service/")}><span>05</span><h3>Reels as a Service</h3><p>Hooks, scripts, editing and recurring short-form pipelines for consistent discovery.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/social-media-management/")}><span>06</span><h3>Social Media Management</h3><p>Editorial calendars, platform creative, publishing, community response and reporting.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/personal-branding/")}><span>07</span><h3>Personal Branding</h3><p>Thought-leadership systems for founders, CEOs, doctors, investors and experts.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/ip-building/")}><span>08</span><h3>IP Building</h3><p>Audience, format, identity, production and distribution architecture for long-term brand-owned media.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/media-company-hyderabad/")}><span>09</span><h3>Hyderabad Media Company</h3><p>Local production and media-system capability from Kathanika's Banjara Hills base.</p><ArrowUpRight /></a>
         </div>
       </section>
 

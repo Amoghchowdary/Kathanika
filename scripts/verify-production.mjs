@@ -15,7 +15,7 @@ const assert = (condition, message) => {
 const required = [
   "package.json", "vite.config.ts", "src/styles.css", "src/lib/seo.ts",
   "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
-  "src/routes/services.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
+  "src/routes/services.tsx", "src/routes/media-company-hyderabad.tsx", "src/routes/podcast-as-a-service.tsx", "src/routes/content-as-a-service.tsx", "src/routes/content-production.tsx", "src/routes/youtube-as-a-service.tsx", "src/routes/reels-as-a-service.tsx", "src/routes/social-media-management.tsx", "src/routes/personal-branding.tsx", "src/routes/ip-building.tsx", "src/routes/creators.tsx", "src/routes/contact.tsx", "src/routes/brands.tsx",
   "src/components/site/HeroOrbit.tsx", "src/components/site/EpisodeLibrary.tsx",
   "src/components/site/InquiryModal.tsx", "src/components/site/SiteHeader.tsx",
   "src/components/site/SiteFooter.tsx", "src/components/site/SiteLayout.tsx",
@@ -28,11 +28,11 @@ const required = [
   "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V84 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V85 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v84-cumulative-release-fix", "Package name is V84 founder-identity-correction build");
-assert(pkg.version === "84.0.0", "Package version is 84.0.0");
+assert(pkg.name === "kathanika-media-v85-seo-growth", "Package name is V85 founder-identity-correction build");
+assert(pkg.version === "85.0.0", "Package version is 85.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -61,6 +61,7 @@ assert(css.includes("@media (max-width: 1100px)"), "Small-laptop/tablet bridge r
 const rootRoute = read("src/routes/__root.tsx");
 assert(rootRoute.includes("application/ld+json") && rootRoute.includes("@graph"), "Structured data graph is included");
 assert(rootRoute.includes("Organization") && rootRoute.includes("WebSite"), "Organization and WebSite schema are included");
+assert(rootRoute.includes("OfferCatalog") && rootRoute.includes("Content as a Service") && rootRoute.includes("Personal Branding"), "Organization schema exposes a service offer catalog");
 assert(rootRoute.includes("kathanika-critical-css") && rootRoute.includes("media=\"print\""), "Critical CSS is inlined and full stylesheet is loaded non-blocking");
 assert(rootRoute.includes("IMG_4711-1024.avif") && rootRoute.includes("imageSrcSet"), "Primary hero image is preloaded");
 
@@ -78,6 +79,7 @@ for (const icon of ["Film", "UsersRound", "Share2", "Megaphone"]) assert(about.i
 const services = read("src/routes/services.tsx");
 assert(services.includes("SERVICE_DELIVERABLES"), "Services retain explicit deliverable mappings");
 assert(services.includes("Positioning for founders, doctors, CEOs and investors"), "Personal Branding audience detail remains explicit");
+assert(services.includes("/content-as-a-service/") && services.includes("/youtube-as-a-service/") && services.includes("/reels-as-a-service/") && services.includes("/social-media-management/") && services.includes("/personal-branding/") && services.includes("/media-company-hyderabad/"), "Services page internally links the expanded product-intent cluster");
 
 const mediaShowcase = read("src/components/site/ProductionMediaShowcase.tsx");
 assert(mediaShowcase.includes("DeferredVideo") && mediaShowcase.includes("ClientProductionImage"), "Production media uses deferred video and responsive images");
@@ -112,7 +114,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V84 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V85 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);
