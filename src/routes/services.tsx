@@ -63,7 +63,7 @@ const SERVICE_DELIVERABLES: Record<string, readonly string[]> = {
 };
 
 export const Route = createFileRoute("/services")({
-  head: () => seoHead("/services", "Services — Kathanika Media Content, Podcast & Production", "Content strategy, podcast production, YouTube, reels, IP development, distribution, brand building and personal branding from Kathanika Media."),
+  head: () => seoHead("/services", "Content, Podcast & IP Building Services in Hyderabad | Kathanika", "Explore Kathanika Media services in Hyderabad: podcast as a service, content production, IP building, YouTube, reels, distribution, brand building and personal branding."),
   component: ServicesPage,
 });
 
@@ -73,7 +73,20 @@ function ServicesPage() {
 
   return (
     <SiteLayout>
-      <PageHead eyebrow="Services" title="Every IP has an audience, purpose and identity." intro="That principle also governs our client work: we define what the media property is for before we decide what to publish." />
+      <PageHead eyebrow="Services" title="Every IP has an audience, purpose and identity." intro="Kathanika Media is a Hyderabad content company offering productised podcast, content production and IP-building systems for brands, founders, creators and institutions." />
+
+      <section className="v75-intent-hub" aria-labelledby="v75-intent-title">
+        <div className="v41-section-head compact">
+          <span>01</span>
+          <div><p>Productised media services</p><h2 id="v75-intent-title">Start with the outcome you want to own.</h2></div>
+          <p className="v41-section-note">Dedicated service pages explain the scope, operating model and deliverables behind Kathanika’s core offers.</p>
+        </div>
+        <div className="v75-intent-grid">
+          <a href={withBasePath("/podcast-as-a-service")}><span>01</span><h3>Podcast as a Service</h3><p>Strategy, production, post-production, clips, publishing and distribution for an owned recurring show.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/content-production")}><span>02</span><h3>Content Production</h3><p>Long-form, YouTube, podcast and short-form production systems from a Hyderabad content company.</p><ArrowUpRight /></a>
+          <a href={withBasePath("/ip-building")}><span>03</span><h3>IP Building</h3><p>Audience, format, identity, production and distribution architecture for long-term brand-owned media.</p><ArrowUpRight /></a>
+        </div>
+      </section>
 
       <section className="v41-services-principle">
         <div className="v41-services-principle-grid">

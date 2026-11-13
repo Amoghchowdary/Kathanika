@@ -11,7 +11,7 @@ const title = "Business Inquiry — Kathanika Media";
 const description = "Build an audience, not another campaign.";
 
 export const Route = createFileRoute("/contact")({
-  head: () => seoHead("/contact", "Business Inquiry — Kathanika Media", "Start a business conversation with Kathanika Media for content IPs, podcasts, YouTube, production, distribution and brand media systems."),
+  head: () => seoHead("/contact", "Business Inquiry | Kathanika Media Hyderabad", "Talk to Kathanika Media about podcast as a service, content production, IP building, YouTube, distribution and brand-owned media systems in Hyderabad and India."),
   component: BusinessInquiryPage,
 });
 

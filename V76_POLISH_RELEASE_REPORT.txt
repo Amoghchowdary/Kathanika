@@ -1,0 +1,19 @@
+KATHANIKA MEDIA V76 — POLISHED HUMAN FINISH
+
+Release blockers fixed
+- Navbar active underline now uses TanStack Router Link active state for all seven primary routes.
+- Business Inquiry /contact, Career Inquiry /creators, and all other routes receive exact active-page semantics.
+
+Polish
+- Added six authentic existing Kathanika production images to About in a responsive editorial grid.
+- Preserved founders-only structure; no Operations profile/title restored.
+- Refined header, active navigation, focus states, card hover motion, page entrance rhythm and image motion.
+- Added reduced-motion support and content-visibility optimization.
+- Preserved V75 product-intent SEO architecture and service landing pages.
+
+Exit controls
+- npm run verify:nav-seo
+- npm run verify:polish
+- npm run typecheck
+- npm run verify
+- npm run build

@@ -3,10 +3,10 @@ import { ArrowUpRight, Award, Clock3, Laptop, Languages, MonitorPlay, UserRound 
 import { useState } from "react";
 import { PageHead, SiteLayout } from "@/components/site/SiteLayout";
 import { useContent } from "@/content/store";
-import { seoHead } from "@/lib/seo";
+import { absoluteSiteUrl, seoHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/courses")({
-  head: () => seoHead("/courses", "Video Editing Course — Kathanika Media", "Learn video editing from scratch with Kathanika Media. Five weeks, ten sessions, practical assignments and CapCut, Premiere Pro and DaVinci Resolve workflows."),
+  head: () => seoHead("/courses", "Video Editing Course in Hyderabad | Kathanika Media", "Learn video editing with Kathanika Media: a five-week practical course covering CapCut, Premiere Pro and DaVinci Resolve with assignments and a completion certificate."),
   component: CoursesPage,
 });
 
@@ -14,7 +14,19 @@ function CoursesPage() {
   const { addEnquiry } = useContent();
   const [state,setState]=useState<"idle"|"sending"|"sent">("idle");
   const [error,setError]=useState("");
+  const courseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: "Learn Video Editing from Scratch — Beginner to Pro",
+    description: "A five-week practical video editing course by Kathanika Media covering CapCut, Adobe Premiere Pro and DaVinci Resolve with hands-on assignments.",
+    url: absoluteSiteUrl("/courses"),
+    provider: { "@type": "Organization", name: "Kathanika Media", url: absoluteSiteUrl("/") },
+    educationalLevel: ["Beginner", "Intermediate"],
+    inLanguage: "en-IN",
+    offers: { "@type": "Offer", price: "5000", priceCurrency: "INR", url: absoluteSiteUrl("/courses") },
+  };
   return <SiteLayout>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
     <PageHead eyebrow="Courses" title="Learn Video Editing from Scratch — Beginner to Pro" intro="A practical five-week editing course built around real workflows, repeat practice and software confidence." />
     <section className="v71-course-shell">
       <div className="v71-course-overview">

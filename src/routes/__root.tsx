@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<Record<string, never>>()({
       {
         name: "description",
         content:
-          "Kathanika Media builds new-age content IPs, communities and distribution ecosystems across Telugu and English.",
+          "Kathanika Media is a Hyderabad content company for podcast production, content IP building, brand-owned media, YouTube and audience-led distribution across Telugu and English.",
       },
       { name: "author", content: "Kathanika Media" },
       { name: "application-name", content: "Kathanika Media" },
@@ -102,12 +102,11 @@ export const Route = createRootRouteWithContext<Record<string, never>>()({
       { name: "geo.placename", content: "Hyderabad" },
       { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "googlebot", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
-      { name: "keywords", content: "Kathanika Media, podcast production Hyderabad, content IP development, YouTube production, media incubation, Telugu podcasts, content strategy" },
       { property: "og:title", content: "Kathanika Media — Building the next generation of media" },
       {
         property: "og:description",
         content:
-          "Kathanika Media builds new-age content IPs, communities and distribution ecosystems across Telugu and English.",
+          "Kathanika Media is a Hyderabad content company for podcast production, content IP building, brand-owned media, YouTube and audience-led distribution across Telugu and English.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Kathanika Media" },
@@ -136,13 +135,15 @@ function RootShell({ children }: { children: ReactNode }) {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService"],
         "@id": `${absoluteSiteUrl("/")}#organization`,
         name: "Kathanika Media",
         url: absoluteSiteUrl("/"),
         logo: absoluteSiteUrl("kathanika-logo-original.png"),
         image: absoluteSiteUrl("og/kathanika-og.jpg"),
-        description: "Kathanika Media builds new-age content IPs, production systems and audience-led media properties across Telugu and English.",
+        description: "Kathanika Media is a Hyderabad content and podcast production company building original IPs, brand-owned media, YouTube and audience-led content systems across Telugu and English.",
+        areaServed: [{ "@type": "City", name: "Hyderabad" }, { "@type": "State", name: "Telangana" }, { "@type": "Country", name: "India" }],
+        knowsAbout: ["Podcast production", "Podcast as a Service", "Content production", "Content IP building", "Brand-owned media", "YouTube production", "Short-form video", "Content distribution", "Video editing education"],
         email: "kathanikamedia@gmail.com",
         telephone: "+91 90638 54291",
         sameAs: [
@@ -171,7 +172,7 @@ function RootShell({ children }: { children: ReactNode }) {
         "@id": `${absoluteSiteUrl("/")}#website`,
         url: absoluteSiteUrl("/"),
         name: "Kathanika Media",
-        description: "Original content IPs, production, distribution and media incubation from Hyderabad.",
+        description: "Kathanika Media: Hyderabad content company for podcast production, content IP building, brand-owned media, YouTube, production and distribution.",
         inLanguage: "en-IN",
         publisher: { "@id": `${absoluteSiteUrl("/")}#organization` },
       },

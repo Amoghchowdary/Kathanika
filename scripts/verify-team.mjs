@@ -8,14 +8,14 @@ function check(condition, label) {
 function read(path) { return fs.readFileSync(path, "utf8"); }
 function exists(path) { return fs.existsSync(path); }
 
-console.log("\nKathanika Media V74 — Founders Only Verification\n");
+console.log("\nKathanika Media V76 — Founders Only Verification\n");
 
 const about = read("src/routes/about.tsx");
 const css = read("src/styles.css");
 const pkg = JSON.parse(read("package.json"));
 
-check(pkg.name === "kathanika-media-v74-release-integrity-fix", "V74 package identity is correct");
-check(pkg.version === "74.0.0", "V74 package version is correct");
+check(pkg.name === "kathanika-media-v76-polished-human-finish", "V76 package identity is correct");
+check(pkg.version === "76.0.0", "V76 package version is correct");
 check(about.includes("Team behind Kathanika Media"), "About page retains Team behind Kathanika heading");
 check(!about.includes("Manikanta Kandikatla") && !about.includes("Operations & Communications"), "Former operations profile is removed from About page");
 check(!about.includes('role: "Founder ·') && !about.includes('role: "Co-Founder & COO') && !about.includes("Operations, Strategy & Media Business"), "Founder role titles are simplified to Founder and Co-Founder only");
@@ -50,10 +50,10 @@ for (const file of [
   "public/team/founder-portrait-02.jpg",
 ]) check(exists(file), `Required team asset exists: ${file}`);
 check(css.includes("@media (max-width: 760px)"), "Team section retains mobile responsive treatment");
-check(about.includes("About Kathanika Media & Founding Team — Hyderabad"), "About SEO title remains intact");
+check(about.includes("About Kathanika Media | Hyderabad Content & Podcast Company"), "About SEO title remains intact");
 
 if (failures) {
-  console.error(`\nV74 founders-only verification failed with ${failures} issue(s).`);
+  console.error(`\nV76 founders-only verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV74 Founders Only verification passed.");
+console.log("\nV76 Founders Only verification passed.");

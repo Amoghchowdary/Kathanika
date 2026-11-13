@@ -61,8 +61,8 @@ const PILLARS = [
 export const Route = createFileRoute("/about")({
   head: () => seoHead(
     "/about",
-    "About Kathanika Media & Founding Team — Hyderabad",
-    "Meet the team behind Kathanika Media and learn how the Hyderabad-based studio builds independent content IPs across content, community, distribution and marketing.",
+    "About Kathanika Media | Hyderabad Content & Podcast Company",
+    "Meet Kathanika Media, a Hyderabad content and podcast company building original IPs, brand-owned media, production systems, distribution and audience communities.",
   ),
   component: AboutPage,
 });
@@ -135,6 +135,33 @@ function AboutPage() {
         </div>
 
         <div className="v71-team-life"><TeamPhoto file="founding-team-02" alt="Kathanika Media team working together" width={1600} height={1066} className="v71-team-life-photo" /><div><span>Team life</span><h3>People behind the productions.</h3><p>Strategy, production and creative work happen side by side — with the team close to the creators, sets and audiences they serve.</p></div></div>
+
+        <div className="v76-about-story-grid" aria-label="Kathanika Media production life">
+          <figure className="is-tall">
+            <ClientProductionImage file="IMG_5584.webp" alt="A behind-the-scenes moment from a Kathanika Media production" sizes="(max-width: 760px) 92vw, 31vw" />
+            <figcaption>Behind the scenes · Hyderabad</figcaption>
+          </figure>
+          <figure>
+            <ClientProductionImage file="IMG_5444.webp" alt="Kathanika Media production environment with creators and crew" sizes="(max-width: 760px) 92vw, 31vw" />
+            <figcaption>Creators, crew, conversation</figcaption>
+          </figure>
+          <figure>
+            <ClientProductionImage file="IMG_4809.webp" alt="Kathanika Media team working on a production set" sizes="(max-width: 760px) 92vw, 31vw" />
+            <figcaption>Close to the work</figcaption>
+          </figure>
+          <figure>
+            <ClientProductionImage file="IMG_5144.webp" alt="Camera-led content production at Kathanika Media" sizes="(max-width: 760px) 92vw, 31vw" />
+            <figcaption>Production with intent</figcaption>
+          </figure>
+          <figure className="is-wide">
+            <ClientProductionImage file="IMG_5719.webp" alt="A Kathanika Media production session in progress" sizes="(max-width: 760px) 92vw, 62vw" />
+            <figcaption>Stories built in the room, not in a template</figcaption>
+          </figure>
+          <figure>
+            <ClientProductionImage file="IMG_20260704_114854.webp" alt="Kathanika Media production detail" sizes="(max-width: 760px) 92vw, 31vw" />
+            <figcaption>Details matter</figcaption>
+          </figure>
+        </div>
 
         <div className="v66-founder-grid v67-founder-grid">
           {FOUNDING_TEAM.map((member, index) => (

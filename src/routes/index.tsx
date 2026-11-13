@@ -23,7 +23,7 @@ const EVOLUTION = [
 ] as const;
 
 export const Route = createFileRoute("/")({
-  head: () => seoHead("/", "Kathanika Media — Building the next generation of media", "Kathanika Media builds original content IPs, production systems and audience-led media properties across Telugu and English."),
+  head: () => seoHead("/", "Kathanika Media | Content, Podcasts & IP Building in Hyderabad", "Kathanika Media is a Hyderabad content company building podcasts, original content IPs, YouTube and audience-led media properties across Telugu and English."),
   component: Index,
 });
 
@@ -39,7 +39,7 @@ function Index() {
             <p>Why Kathanika / What we do</p>
             <h2>Media changed before.<br />It is changing again.</h2>
           </div>
-          <p className="v41-section-note">We build and operate media IPs, learn directly from audiences and bring that understanding into brand work.</p>
+          <p className="v41-section-note">Kathanika is a Hyderabad content company. We build and operate media IPs, podcasts and content systems, learn directly from audiences and bring that understanding into brand work.</p>
         </div>
 
         <div className="v44-evolution-flow v44-home-evolution" role="group" aria-label="Evolution of media">

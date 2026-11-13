@@ -1,0 +1,45 @@
+KATHANIKA MEDIA V75 — POST-DEPLOY SEO ACTIONS
+
+1. Deploy V75 and confirm these URLs return 200:
+   https://www.kathanika.in/
+   https://www.kathanika.in/services
+   https://www.kathanika.in/podcast-as-a-service
+   https://www.kathanika.in/content-production
+   https://www.kathanika.in/ip-building
+   https://www.kathanika.in/courses
+
+2. Google Search Console
+   - Submit https://www.kathanika.in/sitemap.xml
+   - Inspect and request indexing for the three new service URLs and /courses.
+   - Monitor Pages/Indexing, Core Web Vitals and Search performance.
+   - Track queries by page, especially podcast, content production, IP building and course clusters.
+
+3. Google Business Profile / local search
+   - Verify profile ownership.
+   - Keep the exact Kathanika Media name, Banjara Hills address, phone and website consistent.
+   - Select the most accurate primary/secondary categories available in the profile UI; do not keyword-stuff the business name.
+   - Add services that match the site: podcast production, content production, brand-owned media/IP development, video production, YouTube/short-form production where available.
+   - Add real production photos/videos regularly.
+   - Request legitimate client reviews; reply to every relevant review.
+
+4. Entity consistency
+   - Keep LinkedIn, Instagram, YouTube and trusted directories aligned with the same positioning and website URL.
+   - Use "Kathanika Media" consistently; avoid creating competing business identities.
+
+5. Content / authority cadence
+   Publish useful evidence-led pages/posts around real expertise, such as:
+   - How to build a branded podcast in India
+   - Podcast production workflow for founders
+   - Content IP vs campaign content
+   - How brand-owned media compounds audience attention
+   - Long-form to reels distribution system
+   - Telugu + English podcast/content production insights
+   - Video editing learning resources tied to the course
+
+6. Measurement
+   - GA4 and GTM remain present.
+   - In Search Console, measure impressions, average position and clicks for each landing page.
+   - In Business Profile Performance, monitor the actual search terms that trigger the profile.
+
+IMPORTANT
+SEO can improve relevance, crawlability, entity understanding and authority, but no technical implementation can guarantee position #1 or local-pack inclusion for a query. Rankings also depend on competition, location, authority, links, reviews, content quality and time.

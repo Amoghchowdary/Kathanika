@@ -13,8 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BrandsRouteImport } from './routes/brands'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ContentProductionRouteImport } from './routes/content-production'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as CreatorsRouteImport } from './routes/creators'
+import { Route as IpBuildingRouteImport } from './routes/ip-building'
+import { Route as PodcastAsAServiceRouteImport } from './routes/podcast-as-a-service'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as TermsRouteImport } from './routes/terms'
@@ -40,6 +43,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContentProductionRoute = ContentProductionRouteImport.update({
+  id: '/content-production',
+  path: '/content-production',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CoursesRoute = CoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
@@ -48,6 +56,16 @@ const CoursesRoute = CoursesRouteImport.update({
 const CreatorsRoute = CreatorsRouteImport.update({
   id: '/creators',
   path: '/creators',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IpBuildingRoute = IpBuildingRouteImport.update({
+  id: '/ip-building',
+  path: '/ip-building',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastAsAServiceRoute = PodcastAsAServiceRouteImport.update({
+  id: '/podcast-as-a-service',
+  path: '/podcast-as-a-service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -76,8 +94,11 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
+  '/ip-building': typeof IpBuildingRoute
+  '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -88,8 +109,11 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
+  '/ip-building': typeof IpBuildingRoute
+  '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -101,8 +125,11 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/brands': typeof BrandsRoute
   '/contact': typeof ContactRoute
+  '/content-production': typeof ContentProductionRoute
   '/courses': typeof CoursesRoute
   '/creators': typeof CreatorsRoute
+  '/ip-building': typeof IpBuildingRoute
+  '/podcast-as-a-service': typeof PodcastAsAServiceRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/terms': typeof TermsRoute
@@ -115,8 +142,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-production'
     | '/courses'
     | '/creators'
+    | '/ip-building'
+    | '/podcast-as-a-service'
     | '/privacy'
     | '/services'
     | '/terms'
@@ -127,8 +157,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-production'
     | '/courses'
     | '/creators'
+    | '/ip-building'
+    | '/podcast-as-a-service'
     | '/privacy'
     | '/services'
     | '/terms'
@@ -139,8 +172,11 @@ export interface FileRouteTypes {
     | '/about'
     | '/brands'
     | '/contact'
+    | '/content-production'
     | '/courses'
     | '/creators'
+    | '/ip-building'
+    | '/podcast-as-a-service'
     | '/privacy'
     | '/services'
     | '/terms'
@@ -152,8 +188,11 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BrandsRoute: typeof BrandsRoute
   ContactRoute: typeof ContactRoute
+  ContentProductionRoute: typeof ContentProductionRoute
   CoursesRoute: typeof CoursesRoute
   CreatorsRoute: typeof CreatorsRoute
+  IpBuildingRoute: typeof IpBuildingRoute
+  PodcastAsAServiceRoute: typeof PodcastAsAServiceRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   TermsRoute: typeof TermsRoute
@@ -190,6 +229,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/content-production': {
+      id: '/content-production'
+      path: '/content-production'
+      fullPath: '/content-production'
+      preLoaderRoute: typeof ContentProductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/courses': {
       id: '/courses'
       path: '/courses'
@@ -202,6 +248,20 @@ declare module '@tanstack/react-router' {
       path: '/creators'
       fullPath: '/creators'
       preLoaderRoute: typeof CreatorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ip-building': {
+      id: '/ip-building'
+      path: '/ip-building'
+      fullPath: '/ip-building'
+      preLoaderRoute: typeof IpBuildingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast-as-a-service': {
+      id: '/podcast-as-a-service'
+      path: '/podcast-as-a-service'
+      fullPath: '/podcast-as-a-service'
+      preLoaderRoute: typeof PodcastAsAServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -240,8 +300,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BrandsRoute: BrandsRoute,
   ContactRoute: ContactRoute,
+  ContentProductionRoute: ContentProductionRoute,
   CoursesRoute: CoursesRoute,
   CreatorsRoute: CreatorsRoute,
+  IpBuildingRoute: IpBuildingRoute,
+  PodcastAsAServiceRoute: PodcastAsAServiceRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   TermsRoute: TermsRoute,
