@@ -19,12 +19,12 @@ const countFiles = (dir) => {
   return count;
 };
 
-console.log("\nKathanika Media V79 — Code + Production Integrity Verification\n");
+console.log("\nKathanika Media V81 — Code + Production Integrity Verification\n");
 
 const pkg = JSON.parse(read("package.json"));
-check(pkg.name === "kathanika-media-v79-css-build-fix", "V79 package identity is correct");
-check(pkg.version === "79.0.0", "V79 package version is correct");
-check(read("VERSION.txt").trim() === "79.0.0", "VERSION.txt matches package version");
+check(pkg.name === "kathanika-media-v81-verification-gate-fix", "V81 package identity is correct");
+check(pkg.version === "81.0.0", "V81 package version is correct");
+check(read("VERSION.txt").trim() === "81.0.0", "VERSION.txt matches package version");
 
 const criticalSource = [
   "src/routes/__root.tsx", "src/routes/index.tsx", "src/routes/about.tsx", "src/routes/work.tsx",
@@ -64,7 +64,7 @@ for (const [name, txt] of [["GitHub Pages", envPages], ["production", envProd]])
 }
 
 const workflow = read(".github/workflows/deploy-pages.yml");
-check(workflow.includes("name: Deploy Kathanika V79"), "GitHub Pages workflow identifies V79");
+check(workflow.includes("name: Deploy Kathanika V81"), "GitHub Pages workflow identifies V81");
 check(Boolean(pkg.scripts?.["verify:team"]), "Production script configured: verify:team");
 check(workflow.includes("npm install --no-audit --no-fund"), "GitHub Actions installs production dependencies");
 check(workflow.includes("npm run preflight:pages"), "GitHub Actions runs the full production preflight");
@@ -83,7 +83,7 @@ check(exists("public/sitemap.xml") && exists("public/robots.txt") && exists("pub
 check(!exists(".lovable"), "No Lovable production artifact is present");
 
 if (failures) {
-  console.error(`\nV79 integrity verification failed with ${failures} issue(s).`);
+  console.error(`\nV81 integrity verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV79 code + production integrity verification passed.");
+console.log("\nV81 code + production integrity verification passed.");
