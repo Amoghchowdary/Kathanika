@@ -3599,3 +3599,110 @@ html{scroll-behavior:smooth}body{text-rendering:optimizeLegibility}::selection{b
   .v77-career-role-grid article { padding: 21px; }
   .v71-course-overview, .v71-course-form-wrap { padding: 22px 16px; }
 }
+
+
+/* =========================================================
+   V79 — ASK KATHANIKA + FOUNDER PORTRAIT RESTORATION
+   ========================================================= */
+
+/* V-style Ask Kathanika trigger: a clear chevron cue and a small pointed tail. */
+.v79-faq-launch {
+  position: relative;
+  min-width: 190px;
+  justify-content: flex-start;
+  border: 1px solid color-mix(in srgb, var(--accent) 84%, #fff 16%);
+  background: color-mix(in srgb, var(--card-bg) 94%, var(--accent) 6%);
+  box-shadow: 0 18px 50px rgba(34, 18, 8, .24);
+}
+.v79-faq-launch::after {
+  content: \"\";
+  position: absolute;
+  right: 28px;
+  bottom: -8px;
+  width: 15px;
+  height: 15px;
+  background: inherit;
+  border-right: 1px solid color-mix(in srgb, var(--accent) 84%, #fff 16%);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 84%, #fff 16%);
+  transform: rotate(45deg);
+}
+.v79-faq-chevron {
+  width: 16px !important;
+  margin-left: auto;
+  transition: transform .24s var(--v76-ease);
+}
+.v71-faq-assistant.is-open .v79-faq-chevron { transform: rotate(180deg); }
+
+.v79-faq-panel {
+  border: 1px solid color-mix(in srgb, var(--accent) 70%, var(--line));
+  background: color-mix(in srgb, var(--bg) 94%, var(--accent) 6%);
+  box-shadow: 0 26px 80px rgba(27, 13, 5, .28);
+}
+.v79-faq-actions { gap: 10px; }
+.v79-faq-actions button {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 54%, var(--line));
+  background: color-mix(in srgb, var(--card-bg) 92%, var(--accent) 8%);
+  color: var(--card-text);
+  font-weight: 600;
+  transition: transform .2s var(--v76-ease), background .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.v79-faq-actions button:hover,
+.v79-faq-actions button:focus-visible,
+.v79-faq-actions button.is-selected {
+  background: var(--accent);
+  color: #26160d;
+  border-color: var(--accent);
+  box-shadow: 0 10px 24px rgba(39, 21, 10, .15);
+  transform: translateY(-1px);
+}
+.v79-faq-actions button span:last-child { opacity: .72; }
+
+.v79-faq-handoff {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.v79-faq-handoff a {
+  display: grid;
+  place-items: center;
+  min-height: 42px;
+  border-color: color-mix(in srgb, var(--accent) 56%, var(--line));
+  background: color-mix(in srgb, var(--card-bg) 96%, var(--accent) 4%);
+  color: var(--card-text);
+  text-align: center;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.v79-faq-handoff a:hover,
+.v79-faq-handoff a:focus-visible {
+  background: var(--card-text);
+  color: var(--card-bg);
+  border-color: var(--card-text);
+}
+
+/* Restore individual founder portraits inside the two profile cards only. */
+.v79-founder-card {
+  grid-template-rows: auto auto auto auto 1fr auto;
+}
+.v79-founder-avatar {
+  width: clamp(112px, 10vw, 156px);
+  margin-bottom: 20px;
+  box-shadow: 0 14px 34px rgba(42, 22, 10, .14);
+}
+.v79-founder-avatar img {
+  filter: none;
+  object-position: center 24%;
+}
+
+@media (max-width: 760px) {
+  .v79-faq-launch { min-width: 58px; width: auto; }
+  .v79-faq-launch > span { display: none; }
+  .v79-faq-chevron { display: none; }
+  .v79-faq-handoff { grid-template-columns: 1fr; }
+  .v79-founder-avatar { width: 112px; }
+}

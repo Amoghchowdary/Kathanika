@@ -19,12 +19,14 @@ const FOUNDING_TEAM = [
     role: "Founder",
     bio: "Nikhil Dintakurthi is the founder and content strategist behind Kathanika Media. With 7+ years across Indian-language and English podcasting, production, partnerships and distribution, he has worked across IVM Podcasts, Spotify’s Awaaz program, TeluguOne, UPSC Radio and independent productions. His focus is building long-term content IPs around a clear audience, purpose and identity — combining creative instinct with commercial sustainability.",
     note: "100+ content shows · Audience-first IP building · Telugu & English media",
+    portrait: "founder-portrait-01",
   },
   {
     name: "Sai Prudvi",
     role: "Co-Founder",
     bio: "Sai Prudvi is Co-Founder of Kathanika Media. He brings a research-led operating mindset shaped by more than three years at the Foundation for Democratic Reforms into media entrepreneurship, strategy and execution. At Kathanika, he works across original Indian media IPs, creator economics, brand-owned media, long-term storytelling and content monetisation, and also co-hosts Curious, a show exploring media, business, policy and emerging trends.",
     note: "Research-led strategy · Creator economics · Brand-owned media",
+    portrait: "founder-portrait-02",
   },
 ] as const;
 
@@ -99,7 +101,14 @@ function AboutPage() {
 
         <div className="v66-founder-grid v67-founder-grid">
           {FOUNDING_TEAM.map((member, index) => (
-            <article key={member.name} className="v66-founder-card v67-founder-card">
+            <article key={member.name} className="v66-founder-card v67-founder-card v79-founder-card">
+              <TeamPhoto
+                file={member.portrait}
+                alt={`${member.name}, ${member.role} of Kathanika Media`}
+                width={480}
+                height={480}
+                className="v67-founder-avatar v79-founder-avatar"
+              />
               <div className="v66-founder-index">{String(index + 1).padStart(2, "0")}</div>
               <div className="v66-founder-role">{member.role}</div>
               <h3>{member.name}</h3>

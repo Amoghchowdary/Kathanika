@@ -1,6 +1,6 @@
 {
-  "name": "kathanika-media-v77-responsive-refinement",
-  "version": "77.0.0",
+  "name": "kathanika-media-v79-css-build-fix",
+  "version": "79.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "verify:source": "node scripts/verify-production.mjs",
-    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:courses && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4 && npm run verify:nav-seo && npm run verify:polish",
+    "verify": "npm run typecheck && npm run verify:integrity && npm run verify:source && npm run verify:career && npm run verify:courses && npm run verify:team && npm run verify:responsive && npm run verify:feedback && npm run verify:media && npm run verify:seo && npm run verify:performance && npm run verify:lighthouse && npm run verify:domain && npm run verify:gtm && npm run verify:ga4 && npm run verify:nav-seo && npm run verify:polish && npm run verify:v79",
     "preflight": "npm run generate:seo:production && npm run verify && vite build --mode production && npm run verify:tracking:build && npm run verify:artifact",
     "verify:responsive": "node scripts/verify-responsive.mjs",
     "build:pages": "npm run generate:seo:pages && vite build --mode github-pages",
@@ -36,7 +36,7 @@
     "verify:courses": "node scripts/verify-courses.mjs",
     "verify:nav-seo": "node scripts/verify-nav-seo-v77.mjs",
     "verify:polish": "node scripts/verify-v77-polish.mjs",
-    "verify:v77": "node scripts/verify-v77-refinement.mjs"
+    "verify:v79": "node scripts/verify-v79-refinement.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

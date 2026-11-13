@@ -8,7 +8,7 @@ function check(condition, label) {
 const read = (path) => fs.readFileSync(path, "utf8");
 const exists = (path) => fs.existsSync(path);
 
-console.log("\nKathanika Media V77 — Courses Verification\n");
+console.log("\nKathanika Media V79 — Courses Verification\n");
 const courses = read("src/routes/courses.tsx");
 const header = read("src/components/site/SiteHeader.tsx");
 const footer = read("src/components/site/SiteFooter.tsx");
@@ -23,7 +23,7 @@ check(courses.includes("₹5,000") && courses.includes("5 weeks") && courses.inc
 check(courses.includes('service:"Course Inquiry — Video Editing"'), "Course inquiry uses the established enquiry backend path");
 
 if (failures) {
-  console.error(`\nV77 course verification failed with ${failures} issue(s).`);
+  console.error(`\nV79 course verification failed with ${failures} issue(s).`);
   process.exit(1);
 }
-console.log("\nV77 Courses verification passed.");
+console.log("\nV79 Courses verification passed.");

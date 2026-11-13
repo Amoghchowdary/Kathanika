@@ -28,11 +28,11 @@ const required = [
   "scripts/verify-gtm.mjs", "scripts/verify-ga4.mjs", "scripts/verify-career-inquiry.mjs", "scripts/verify-code-integrity.mjs", "scripts/verify-tracking-build.mjs", "scripts/verify-production-artifact.mjs",
   "public/og/kathanika-og.jpg", "public/sitemap.xml", "public/robots.txt", "public/site.webmanifest", "public/CNAME",
 ];
-for (const file of required) assert(exists(file), `Required V77 file exists: ${file}`);
+for (const file of required) assert(exists(file), `Required V79 file exists: ${file}`);
 
 const pkg = JSON.parse(read("package.json"));
-assert(pkg.name === "kathanika-media-v77-responsive-refinement", "Package name is V77 founder-identity-correction build");
-assert(pkg.version === "77.0.0", "Package version is 77.0.0");
+assert(pkg.name === "kathanika-media-v79-css-build-fix", "Package name is V79 founder-identity-correction build");
+assert(pkg.version === "79.0.0", "Package version is 79.0.0");
 assert(pkg.scripts?.typecheck === "tsc --noEmit", "Strict TypeScript verification is configured");
 assert(Boolean(pkg.scripts?.["preflight:pages"]), "GitHub Pages preflight is configured");
 assert(Boolean(pkg.scripts?.["verify:performance"]), "Performance verification is configured");
@@ -71,7 +71,8 @@ assert(hero.includes("setInterval") && hero.includes("FIRST_SLIDE_MS = 9000") &&
 assert(!hero.includes("onPointer") && !hero.includes("ArrowLeft") && !hero.includes("ArrowRight"), "Hero has no manual controls");
 
 const about = read("src/routes/about.tsx");
-assert(about.includes('file="founding-team-01"') && about.includes("v77-about-pillars") && !about.includes("ClientProductionImage"), "About uses only the founders-together opening image plus icon-led content");
+assert(about.includes('file="founding-team-01"') && about.includes("v77-about-pillars") && !about.includes("ClientProductionImage"), "About keeps the founders-together opening image plus icon-led content");
+assert(about.includes('portrait: "founder-portrait-01"') && about.includes('portrait: "founder-portrait-02"'), "Founder profile portraits are restored");
 for (const icon of ["Film", "UsersRound", "Share2", "Megaphone"]) assert(about.includes(icon), `About page includes ${icon} visual icon`);
 
 const services = read("src/routes/services.tsx");
@@ -111,7 +112,7 @@ if (fs.existsSync(topTenDir)) {
 assert(coverCount === 90, "All 90 supplied episode covers are preserved");
 assert(!exists(".lovable"), "No .lovable artifact is included in production source");
 
-console.log("\nKathanika Media V77 — Custom Domain Production Verification\n");
+console.log("\nKathanika Media V79 — Custom Domain Production Verification\n");
 for (const check of checks) console.log(`${check.ok ? "PASS" : "FAIL"}  ${check.message}`);
 if (failures.length) {
   console.error(`\nVerification failed with ${failures.length} issue(s).`);
